@@ -66,6 +66,7 @@ import UIKit
 
 struct Colours {
     let title: String
+    let thumbnail: String
 }
 
 var weatherManager = WeatherManager()
@@ -86,15 +87,15 @@ class CustomCollectionViewController: UICollectionViewController {
         
         //Fetch the data and show the loader
         showActivityIndicator()
-        weatherManager.fetchData { titles in
-                    self.updateCollectionView(with: titles)
+        weatherManager.fetchData { titlesAndThumbnails in
+                    self.updateCollectionView(with: titlesAndThumbnails)
                     self.hideActivityIndicator()
                 }
     }
     
-    func updateCollectionView(with titles: [String]) {
+    func updateCollectionView(with titlesAndThumbnails: [(String, String)]) {
         DispatchQueue.main.async {
-            self.colours = titles.map { Colours(title: $0) }
+            self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1) }
             self.collectionView.reloadData()
         }
     }

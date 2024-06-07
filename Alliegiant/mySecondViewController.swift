@@ -40,11 +40,11 @@ class mySecondViewController: UIViewController {
     
     @IBAction func buttonClickAPI(_ sender: Any) {
 //        weatherManager.fetchData()
-        weatherManager.fetchData { titles in
-                   self.updateUI(with: titles)
+        weatherManager.fetchData { titlesAndThumbnails in
+                   self.updateUI(with: titlesAndThumbnails)
                }
     }
-    func updateUI(with titles: [String]) {
+    func updateUI(with titlesAndThumbnails: [(String, String)]) {
             DispatchQueue.main.async {
                 // Here, you can update any UI components with the fetched data
                 // For simplicity, we're just updating the `myLabel` with the first title

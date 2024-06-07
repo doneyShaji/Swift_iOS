@@ -1,14 +1,17 @@
 import Foundation
-
+//struct ProductAPI{
+//    let title: String
+//    let thumbnail: String
+//}
 struct WeatherManager {
-    var titles: [String] = []
+    var titlesAndThumbnails: [(title: String, thumbnail: String)] = []
     
-    mutating func fetchData(completion: @escaping ([String]) -> Void) {
+    func fetchData(completion: @escaping ([(String, String)]) -> Void) {
         let weatherURL = "https://dummyjson.com/products"
         performRequest(weatherURL: weatherURL, completion: completion)
     }
     
-    private func performRequest(weatherURL: String, completion: @escaping ([String]) -> Void) {
+    private func performRequest(weatherURL: String, completion: @escaping ([(String, String)]) -> Void) {
         // 1. Create a URL
         if let url = URL(string: weatherURL) {
             
@@ -23,8 +26,8 @@ struct WeatherManager {
                 }
                 
                 if let safeData = data {
-                    if let titles = self.parseJSON(weatherData: safeData) {
-                        completion(titles)
+                    if let titlesAndThumbnails = self.parseJSON(weatherData: safeData) {
+                        completion(titlesAndThumbnails)
                     }
                 }
             }
@@ -34,12 +37,20 @@ struct WeatherManager {
         }
     }
     
-    private func parseJSON(weatherData: Data) -> [String]? {
+    private func parseJSON(weatherData: Data) -> [(String, String)]? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(ProductResponse.self, from: weatherData)
-            let titles = decodedData.products.map { $0.title }
-            return titles
+                       
+                       // Create an array to store tuples of title and thumbnail
+                       let titlesAndThumbnails = decodedData.products.map { ($0.title, $0.thumbnail) }
+                       
+                       // Print the stored product details
+                       for detail in titlesAndThumbnails {
+                           print("Title: \(detail.0), Thumbnail: \(detail.1)")
+                       }
+                       
+                       return titlesAndThumbnails
         } catch {
             print(error)
             return nil

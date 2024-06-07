@@ -13,5 +13,6 @@ struct ProductResponse: Decodable {
 
 struct Product: Decodable {
     let title: String
+    let thumbnail: String
 }
 
