@@ -54,6 +54,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
                     DispatchQueue.main.async {
                         self.thumbnailImageView.image = image
                     }
-                }.resume() // Don't forget to resume the task
+                }.resume() // resume the task
             }
         }

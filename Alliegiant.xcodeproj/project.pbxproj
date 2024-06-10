@@ -19,7 +19,9 @@
 		046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E3A402BCE87ED0097D632 /* CustomTableViewCell.swift */; };
 		0486C0C72C11DC9E00FFD27F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0486C0C62C11DC9E00FFD27F /* Main.storyboard */; };
 		04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */; };
-		04E424262C106799001764F3 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E424252C106799001764F3 /* ProductModel.swift */; };
+		04B497272C17067C00086F81 /* View in Resources */ = {isa = PBXBuildFile; fileRef = 04B497262C17067C00086F81 /* View */; };
+		04B497292C17069000086F81 /* View Model in Resources */ = {isa = PBXBuildFile; fileRef = 04B497282C17069000086F81 /* View Model */; };
+		04B4972B2C1706EC00086F81 /* Model in Resources */ = {isa = PBXBuildFile; fileRef = 04B4972A2C1706EC00086F81 /* Model */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +39,9 @@
 		046E3A402BCE87ED0097D632 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		0486C0C62C11DC9E00FFD27F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
-		04E424252C106799001764F3 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		04B497262C17067C00086F81 /* View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = View; sourceTree = "<group>"; };
+		04B497282C17069000086F81 /* View Model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "View Model"; sourceTree = "<group>"; };
+		04B4972A2C1706EC00086F81 /* Model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Model; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,9 @@
 		046E3A2B2BCE7CE70097D632 /* Alliegiant */ = {
 			isa = PBXGroup;
 			children = (
+				04B4972A2C1706EC00086F81 /* Model */,
+				04B497282C17069000086F81 /* View Model */,
+				04B497262C17067C00086F81 /* View */,
 				046E3A2C2BCE7CE70097D632 /* AppDelegate.swift */,
 				046E3A2E2BCE7CE70097D632 /* SceneDelegate.swift */,
 				046E3A302BCE7CE70097D632 /* ViewController.swift */,
@@ -82,7 +89,6 @@
 				046E3A402BCE87ED0097D632 /* CustomTableViewCell.swift */,
 				045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */,
 				045002522C0F2E26005DFF25 /* WeatherManager.swift */,
-				04E424252C106799001764F3 /* ProductModel.swift */,
 				04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */,
 			);
 			path = Alliegiant;
@@ -146,8 +152,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B4972B2C1706EC00086F81 /* Model in Resources */,
+				04B497292C17069000086F81 /* View Model in Resources */,
 				046E3A362BCE7CE90097D632 /* Assets.xcassets in Resources */,
 				046E3A392BCE7CE90097D632 /* Base in Resources */,
+				04B497272C17067C00086F81 /* View in Resources */,
 				0486C0C72C11DC9E00FFD27F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,7 +173,6 @@
 				0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */,
 				045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */,
 				046E3A2D2BCE7CE70097D632 /* AppDelegate.swift in Sources */,
-				04E424262C106799001764F3 /* ProductModel.swift in Sources */,
 				045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */,
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
