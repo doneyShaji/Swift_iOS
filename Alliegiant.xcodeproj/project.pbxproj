@@ -70,22 +70,46 @@
 		046E3A2B2BCE7CE70097D632 /* Alliegiant */ = {
 			isa = PBXGroup;
 			children = (
-				0486DB142C17255700F2F547 /* ProductModel.swift */,
+				0486DB192C17264D00F2F547 /* ViewModel */,
+				0486DB182C17260C00F2F547 /* View */,
+				0486DB172C1725F200F2F547 /* Model */,
 				046E3A2C2BCE7CE70097D632 /* AppDelegate.swift */,
 				046E3A2E2BCE7CE70097D632 /* SceneDelegate.swift */,
-				046E3A302BCE7CE70097D632 /* ViewController.swift */,
-				0427289D2BCF9DC000420EDD /* mySecondViewController.swift */,
 				0486C0C62C11DC9E00FFD27F /* Main.storyboard */,
 				046E3A352BCE7CE90097D632 /* Assets.xcassets */,
 				046E3A372BCE7CE90097D632 /* LaunchScreen.storyboard */,
 				046E3A3A2BCE7CE90097D632 /* Info.plist */,
+			);
+			path = Alliegiant;
+			sourceTree = "<group>";
+		};
+		0486DB172C1725F200F2F547 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0486DB142C17255700F2F547 /* ProductModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0486DB182C17260C00F2F547 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				046E3A302BCE7CE70097D632 /* ViewController.swift */,
 				0450024E2C0EF15A005DFF25 /* CustomCollectionViewCell.swift */,
 				046E3A402BCE87ED0097D632 /* CustomTableViewCell.swift */,
 				045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */,
-				045002522C0F2E26005DFF25 /* WeatherManager.swift */,
 				04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */,
+				0427289D2BCF9DC000420EDD /* mySecondViewController.swift */,
 			);
-			path = Alliegiant;
+			path = View;
+			sourceTree = "<group>";
+		};
+		0486DB192C17264D00F2F547 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				045002522C0F2E26005DFF25 /* WeatherManager.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
