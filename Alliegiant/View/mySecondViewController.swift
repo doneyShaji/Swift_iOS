@@ -44,7 +44,7 @@ class mySecondViewController: UIViewController {
                    self.updateUI(with: titlesAndThumbnails)
                }
     }
-    func updateUI(with titlesAndThumbnails: [(String, String)]) {
+    func updateUI(with titlesAndThumbnails: [(String, String, String)]) {
             DispatchQueue.main.async {
                 // Here, you can update any UI components with the fetched data
                 // For simplicity, we're just updating the `myLabel` with the first title

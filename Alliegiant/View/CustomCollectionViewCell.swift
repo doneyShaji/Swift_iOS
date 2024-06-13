@@ -24,12 +24,15 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
-    
+    @IBOutlet weak var descriptionLabel: UILabel!
+ 
     
     func setup(with colour: Colours) {
         titleLabel.text = colour.title
+        descriptionLabel.text = colour.description
 //        url.text = colour.thumbnail
         loadImage(from: colour.thumbnail)
+        
     }
             
             func loadImage(from urlString: String) {

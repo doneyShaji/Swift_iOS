@@ -4,14 +4,14 @@ import Foundation
 //    let thumbnail: String
 //}
 struct WeatherManager {
-    var titlesAndThumbnails: [(title: String, thumbnail: String)] = []
+    var titlesAndThumbnails: [(title: String, thumbnail: String, description: String)] = []
     
-    func fetchData(completion: @escaping ([(String, String)]) -> Void) {
+    func fetchData(completion: @escaping ([(String, String, String)]) -> Void) {
         let weatherURL = "https://dummyjson.com/products"
         performRequest(weatherURL: weatherURL, completion: completion)
     }
     
-    private func performRequest(weatherURL: String, completion: @escaping ([(String, String)]) -> Void) {
+    private func performRequest(weatherURL: String, completion: @escaping ([(String, String, String)]) -> Void) {
         // 1. Create a URL
         if let url = URL(string: weatherURL) {
             
@@ -37,17 +37,17 @@ struct WeatherManager {
         }
     }
     
-    private func parseJSON(weatherData: Data) -> [(String, String)]? {
+    private func parseJSON(weatherData: Data) -> [(String, String, String)]? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(ProductResponse.self, from: weatherData)
                        
                        // Create an array to store tuples of title and thumbnail
-                       let titlesAndThumbnails = decodedData.products.map { ($0.title, $0.thumbnail) }
+                       let titlesAndThumbnails = decodedData.products.map { ($0.title, $0.thumbnail, $0.description) }
                        
                        // Print the stored product details
                        for detail in titlesAndThumbnails {
-                           print("Title: \(detail.0), Thumbnail: \(detail.1)")
+                           print("Title: \(detail.0), Thumbnail: \(detail.1), Thumbnail: \(detail.2)")
                        }
                        
                        return titlesAndThumbnails
