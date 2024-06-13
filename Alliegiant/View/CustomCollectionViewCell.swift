@@ -30,33 +30,11 @@ class CustomCollectionViewCell: UICollectionViewCell {
     func setup(with colour: Colours) {
         titleLabel.text = colour.title
         descriptionLabel.text = colour.description
-//        url.text = colour.thumbnail
-        loadImage(from: colour.thumbnail)
         
-    }
-            
-            func loadImage(from urlString: String) {
-                guard let url = URL(string: urlString) else {
-                    print("Invalid URL string.")
-                    return
-                }
-                
-                // Create a URL session data task
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    if let error = error {
-                        print("Error downloading image: \(error)")
-                        return
-                    }
-                    
-                    guard let data = data, let image = UIImage(data: data) else {
-                        print("No data or unable to create image from data.")
-                        return
-                    }
-                    
-                    // Update UI on the main thread
-                    DispatchQueue.main.async {
-                        self.thumbnailImageView.image = image
-                    }
-                }.resume() // resume the task
-            }
+        // Load the image
+        ImageLoader.loadImage(from: colour.thumbnail) { [weak self] image in
+                self?.thumbnailImageView.image = image // Assign the image to the imageView's image property
         }
+    }
+    
+}

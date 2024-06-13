@@ -26,35 +26,10 @@ class CollectionDetailViewController: UIViewController {
         print(collectionImage ?? "No image URL provided")
         
         // Load the image if collectionImage contains a valid URL string
-                if let imageUrlString = collectionImage {
-                    loadImage(from: imageUrlString)
-                }
-    }
-    
-    // Function to load the image from the URL string
-    func loadImage(from urlString: String) {
-        guard let url = URL(string: urlString) else {
-            print("Invalid URL string.")
-            return
+        if let imageUrlString = collectionImage {
+                    ImageLoader.loadImage(from: imageUrlString) { [weak self] image in
+                        self?.collectionViewDetailImage.image = image
+                    }
         }
-        
-        // Create a URL session data task
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Error downloading image: \(error)")
-                return
-            }
-            
-            guard let data = data, let image = UIImage(data: data) else {
-                print("No data or unable to create image from data.")
-                return
-            }
-            
-            // Update UI on the main thread
-            DispatchQueue.main.async {
-                self.collectionViewDetailImage.image = image
-            }
-        }.resume() // resume the task
     }
-    
 }
