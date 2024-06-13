@@ -91,8 +91,24 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bsf-pK-kp0" secondAttribute="trailing" id="ymr-la-EWj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Apple Store" id="vQq-AO-Z0M"/>
+                    <navigationItem key="navigationItem" title="Apple Store" id="vQq-AO-Z0M">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="a1a-YK-MtG">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Q0f-G3-CWT">
+                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="saD-Wj-im0"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <action selector="logoutButtonTapped:" destination="BYZ-38-t0r" id="rpk-E2-dXV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="logoutButton" destination="a1a-YK-MtG" id="c0m-hs-57n"/>
                         <outlet property="table" destination="bsf-pK-kp0" id="3y5-Jh-sBs"/>
                         <segue destination="3fJ-rX-Fcl" kind="show" identifier="infoView" id="b2r-h5-nJ6"/>
                     </connections>
@@ -184,9 +200,7 @@
         <!--Login View Controller-->
         <scene sceneID="inW-Zh-zsd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NPq-5d-Z6Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="X0B-V5-Ffk" userLabel="Exit" sceneMemberID="exit"/>
-                <viewController id="T7w-Sm-Ihd" customClass="LoginViewController" customModule="Alliegiant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T7w-Sm-Ihd" customClass="LoginViewController" customModule="Alliegiant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bO3-JG-fko">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,6 +280,8 @@
                         <outlet property="passwordTextField" destination="7Pk-Ce-31Z" id="ehK-Hu-QBb"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NPq-5d-Z6Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="X0B-V5-Ffk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2301.5267175572517" y="-2387.323943661972"/>
         </scene>

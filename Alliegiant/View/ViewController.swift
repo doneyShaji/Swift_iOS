@@ -4,18 +4,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var table: UITableView!
     
-    @IBAction func logoutButtonTapped(_ sender: UIButton) {
-           // Clear saved user data
-        print("here")
-           UserDefaults.standard.removeObject(forKey: "userEmail")
-           UserDefaults.standard.removeObject(forKey: "userPassword")
-           
-           // Navigate back to the login view controller
-           if let loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-               loginViewController.modalPresentationStyle = .fullScreen
-               present(loginViewController, animated: true, completion: nil)
-           }
-       }
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    
     
     struct Apple {
         let title: String
@@ -44,6 +34,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Removed the image's bottom constraint 
         table.estimatedRowHeight = 44
         table.rowHeight = UITableView.automaticDimension
+    }
+   
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        // Retrieve and print the stored email and password
+        if let email = UserDefaults.standard.string(forKey: "userEmail"),
+           let password = UserDefaults.standard.string(forKey: "userPassword") {
+            print("Email: \(email)")
+            print("Password: \(password)")
+        } else {
+            print("No user email and password found.")
+        }
+        
+        // Clear saved user data
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+        UserDefaults.standard.removeObject(forKey: "userPassword")
+        
+        // Print confirmation that user data is removed
+        print("User email and password have been removed.")
+        
+        // Navigate back to the login view controller
+        if let loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            loginViewController.modalPresentationStyle = .fullScreen
+            present(loginViewController, animated: true, completion: nil)
+        }
     }
 }
 
