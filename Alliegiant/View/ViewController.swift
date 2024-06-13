@@ -71,6 +71,7 @@ extension ViewController {
         detailVC.descriptionLabel = apple.productDescription
         detailVC.priceContent = apple.productPrice
         detailVC.deliveryContent = apple.deliveryDescprition
+        detailVC.hidesBottomBarWhenPushed = true // Hide the tab bar
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

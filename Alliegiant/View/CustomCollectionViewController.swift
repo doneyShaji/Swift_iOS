@@ -147,8 +147,10 @@ extension CustomCollectionViewController{
         let selectedColour = colours[indexPath.row]
         
         if let detailCollectionVC = storyboard?.instantiateViewController(withIdentifier: "CollectionDetailViewController") as? CollectionDetailViewController{
-            
+            detailCollectionVC.hidesBottomBarWhenPushed = true // Hide the tab bar
             detailCollectionVC.collectionLabel = selectedColour.title
+            detailCollectionVC.collectionImage = selectedColour.thumbnail
+            detailCollectionVC.collectionDescription = selectedColour.description
             navigationController?.pushViewController(detailCollectionVC, animated: true)
         }
     }
