@@ -21,6 +21,8 @@
 		0486DB152C17255700F2F547 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486DB142C17255700F2F547 /* ProductModel.swift */; };
 		04A7CA5B2C19A79600E25695 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7CA5A2C19A79600E25695 /* LoginViewController.swift */; };
 		04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */; };
+		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
+		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
 		04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		0486DB142C17255700F2F547 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		04A7CA5A2C19A79600E25695 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
+		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +107,8 @@
 				04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */,
 				0427289D2BCF9DC000420EDD /* mySecondViewController.swift */,
 				04A7CA5A2C19A79600E25695 /* LoginViewController.swift */,
+				04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */,
+				04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,7 +221,9 @@
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
 				046E3A2F2BCE7CE70097D632 /* SceneDelegate.swift in Sources */,
+				04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */,
 				0486DB152C17255700F2F547 /* ProductModel.swift in Sources */,
+				04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */,
 				04A7CA5B2C19A79600E25695 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

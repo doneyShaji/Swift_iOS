@@ -1,21 +1,9 @@
-////
-////  CustomCollectionViewCell.swift
-////  Alliegiant
-////
-////  Created by P10 on 04/06/24.
-////
 //
-//import UIKit
+//  CustomCollectionViewCell.swift
+//  Alliegiant
 //
-//class CustomCollectionViewCell: UICollectionViewCell {
-//    
-//    
-//    @IBOutlet weak var collectionViewLabel: UILabel!
-//    
-//    func setup(with colour: Colours){
-//        collectionViewLabel.text = colour.title
-//    }
-//}
+//  Created by P10 on 04/06/24.
+//
 import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
@@ -36,5 +24,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
                 self?.thumbnailImageView.image = image // Assign the image to the imageView's image property
         }
     }
+    
     
 }

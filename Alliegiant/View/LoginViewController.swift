@@ -10,8 +10,8 @@ import UIKit
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
-        @IBOutlet weak var passwordTextField: UITextField!
-        @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,35 +27,29 @@ class LoginViewController: UIViewController {
                 showAlert(message: "Password must be at least 5 characters long.")
                 return
             }
-        
-               // Print email and password to the console
-               print("Email: \(email)")
-               print("Password: \(password)")
-               
-               // Save email and password using UserDefaults
-               UserDefaults.standard.set(email, forKey: "userEmail")
-               UserDefaults.standard.set(password, forKey: "userPassword")
-               
-               // Navigate to the tab controller view
-               if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
-                   tabBarController.modalPresentationStyle = .fullScreen
-                   present(tabBarController, animated: true, completion: nil)
-               }
-        }
-        
+        if let userData = UserDefaults.standard.data(forKey: "userDetails"),
+                   let userDetails = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String],
+                   let savedEmail = userDetails["email"], savedEmail == email,
+                   let savedPassword = userDetails["password"], savedPassword == password {
+                    print(userDetails)
+            // Save user credentials
+                UserDefaults.standard.set(savedEmail, forKey: "userEmail")
+                UserDefaults.standard.set(savedPassword, forKey: "userPassword")
+                    // Navigate to the tab controller view
+                    if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
+                        tabBarController.modalPresentationStyle = .fullScreen
+                        present(tabBarController, animated: true, completion: nil)
+                    }
+                } else {
+                    showAlert(message: "Invalid email or password.")
+                }
+            }
         func showAlert(message: String) {
             let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
     }
-extension String {
-    var isValidEmail: Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: self)
-    }
-}
 
 extension LoginViewController {
     func isPasswordValid(_ password: String) -> Bool {

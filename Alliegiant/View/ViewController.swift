@@ -6,6 +6,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
+    @IBOutlet weak var profileButton: UIBarButtonItem!
     
     struct Apple {
         let title: String
@@ -17,7 +18,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let data: [Apple] = [
         Apple(title: "MacBook Air M2", imageName: "Image1", productPrice: "₹ 99,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nModel Name: MacBook Air\nScreen Size: 13.6\nHard Disk Size: 256 GB\nRAM Memory: 8 GB"),
-        Apple(title: "iPhone 15 Pro Max", imageName: "image2", productPrice: "₹ 1,48,800", deliveryDescprition: "FREE delivery Sat, 20 Apr FREE delivery Sat, 20 Apr FREE delivery Sat, 20 Apr FREE delivery Sat, 20 Apr FREE delivery Sat, 20 Apr FREE delivery Sat, 20 Apr FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nModel Name: iPhone 15 Pro Max\nOperating System: iOS\nCellular Technology: 5G"),
+        Apple(title: "iPhone 15 Pro Max", imageName: "image2", productPrice: "₹ 1,48,800", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nModel Name: iPhone 15 Pro Max\nOperating System: iOS\nCellular Technology: 5G"),
         Apple(title: "Apple Watch SE", imageName: "image3", productPrice: "₹ 30,000", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nStyle: GPS\nSpecial Feature: Heart Rate Monitor\nShape: Square"),
         Apple(title: "AirPods (3rd generation)", imageName: "image4", productPrice: "₹ 19,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nModel Name: AirPods Pro (3rd Gen, 2024)\nColour: White\nForm Factor: In Ear\nConnectivity Technology: Wireless"),
         Apple(title: "iMac", imageName: "image5", productPrice: "₹ 1,34,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nOperating System: Mac OS\nMemory Storage Capacity: 256 GB\nScreen Size: 24 Inches\nRAM Memory: 8 GB\nCPU Model: Apple M2 Ultra"),
@@ -31,8 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         table.delegate = self
         
         // Enable automatic dimension for row height - DYNAMIC CELL HEIGHT BASED ON THE CONTENT
-        // Removed the image's bottom constraint 
-        table.estimatedRowHeight = 44
+        // Removed the image's bottom constraint
         table.rowHeight = UITableView.automaticDimension
     }
    
@@ -58,6 +58,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             loginViewController.modalPresentationStyle = .fullScreen
             present(loginViewController, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func profileButtonTapped(_ sender: Any) {
+        print("here")
+        if let myAccountViewController = storyboard?.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
+                    navigationController?.pushViewController(myAccountViewController, animated: true)
+                }
     }
 }
 
