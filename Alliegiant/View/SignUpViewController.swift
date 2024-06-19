@@ -12,6 +12,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     override func viewDidLoad() {
@@ -23,6 +24,7 @@ class SignUpViewController: UIViewController {
         guard let firstName = firstNameTextField.text, !firstName.isEmpty,
                       let lastName = lastNameTextField.text, !lastName.isEmpty,
                       let email = emailAddressTextField.text, email.isValidEmail,
+                      let phoneNumber = phoneNumberTextField.text, !phoneNumber.isEmpty,
                       let password = passwordTextField.text, isPasswordValid(password),
               let confirmPassword = confirmPasswordTextField.text, password == confirmPassword else {
             showAlert(message: "Please make sure all fields are filled correctly and passwords match.")
@@ -33,6 +35,7 @@ class SignUpViewController: UIViewController {
                     "firstName": firstName,
                     "lastName": lastName,
                     "email": email,
+                    "phoneNumber": phoneNumber,
                     "password": password
                 ]
         do {

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
                 // Check if user is logged in
-                if let _ = UserDefaults.standard.string(forKey: "userEmail"), let _ = UserDefaults.standard.string(forKey: "userPassword") {
+                if let _ = UserDefaults.standard.string(forKey: "userDetails") {
                     // User is logged in, show the tab bar controller
                     let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
                     window.rootViewController = tabBarController

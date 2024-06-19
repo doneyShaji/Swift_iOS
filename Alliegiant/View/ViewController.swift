@@ -4,10 +4,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var table: UITableView!
     
-    @IBOutlet weak var logoutButton: UIBarButtonItem!
-    
-    @IBOutlet weak var profileButton: UIBarButtonItem!
-    
     struct Apple {
         let title: String
         let imageName: String
@@ -31,40 +27,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         table.dataSource = self
         table.delegate = self
         
+        //Table view Header -xib
+        
+        table.register(UINib(nibName: "CustomHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
+        
         // Enable automatic dimension for row height - DYNAMIC CELL HEIGHT BASED ON THE CONTENT
         // Removed the image's bottom constraint
         table.rowHeight = UITableView.automaticDimension
-    }
-   
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        // Retrieve and print the stored email and password
-        if let email = UserDefaults.standard.string(forKey: "userEmail"),
-           let password = UserDefaults.standard.string(forKey: "userPassword") {
-            print("Email: \(email)")
-            print("Password: \(password)")
-        } else {
-            print("No user email and password found.")
-        }
-        
-        // Clear saved user data
-        UserDefaults.standard.removeObject(forKey: "userEmail")
-        UserDefaults.standard.removeObject(forKey: "userPassword")
-        
-        // Print confirmation that user data is removed
-        print("User email and password have been removed.")
-        
-        // Navigate back to the login view controller
-        if let loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-            loginViewController.modalPresentationStyle = .fullScreen
-            present(loginViewController, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func profileButtonTapped(_ sender: Any) {
-        print("here")
-        if let myAccountViewController = storyboard?.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
-                    navigationController?.pushViewController(myAccountViewController, animated: true)
-                }
     }
 }
 
@@ -102,5 +71,17 @@ extension ViewController {
         cell.price.numberOfLines = 0
 
         return cell
+    }
+}
+
+extension ViewController {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = table.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
+        headerView.firstNameLabelXib.text = "TableView Header"
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50 // Adjust the height as needed
     }
 }
