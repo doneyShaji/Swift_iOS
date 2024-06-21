@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UserDetailsDelegate {
     
     @IBOutlet weak var table: UITableView!
     
@@ -74,14 +74,38 @@ extension ViewController {
     }
 }
 
-extension ViewController {
+extension ViewController{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = table.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
-        headerView.firstNameLabelXib.text = "TableView Header"
+        if let userData = UserDefaults.standard.data(forKey: "userDetails"),
+           let userDetails = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String] {
+            
+            headerView.firstNameLabelXib.text = userDetails["firstName"]}
         return headerView
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50 // Adjust the height as needed
     }
+    // Method to navigate to MyAccountViewController and set delegate
+        func navigateToMyAccount() {
+            if let myAccountVC = storyboard?.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
+                myAccountVC.delegate = self
+                navigationController?.pushViewController(myAccountVC, animated: true)
+            }
+        }
+    func didUpdateUserDetails() {
+            // Reload only the header view
+        print("here")
+            if let headerView = table.headerView(forSection: 0) as? CustomHeaderView {
+                updateHeaderView(headerView)
+            }
+        }
+        
+        private func updateHeaderView(_ headerView: CustomHeaderView) {
+            if let userData = UserDefaults.standard.data(forKey: "userDetails"),
+               let userDetails = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String] {
+                headerView.firstNameLabelXib.text = userDetails["firstName"]
+            }
+        }
 }

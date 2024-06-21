@@ -6,9 +6,15 @@
 //
 
 import UIKit
+protocol UserDetailsDelegate{
+    func didUpdateUserDetails()
+}
 
-class MyAccountViewController: UIViewController {
+class MyAccountViewController: UIViewController{
+    
 
+    var delegate: UserDetailsDelegate?
+    
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -88,9 +94,13 @@ class MyAccountViewController: UIViewController {
                         let jsonData = try JSONSerialization.data(withJSONObject: userDetails, options: [])
                         UserDefaults.standard.set(jsonData, forKey: "userDetails")
                         showAlert(message: "Details updated successfully!") {
+                            self.delegate?.didUpdateUserDetails()
+                            print("hi")
                             self.isEditingMode = false
                             self.toggleEditingMode(false)
                             self.loadUserDetails()
+                            // Notify the delegate that the user details have been updated
+                            self.delegate?.didUpdateUserDetails()
                         }
                     } catch {
                         showAlert(message: "Failed to update user details.")
@@ -103,6 +113,11 @@ class MyAccountViewController: UIViewController {
                         present(loginViewController, animated: true, completion: nil)
                     }
                 }
+    }
+    @IBAction func buttontap(_ sender: Any) {
+        let VC = ViewController()
+        VC.navigateToMyAccount()
+
     }
     
         func showAlert(message: String, completion: (() -> Void)? = nil) {
