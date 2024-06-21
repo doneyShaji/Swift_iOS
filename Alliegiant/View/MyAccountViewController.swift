@@ -6,14 +6,15 @@
 //
 
 import UIKit
-protocol UserDetailsDelegate{
-    func didUpdateUserDetails()
+
+protocol UserDetailsDelegate: AnyObject {
+    func didUpdateUserDetails(name: String)
 }
 
-class MyAccountViewController: UIViewController{
+class MyAccountViewController: UIViewController {
     
 
-    var delegate: UserDetailsDelegate?
+    weak var selectionDelegate: UserDetailsDelegate?
     
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
@@ -76,51 +77,42 @@ class MyAccountViewController: UIViewController{
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         if isEditingMode {
-                    guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
-                          let lastName = editLastNameTextField.text, !lastName.isEmpty,
-                          let email = editEmailTextField.text, email.isValidEmail,
-                          let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
-                        showAlert(message: "Please make sure all fields are filled correctly.")
-                        return
-                    }
-                    
-                    let userDetails = [
-                        "firstName": firstName,
-                        "lastName": lastName,
-                        "email": email,
-                        "phoneNumber": phoneNumber
-                    ]
-                    do {
-                        let jsonData = try JSONSerialization.data(withJSONObject: userDetails, options: [])
-                        UserDefaults.standard.set(jsonData, forKey: "userDetails")
-                        showAlert(message: "Details updated successfully!") {
-                            self.delegate?.didUpdateUserDetails()
-                            print("hi")
-                            self.isEditingMode = false
-                            self.toggleEditingMode(false)
-                            self.loadUserDetails()
-                            // Notify the delegate that the user details have been updated
-                            self.delegate?.didUpdateUserDetails()
-                        }
-                    } catch {
-                        showAlert(message: "Failed to update user details.")
-                    }
-                } else {
-                    UserDefaults.standard.removeObject(forKey: "userDetails")
-                    print("User details have been removed.")
-                    if let loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-                        loginViewController.modalPresentationStyle = .fullScreen
-                        present(loginViewController, animated: true, completion: nil)
-                    }
+                guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
+                      let lastName = editLastNameTextField.text, !lastName.isEmpty,
+                      let email = editEmailTextField.text, email.isValidEmail,
+                      let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
+                    showAlert(message: "Please make sure all fields are filled correctly.")
+                    return
                 }
-    }
-    @IBAction func buttontap(_ sender: Any) {
-        let VC = ViewController()
-        VC.navigateToMyAccount()
-
-    }
-    
-        func showAlert(message: String, completion: (() -> Void)? = nil) {
+                
+                let userDetails = [
+                    "firstName": firstName,
+                    "lastName": lastName,
+                    "email": email,
+                    "phoneNumber": phoneNumber
+                ]
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: userDetails, options: [])
+                    UserDefaults.standard.set(jsonData, forKey: "userDetails")
+                    showAlert(message: "Details updated successfully!") { [self] in
+                        self.selectionDelegate?.didUpdateUserDetails(name: "Update")
+                        self.isEditingMode = false
+                        self.toggleEditingMode(false)
+                        self.loadUserDetails()
+                    }
+                } catch {
+                    showAlert(message: "Failed to update user details.")
+                }
+            } else {
+                UserDefaults.standard.removeObject(forKey: "userDetails")
+                print("User details have been removed.")
+                if let loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+                    loginViewController.modalPresentationStyle = .fullScreen
+                    present(loginViewController, animated: true, completion: nil)
+                }
+            }
+        }
+           func showAlert(message: String, completion: (() -> Void)? = nil) {
             let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
                 completion?()
@@ -128,4 +120,7 @@ class MyAccountViewController: UIViewController{
             present(alert, animated: true, completion: nil)
         }
     
+//    @IBAction func updateButtonTapped(_ sender: Any) {
+//        selectionDelegate?.didUpdateUserDetails(name: "Update")
+//    }
 }

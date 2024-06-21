@@ -22,11 +22,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         Apple(title: "AirPods Max", imageName: "image7", productPrice: "₹ 59,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "BRAND: Apple\nMODEL NAME: Airpods Max\nHEADPHONE TYPE: Over the head\nWIRED/WIRELESS: Wireless")
     ]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         table.dataSource = self
         table.delegate = self
         
+        // Set the delegate when navigating to MyAccountViewController
+                if let accountVC = storyboard?.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
+                    accountVC.selectionDelegate = self
+                }
         //Table view Header -xib
         
         table.register(UINib(nibName: "CustomHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
@@ -34,6 +39,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Enable automatic dimension for row height - DYNAMIC CELL HEIGHT BASED ON THE CONTENT
         // Removed the image's bottom constraint
         table.rowHeight = UITableView.automaticDimension
+    }
+    
+    func didUpdateUserDetails(name: String) {
+        // Reload the table view header
+//        table.reloadSections(IndexSet(integer: 0), with: .automatic)
+        print(name)
+    }
+    
+    @IBAction func detailButtonTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let myAccountVC = storyboard.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
+                    self.navigationController?.pushViewController(myAccountVC, animated: true)
+                }
     }
 }
 
@@ -83,29 +101,15 @@ extension ViewController{
             headerView.firstNameLabelXib.text = userDetails["firstName"]}
         return headerView
     }
-
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50 // Adjust the height as needed
     }
-    // Method to navigate to MyAccountViewController and set delegate
-        func navigateToMyAccount() {
-            if let myAccountVC = storyboard?.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
-                myAccountVC.delegate = self
-                navigationController?.pushViewController(myAccountVC, animated: true)
-            }
-        }
-    func didUpdateUserDetails() {
-            // Reload only the header view
-        print("here")
-            if let headerView = table.headerView(forSection: 0) as? CustomHeaderView {
-                updateHeaderView(headerView)
-            }
-        }
-        
-        private func updateHeaderView(_ headerView: CustomHeaderView) {
-            if let userData = UserDefaults.standard.data(forKey: "userDetails"),
-               let userDetails = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String] {
-                headerView.firstNameLabelXib.text = userDetails["firstName"]
-            }
-        }
 }
+
+//extension ViewController: UserDetailsDelegate {
+//    func didUpdateUserDetails(name: String) {
+//        // Reload the table view header
+////        table.reloadSections(IndexSet(integer: 0), with: .automatic)
+//        print(name)
+//    }
+//}
