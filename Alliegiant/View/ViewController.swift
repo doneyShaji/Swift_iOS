@@ -1,6 +1,5 @@
 import UIKit
 
-
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate{
     
     @IBOutlet weak var table: UITableView!
@@ -125,7 +124,7 @@ extension ViewController{
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50 // Adjust the height as needed
+        return 35 // Adjust the height as needed
     }
 }
 

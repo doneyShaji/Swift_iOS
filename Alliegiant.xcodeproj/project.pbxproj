@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0427289D2BCF9DC000420EDD /* mySecondViewController.swift */; };
+		04309AA32C29899B0034D178 /* NetworkingManagerCocoaPods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04309AA22C29899B0034D178 /* NetworkingManagerCocoaPods.swift */; };
+		04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */; };
 		0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450024E2C0EF15A005DFF25 /* CustomCollectionViewCell.swift */; };
 		045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */; };
 		045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002522C0F2E26005DFF25 /* WeatherManager.swift */; };
@@ -27,10 +29,13 @@
 		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
 		04E149672C29300C00239320 /* AppleProducts.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E149662C29300C00239320 /* AppleProducts.json */; };
 		04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */; };
+		B3ADB8D40509704DE894230A /* Pods_Alliegiant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A82F40632F5948230FE2902C /* Pods_Alliegiant.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0427289D2BCF9DC000420EDD /* mySecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySecondViewController.swift; sourceTree = "<group>"; };
+		04309AA22C29899B0034D178 /* NetworkingManagerCocoaPods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerCocoaPods.swift; sourceTree = "<group>"; };
+		04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentStoreViewController.swift; sourceTree = "<group>"; };
 		0450024E2C0EF15A005DFF25 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		045002522C0F2E26005DFF25 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -52,6 +57,9 @@
 		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		04E149662C29300C00239320 /* AppleProducts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppleProducts.json; sourceTree = "<group>"; };
 		04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
+		6A45653049DD715D881A0B05 /* Pods-Alliegiant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alliegiant.debug.xcconfig"; path = "Target Support Files/Pods-Alliegiant/Pods-Alliegiant.debug.xcconfig"; sourceTree = "<group>"; };
+		A82F40632F5948230FE2902C /* Pods_Alliegiant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alliegiant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB1D1398194B86ECBD5E8179 /* Pods-Alliegiant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alliegiant.release.xcconfig"; path = "Target Support Files/Pods-Alliegiant/Pods-Alliegiant.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3ADB8D40509704DE894230A /* Pods_Alliegiant.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +79,8 @@
 			children = (
 				046E3A2B2BCE7CE70097D632 /* Alliegiant */,
 				046E3A2A2BCE7CE70097D632 /* Products */,
+				5888CD76A6A123FB9A4D8E88 /* Pods */,
+				9602BCBC15508D2E5BB3676F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +129,7 @@
 				04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */,
 				045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */,
 				045C011A2C22E3AC009D0C58 /* CustomHeaderView.swift */,
+				04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -127,6 +139,7 @@
 			children = (
 				045002522C0F2E26005DFF25 /* WeatherManager.swift */,
 				04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */,
+				04309AA22C29899B0034D178 /* NetworkingManagerCocoaPods.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -157,6 +170,23 @@
 			path = Bundles;
 			sourceTree = "<group>";
 		};
+		5888CD76A6A123FB9A4D8E88 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6A45653049DD715D881A0B05 /* Pods-Alliegiant.debug.xcconfig */,
+				BB1D1398194B86ECBD5E8179 /* Pods-Alliegiant.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9602BCBC15508D2E5BB3676F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A82F40632F5948230FE2902C /* Pods_Alliegiant.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,9 +194,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 046E3A3D2BCE7CE90097D632 /* Build configuration list for PBXNativeTarget "Alliegiant" */;
 			buildPhases = (
+				56F044FDE2D8866D07DF22BC /* [CP] Check Pods Manifest.lock */,
 				046E3A252BCE7CE70097D632 /* Sources */,
 				046E3A262BCE7CE70097D632 /* Frameworks */,
 				046E3A272BCE7CE70097D632 /* Resources */,
+				5BE50AE3F619566AFFB86072 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,6 +257,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		56F044FDE2D8866D07DF22BC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Alliegiant-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5BE50AE3F619566AFFB86072 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alliegiant/Pods-Alliegiant-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Alliegiant/Pods-Alliegiant-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Alliegiant/Pods-Alliegiant-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		046E3A252BCE7CE70097D632 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -232,12 +306,14 @@
 			files = (
 				046E3A312BCE7CE70097D632 /* ViewController.swift in Sources */,
 				04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */,
+				04309AA32C29899B0034D178 /* NetworkingManagerCocoaPods.swift in Sources */,
 				0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */,
 				045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */,
 				046E3A2D2BCE7CE70097D632 /* AppDelegate.swift in Sources */,
 				04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */,
 				045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */,
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
+				04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
 				046E3A2F2BCE7CE70097D632 /* SceneDelegate.swift in Sources */,
 				045C011B2C22E3AC009D0C58 /* CustomHeaderView.swift in Sources */,
@@ -297,9 +373,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -362,7 +439,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -383,6 +460,7 @@
 		};
 		046E3A3E2BCE7CE90097D632 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A45653049DD715D881A0B05 /* Pods-Alliegiant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -413,6 +491,7 @@
 		};
 		046E3A3F2BCE7CE90097D632 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB1D1398194B86ECBD5E8179 /* Pods-Alliegiant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

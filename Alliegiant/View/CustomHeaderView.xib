@@ -14,9 +14,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-KV-DLj">
-                    <rect key="frame" x="34" y="15" width="349" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-KV-DLj">
+                    <rect key="frame" x="3" y="3" width="41.333333333333336" height="20.333333333333332"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -24,6 +23,10 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vDn-KV-DLj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="Psh-GO-K2a"/>
+                <constraint firstItem="vDn-KV-DLj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="3" id="xPr-k0-P2l"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="firstNameLabelXib" destination="vDn-KV-DLj" id="tOc-f3-Bbv"/>
