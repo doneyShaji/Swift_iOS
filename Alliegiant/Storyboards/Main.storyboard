@@ -92,19 +92,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bsf-pK-kp0" secondAttribute="trailing" id="ymr-la-EWj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Apple Store" id="vQq-AO-Z0M">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="oF7-5G-mdH">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="a39-JE-r0l">
-                                <rect key="frame" x="16" y="5" width="87" height="34.333333333333336"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="detailButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0aO-PT-7HU"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Apple Store" id="vQq-AO-Z0M"/>
                     <connections>
                         <outlet property="table" destination="bsf-pK-kp0" id="3y5-Jh-sBs"/>
                         <segue destination="3fJ-rX-Fcl" kind="show" identifier="infoView" id="b2r-h5-nJ6"/>
@@ -456,6 +444,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                                 <connections>
+                                    <action selector="signUpButtonTapped:" destination="T7w-Sm-Ihd" eventType="touchUpInside" id="Cu4-ZG-NF1"/>
                                     <segue destination="yYY-g4-zrX" kind="show" id="5LG-PD-iJH"/>
                                 </connections>
                             </button>
@@ -473,18 +462,18 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPq-5d-Z6Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="X0B-V5-Ffk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2960" y="-2358"/>
+            <point key="canvasLocation" x="3886.2595419847326" y="-2358.4507042253522"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="05A-wl-lNk">
             <objects>
                 <viewController storyboardIdentifier="SignUpViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yYY-g4-zrX" customClass="SignUpViewController" customModule="Alliegiant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U8W-4M-3aD">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="730"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gf-sy-m8q">
-                                <rect key="frame" x="0.0" y="20" width="393" height="700"/>
+                                <rect key="frame" x="0.0" y="123" width="393" height="573"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wp6-7P-QRd" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="710"/>
@@ -589,7 +578,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="b38-E5-b5e"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y99-xk-2zt">
-                                <rect key="frame" x="8" y="680" width="377" height="35"/>
+                                <rect key="frame" x="8" y="656" width="377" height="35"/>
                                 <color key="backgroundColor" red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -624,7 +613,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vtb-cp-VKm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4335" y="-2358"/>
+            <point key="canvasLocation" x="5260.3053435114498" y="-2358.4507042253522"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jJq-DB-Jzr">
@@ -833,6 +822,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hvX-l6-onB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5082" y="-773"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0nL-XF-hwC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PKl-mL-ddg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JwF-Qa-WwR">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="T7w-Sm-Ihd" kind="relationship" relationship="rootViewController" id="PO0-UX-dy7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ezM-Ya-phX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2959.5419847328244" y="-2358.4507042253522"/>
         </scene>
     </scenes>
     <resources>

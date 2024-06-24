@@ -25,6 +25,7 @@
 		04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
 		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
+		04E149672C29300C00239320 /* AppleProducts.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E149662C29300C00239320 /* AppleProducts.json */; };
 		04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		04E149662C29300C00239320 /* AppleProducts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppleProducts.json; sourceTree = "<group>"; };
 		04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 		046E3A2B2BCE7CE70097D632 /* Alliegiant */ = {
 			isa = PBXGroup;
 			children = (
+				04E149652C292FF300239320 /* Bundles */,
 				0486DB1B2C1726DC00F2F547 /* Delegates */,
 				0486DB1A2C1726BA00F2F547 /* Storyboards */,
 				0486DB192C17264D00F2F547 /* ViewModel */,
@@ -146,6 +149,14 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		04E149652C292FF300239320 /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				04E149662C29300C00239320 /* AppleProducts.json */,
+			);
+			path = Bundles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -207,6 +218,7 @@
 				045C01172C22D5CF009D0C58 /* CustomHeaderView.xib in Resources */,
 				046E3A362BCE7CE90097D632 /* Assets.xcassets in Resources */,
 				046E3A392BCE7CE90097D632 /* Base in Resources */,
+				04E149672C29300C00239320 /* AppleProducts.json in Resources */,
 				0486C0C72C11DC9E00FFD27F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

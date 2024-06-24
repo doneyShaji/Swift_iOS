@@ -50,6 +50,12 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let myAccountVC = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? MyAccountViewController {
+                    self.navigationController?.pushViewController(myAccountVC, animated: true)
+                }
+    }
 }
 
 extension LoginViewController {

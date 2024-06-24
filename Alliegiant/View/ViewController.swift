@@ -1,10 +1,11 @@
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UserDetailsDelegate {
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate{
     
     @IBOutlet weak var table: UITableView!
-    
-    struct Apple {
+    var headerView: CustomHeaderView?
+    struct Apple: Decodable {
         let title: String
         let imageName: String
         let productPrice: String
@@ -12,26 +13,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let productDescription: String
     }
     
-    let data: [Apple] = [
-        Apple(title: "MacBook Air M2", imageName: "Image1", productPrice: "₹ 99,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nModel Name: MacBook Air\nScreen Size: 13.6\nHard Disk Size: 256 GB\nRAM Memory: 8 GB"),
-        Apple(title: "iPhone 15 Pro Max", imageName: "image2", productPrice: "₹ 1,48,800", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nModel Name: iPhone 15 Pro Max\nOperating System: iOS\nCellular Technology: 5G"),
-        Apple(title: "Apple Watch SE", imageName: "image3", productPrice: "₹ 30,000", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nStyle: GPS\nSpecial Feature: Heart Rate Monitor\nShape: Square"),
-        Apple(title: "AirPods (3rd generation)", imageName: "image4", productPrice: "₹ 19,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nModel Name: AirPods Pro (3rd Gen, 2024)\nColour: White\nForm Factor: In Ear\nConnectivity Technology: Wireless"),
-        Apple(title: "iMac", imageName: "image5", productPrice: "₹ 1,34,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nOperating System: Mac OS\nMemory Storage Capacity: 256 GB\nScreen Size: 24 Inches\nRAM Memory: 8 GB\nCPU Model: Apple M2 Ultra"),
-        Apple(title: "Apple TV", imageName: "image6", productPrice: "₹ 14,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "Brand: Apple\nConnectivity Technology: Bluetooth, Wi-Fi\nConnector Type: HDMI\nSpecial Feature: High Definition\nResolution: 4k\nSupported Services: Netflix, HBO Max"),
-        Apple(title: "AirPods Max", imageName: "image7", productPrice: "₹ 59,900", deliveryDescprition: "FREE delivery Sat, 20 Apr", productDescription: "BRAND: Apple\nMODEL NAME: Airpods Max\nHEADPHONE TYPE: Over the head\nWIRED/WIRELESS: Wireless")
-    ]
-    
+    var data: [Apple] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.dataSource = self
         table.delegate = self
+        loadData()
         
-        // Set the delegate when navigating to MyAccountViewController
-                if let accountVC = storyboard?.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
-                    accountVC.selectionDelegate = self
-                }
         //Table view Header -xib
         
         table.register(UINib(nibName: "CustomHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
@@ -39,22 +28,55 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Enable automatic dimension for row height - DYNAMIC CELL HEIGHT BASED ON THE CONTENT
         // Removed the image's bottom constraint
         table.rowHeight = UITableView.automaticDimension
+        
+        // Set this ViewController as the delegate of the TabBarController
+        if let tabBarController = self.tabBarController {
+            tabBarController.delegate = self
+        }
     }
     
-    func didUpdateUserDetails(name: String) {
-        // Reload the table view header
-//        table.reloadSections(IndexSet(integer: 0), with: .automatic)
-        print(name)
-    }
-    
-    @IBAction func detailButtonTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let myAccountVC = storyboard.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
-                    self.navigationController?.pushViewController(myAccountVC, animated: true)
+    //Bundle Loading Code
+    func loadData() {
+            if let url = Bundle.main.url(forResource: "AppleProducts", withExtension: "json") {
+                do {
+                    let data = try Data(contentsOf: url)
+                    let decoder = JSONDecoder()
+                    self.data = try decoder.decode([Apple].self, from: data)
+                    table.reloadData()
+                } catch {
+                    print("Error loading data: \(error)")
                 }
-    }
+            }
+        }
+    // MARK: - UITabBarControllerDelegate Methods
+        func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+            
+            if let viewControllers = tabBarController.viewControllers {
+                let index = viewControllers.firstIndex(of: viewController)!
+                
+                // Check if the tab bar item at the specific index is selected
+                if index == 2 { // Replace 1 with the index of your specific tab bar item
+                    // Perform your specific functionality here
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            if let myAccountVC = storyboard.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
+                                myAccountVC.selectionDelegate = self
+                                self.navigationController?.pushViewController(myAccountVC, animated: true)
+                            }
+                    return false // Return false if you don't want to switch to this tab
+                }
+            }
+            return true
+        }
+        
+        // Custom function to perform specific functionality
+        func showAlert() {
+            let alert = UIAlertController(title: "Tab Bar Item Clicked", message: "You clicked the second tab bar item!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+     
 }
-
+    
 // MARK: - Delegate Methods
 extension ViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -92,6 +114,7 @@ extension ViewController {
     }
 }
 
+//TableView - Header
 extension ViewController{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = table.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
@@ -106,10 +129,18 @@ extension ViewController{
     }
 }
 
-//extension ViewController: UserDetailsDelegate {
-//    func didUpdateUserDetails(name: String) {
-//        // Reload the table view header
-////        table.reloadSections(IndexSet(integer: 0), with: .automatic)
-//        print(name)
-//    }
-//}
+// Delegate - Protocol - function
+extension ViewController: UserDetailsDelegate{
+    func didUpdateDetails(name: String) {
+            print(name)
+            
+            // Update user details in UserDefaults or wherever you store them
+            if var userDetails = UserDefaults.standard.dictionary(forKey: "userDetails") as? [String: String] {
+                userDetails["firstName"] = name
+                UserDefaults.standard.set(userDetails, forKey: "userDetails")
+            }
+            
+            // Reload the section containing the header view
+            table.reloadSections(IndexSet(integer: 0), with: .automatic)
+        }
+}

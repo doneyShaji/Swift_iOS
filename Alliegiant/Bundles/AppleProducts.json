@@ -1,0 +1,51 @@
+[
+    {
+        "title": "MacBook Air M2",
+        "imageName": "Image1",
+        "productPrice": "₹ 99,900",
+        "deliveryDescprition": "FREE delivery Sat, 20 Apr",
+        "productDescription": "Brand: Apple\nModel Name: MacBook Air\nScreen Size: 13.6\nHard Disk Size: 256 GB\nRAM Memory: 8 GB"
+    },
+    {
+        "title": "iPhone 15 Pro Max",
+        "imageName": "image2",
+        "productPrice": "₹ 1,48,800",
+        "deliveryDescprition": "FREE delivery Sat, 20 Apr",
+        "productDescription": "Brand: Apple\nModel Name: iPhone 15 Pro Max\nOperating System: iOS\nCellular Technology: 5G"
+    },
+    {
+        "title": "Apple Watch SE",
+        "imageName": "image3",
+        "productPrice": "₹ 30,000",
+        "deliveryDescprition": "FREE delivery Sat, 20 Apr",
+        "productDescription": "Brand: Apple\nStyle: GPS\nSpecial Feature: Heart Rate Monitor\nShape: Square"
+    },
+    {
+        "title": "AirPods (3rd generation)",
+        "imageName": "image4",
+        "productPrice": "₹ 19,900",
+        "deliveryDescprition": "FREE delivery Sat, 20 Apr",
+        "productDescription": "Brand: Apple\nModel Name: AirPods Pro (3rd Gen, 2024)\nColour: White\nForm Factor: In Ear\nConnectivity Technology: Wireless"
+    },
+    {
+        "title": "iMac",
+        "imageName": "image5",
+        "productPrice": "₹ 1,34,900",
+        "deliveryDescprition": "FREE delivery Sat, 20 Apr",
+        "productDescription": "Brand: Apple\nOperating System: Mac OS\nMemory Storage Capacity: 256 GB\nScreen Size: 24 Inches\nRAM Memory: 8 GB\nCPU Model: Apple M2 Ultra"
+    },
+    {
+        "title": "Apple TV",
+        "imageName": "image6",
+        "productPrice": "₹ 14,900",
+        "deliveryDescprition": "FREE delivery Sat, 20 Apr",
+        "productDescription": "Brand: Apple\nConnectivity Technology: Bluetooth, Wi-Fi\nConnector Type: HDMI\nSpecial Feature: High Definition\nResolution: 4k\nSupported Services: Netflix, HBO Max"
+    },
+    {
+        "title": "AirPods Max",
+        "imageName": "image7",
+        "productPrice": "₹ 59,900",
+        "deliveryDescprition": "FREE delivery Sat, 20 Apr",
+        "productDescription": "BRAND: Apple\nMODEL NAME: Airpods Max\nHEADPHONE TYPE: Over the head\nWIRED/WIRELESS: Wireless"
+    }
+]
