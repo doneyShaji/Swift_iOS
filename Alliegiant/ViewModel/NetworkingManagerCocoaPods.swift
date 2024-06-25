@@ -13,14 +13,19 @@ class NetworkingManagerCocoaPods{
     
     typealias WebServiceResponse = ([[String: Any]]?, Error?) -> Void
     func execute(_ url: URL, completion: @escaping WebServiceResponse){
-        Alamofire.request(url).validate().responseJSON { response in
-            if let error = response.error{
-                completion(nil, error)
-            } else if let jsonArray = response.result.value as? [[String: Any]] {
-                completion(jsonArray, nil)
-            } else if let jsonDict = response.result.value as? [String: Any]{
-                completion([jsonDict], nil)
-            }
+        AF.request(url).validate().responseJSON { response in
+            switch response.result {
+                        case .success(let value):
+                            if let jsonArray = value as? [[String: Any]] {
+                                completion(jsonArray, nil)
+                            } else if let jsonDict = value as? [String: Any] {
+                                completion([jsonDict], nil)
+                            } else {
+                                completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON format"]))
+                            }
+                        case .failure(let error):
+                            completion(nil, error)
+                        }
         }
     }
 }

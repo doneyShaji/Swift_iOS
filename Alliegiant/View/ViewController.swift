@@ -120,11 +120,12 @@ extension ViewController{
         if let userData = UserDefaults.standard.data(forKey: "userDetails"),
            let userDetails = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String] {
             
-            headerView.firstNameLabelXib.text = userDetails["firstName"]}
+            headerView.firstNameLabelXib.text = "\(userDetails["firstName"]!) \(userDetails["lastName"]!)"
+        }
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 35 // Adjust the height as needed
+        return 40 // Adjust the height as needed
     }
 }
 

@@ -4,39 +4,49 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomHeaderView" customModule="Alliegiant" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomHeaderView" customModule="Alliegiant" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-KV-DLj">
-                    <rect key="frame" x="3" y="3" width="41.333333333333336" height="20.333333333333332"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-KV-DLj">
+                    <rect key="frame" x="44" y="14" width="75" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="VQM-NB-aUs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="P2F-Vm-u0Q">
+                    <rect key="frame" x="11" y="7.6666666666666679" width="25" height="25.000000000000004"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="KET-6O-QiG"/>
+                        <constraint firstAttribute="height" constant="25" id="a5J-cy-Mag"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vDn-KV-DLj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="Psh-GO-K2a"/>
-                <constraint firstItem="vDn-KV-DLj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="3" id="xPr-k0-P2l"/>
+                <constraint firstItem="vDn-KV-DLj" firstAttribute="leading" secondItem="P2F-Vm-u0Q" secondAttribute="trailing" constant="8" symbolic="YES" id="Ga2-Vi-kW8"/>
+                <constraint firstItem="P2F-Vm-u0Q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="11" id="KJb-fk-uk9"/>
+                <constraint firstItem="vDn-KV-DLj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="whH-Zh-al3"/>
+                <constraint firstItem="P2F-Vm-u0Q" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xbG-dP-XBx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="firstNameLabelXib" destination="vDn-KV-DLj" id="tOc-f3-Bbv"/>
             </connections>
-            <point key="canvasLocation" x="-86.25954198473282" y="14.788732394366198"/>
+            <point key="canvasLocation" x="-86.25954198473282" y="11.971830985915494"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="profileIcon" width="512" height="512"/>
     </resources>
 </document>

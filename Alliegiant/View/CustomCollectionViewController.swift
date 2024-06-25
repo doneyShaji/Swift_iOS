@@ -16,15 +16,11 @@ class CustomCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //ADDING THE ACTIVITY LOADER AND SHOWING IT
-        activityIndicator.center = self.view.center
-        self.view.addSubview(activityIndicator)
-        
-        //Fetch the data and show the loader
-        showActivityIndicator()
+        ActivityIndicator.shared.showActivityIndicator(on: self.view)
+    
         weatherManager.fetchData { titlesAndThumbnails in
                     self.updateCollectionView(with: titlesAndThumbnails)
-                    self.hideActivityIndicator()
+                    ActivityIndicator.shared.hideActivityIndicator()
                 }
     }
     
@@ -32,22 +28,6 @@ class CustomCollectionViewController: UICollectionViewController {
         DispatchQueue.main.async {
             self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1, description: $2) }
             self.collectionView.reloadData()
-        }
-    }
-    
-    //function to display the activity loader
-    func showActivityIndicator(){
-        DispatchQueue.main.async {
-            self.activityIndicator.startAnimating()
-            self.activityIndicator.isHidden = false
-        }
-    }
-    
-    //function to hide the activity loader
-    func hideActivityIndicator(){
-        DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
         }
     }
 }
