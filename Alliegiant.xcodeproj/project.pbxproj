@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04005DD12C2BDD3500D51EFA /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04005DD02C2BDD3500D51EFA /* MenuViewController.swift */; };
+		04005DD52C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04005DD42C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift */; };
+		04005DD72C2BE5D600D51EFA /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04005DD62C2BE5D600D51EFA /* AboutUsViewController.swift */; };
+		04005DDD2C2C15C100D51EFA /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04005DDC2C2C15C100D51EFA /* CustomHeaderView.swift */; };
 		0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0427289D2BCF9DC000420EDD /* mySecondViewController.swift */; };
 		04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */; };
 		0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450024E2C0EF15A005DFF25 /* CustomCollectionViewCell.swift */; };
 		045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */; };
 		045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002522C0F2E26005DFF25 /* WeatherManager.swift */; };
 		045C01172C22D5CF009D0C58 /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */; };
-		045C011B2C22E3AC009D0C58 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C011A2C22E3AC009D0C58 /* CustomHeaderView.swift */; };
 		046E3A2D2BCE7CE70097D632 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E3A2C2BCE7CE70097D632 /* AppDelegate.swift */; };
 		046E3A2F2BCE7CE70097D632 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E3A2E2BCE7CE70097D632 /* SceneDelegate.swift */; };
 		046E3A312BCE7CE70097D632 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E3A302BCE7CE70097D632 /* ViewController.swift */; };
@@ -36,13 +39,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04005DD02C2BDD3500D51EFA /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		04005DD42C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
+		04005DD62C2BE5D600D51EFA /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		04005DDC2C2C15C100D51EFA /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		0427289D2BCF9DC000420EDD /* mySecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySecondViewController.swift; sourceTree = "<group>"; };
 		04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentStoreViewController.swift; sourceTree = "<group>"; };
 		0450024E2C0EF15A005DFF25 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		045002522C0F2E26005DFF25 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
-		045C011A2C22E3AC009D0C58 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		046E3A292BCE7CE70097D632 /* Alliegiant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alliegiant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046E3A2C2BCE7CE70097D632 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046E3A2E2BCE7CE70097D632 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,10 +141,13 @@
 				04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */,
 				04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */,
 				045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */,
-				045C011A2C22E3AC009D0C58 /* CustomHeaderView.swift */,
+				04005DDC2C2C15C100D51EFA /* CustomHeaderView.swift */,
 				04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */,
 				04FA49B32C2A7C7F002C8364 /* DepartmentStoreTableViewCell.swift */,
 				04FA49B52C2A92E2002C8364 /* ActivityIndicator.swift */,
+				04005DD02C2BDD3500D51EFA /* MenuViewController.swift */,
+				04005DD42C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift */,
+				04005DD62C2BE5D600D51EFA /* AboutUsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -323,11 +332,14 @@
 				04FA49B22C2A7874002C8364 /* NetworkingManagerCocoaPods.swift in Sources */,
 				04FA49B02C2A738F002C8364 /* DepartmentStoreProductModel.swift in Sources */,
 				045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */,
+				04005DD12C2BDD3500D51EFA /* MenuViewController.swift in Sources */,
+				04005DDD2C2C15C100D51EFA /* CustomHeaderView.swift in Sources */,
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
 				04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
+				04005DD52C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift in Sources */,
 				046E3A2F2BCE7CE70097D632 /* SceneDelegate.swift in Sources */,
-				045C011B2C22E3AC009D0C58 /* CustomHeaderView.swift in Sources */,
+				04005DD72C2BE5D600D51EFA /* AboutUsViewController.swift in Sources */,
 				04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */,
 				04FA49B62C2A92E2002C8364 /* ActivityIndicator.swift in Sources */,
 				0486DB152C17255700F2F547 /* ProductModel.swift in Sources */,

@@ -3,7 +3,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate{
     
     @IBOutlet weak var table: UITableView!
-    var headerView: CustomHeaderView?
+    
     struct Apple: Decodable {
         let title: String
         let imageName: String
@@ -32,6 +32,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let tabBarController = self.tabBarController {
             tabBarController.delegate = self
         }
+        table.separatorColor = .systemPink
+        table.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
+    
+    
+    @IBAction func menuButtonTapped(_ sender: Any) {
+
+        let menuViewController = MenuViewController()
+               
+               menuViewController.modalPresentationStyle = .pageSheet
+//               menuViewController.sheetPresentationController?.detents = [.medium()]
+//               
+//               menuViewController.sheetPresentationController?.prefersGrabberVisible = true
+//               present(menuViewController, animated: true)
+        if let sheet = menuViewController.sheetPresentationController {
+                // Custom detent
+                let customDetent = UISheetPresentationController.Detent.custom { context in
+                    return 225 // The height you want for the view controller
+                }
+                
+                sheet.detents = [customDetent]
+                sheet.prefersGrabberVisible = true
+            }
+            
+            present(menuViewController, animated: true)
     }
     
     //Bundle Loading Code
@@ -111,12 +136,16 @@ extension ViewController {
 
         return cell
     }
+    
 }
 
 //TableView - Header
 extension ViewController{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = table.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
+        
+        // Configure with tinted effect
+    
         if let userData = UserDefaults.standard.data(forKey: "userDetails"),
            let userDetails = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String] {
             
@@ -125,7 +154,7 @@ extension ViewController{
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40 // Adjust the height as needed
+        return 70 // Adjust the height as needed
     }
 }
 

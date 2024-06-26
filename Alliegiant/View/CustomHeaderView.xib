@@ -4,49 +4,54 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomHeaderView" customModule="Alliegiant" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomHeaderView" customModule="Alliegiant" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-KV-DLj">
-                    <rect key="frame" x="44" y="14" width="75" height="16"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cropped_image" translatesAutoresizingMaskIntoConstraints="NO" id="P2F-Vm-u0Q">
+                    <rect key="frame" x="144" y="7" width="105" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="75" id="VQM-NB-aUs"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="14"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="P2F-Vm-u0Q">
-                    <rect key="frame" x="11" y="7.6666666666666679" width="25" height="25.000000000000004"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="25" id="KET-6O-QiG"/>
-                        <constraint firstAttribute="height" constant="25" id="a5J-cy-Mag"/>
+                        <constraint firstAttribute="width" constant="105" id="L2Y-xA-aXd"/>
+                        <constraint firstAttribute="height" constant="40" id="gPz-mZ-tRH"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-KV-DLj">
+                    <rect key="frame" x="10" y="55" width="373" height="13"/>
+                    <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="12"/>
+                    <color key="textColor" systemColor="systemPinkColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="1" green="0.86274509803921573" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" red="1" green="0.86274509803921573" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vDn-KV-DLj" firstAttribute="leading" secondItem="P2F-Vm-u0Q" secondAttribute="trailing" constant="8" symbolic="YES" id="Ga2-Vi-kW8"/>
-                <constraint firstItem="P2F-Vm-u0Q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="11" id="KJb-fk-uk9"/>
-                <constraint firstItem="vDn-KV-DLj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="whH-Zh-al3"/>
-                <constraint firstItem="P2F-Vm-u0Q" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xbG-dP-XBx"/>
+                <constraint firstItem="vDn-KV-DLj" firstAttribute="top" secondItem="P2F-Vm-u0Q" secondAttribute="bottom" constant="8" id="8fb-UO-MEV"/>
+                <constraint firstItem="P2F-Vm-u0Q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="Msk-Eq-x4V"/>
+                <constraint firstAttribute="bottom" secondItem="vDn-KV-DLj" secondAttribute="bottom" constant="2" id="N96-b7-YVO"/>
+                <constraint firstItem="vDn-KV-DLj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="T4f-KD-CSU"/>
+                <constraint firstItem="vDn-KV-DLj" firstAttribute="top" secondItem="P2F-Vm-u0Q" secondAttribute="bottom" constant="8" id="gKi-dE-51o"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P2F-Vm-u0Q" secondAttribute="trailing" constant="144" id="jZm-rw-zhV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vDn-KV-DLj" secondAttribute="trailing" constant="10" id="ql4-jX-jue"/>
+                <constraint firstItem="P2F-Vm-u0Q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="144" id="vC4-UK-zKe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="firstNameLabelXib" destination="vDn-KV-DLj" id="tOc-f3-Bbv"/>
+                <outlet property="firstNameLabelXib" destination="vDn-KV-DLj" id="QQR-eb-vm4"/>
             </connections>
             <point key="canvasLocation" x="-86.25954198473282" y="11.971830985915494"/>
         </view>
     </objects>
     <resources>
-        <image name="profileIcon" width="512" height="512"/>
+        <image name="cropped_image" width="1431.6666259765625" height="1431.6666259765625"/>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

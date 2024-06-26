@@ -8,20 +8,14 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
-//    @IBOutlet weak var collectionImage: UIImageView!
-    
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
-    @IBOutlet weak var descriptionLabel: UILabel!
  
     
     func setup(with colour: Colours) {
         titleLabel.text = colour.title
-        descriptionLabel.text = colour.description
-        
-        // Load the image
         ImageLoader.loadImage(from: colour.thumbnail) { [weak self] image in
-                self?.thumbnailImageView.image = image // Assign the image to the imageView's image property
+                self?.thumbnailImageView.image = image
         }
     }
     

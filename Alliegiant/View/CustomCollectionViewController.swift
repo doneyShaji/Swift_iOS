@@ -40,19 +40,9 @@ extension CustomCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
-            
-            if indexPath.row == 0 {
-                // Hardcoded description for the first item
-                var firstDescription = colours[indexPath.row]
-                firstDescription.description = "'A path from a point approximately 330 metres east of the most south westerly corner of 17 Batherton Close, Widnes and approximately 208 metres east-south-east of the most southerly corner of Unit 3 Foundry Industrial Estate, Victoria Street, Widnes, proceeding in a generally east-north-easterly direction for approximately "
-                cell.setup(with: firstDescription)
-            } else {
-                cell.setup(with: colours[indexPath.row])
-            }
-
+            cell.setup(with: colours[indexPath.row])
             return cell
         }
-    
 }
 // DELEGATE
 extension CustomCollectionViewController{

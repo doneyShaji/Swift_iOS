@@ -44,15 +44,20 @@ class MyAccountViewController: UIViewController {
     var menuOut = false
     @IBAction func hamburgerMenuClicked(_ sender: Any) {
         
-        if menuOut == false{
-            leading.constant = 150
-            trailing.constant = -150
+        if menuOut == false {
+            leading.constant = -150
+            trailing.constant = 150
             menuOut = true
         } else {
             leading.constant = 0
             trailing.constant = 0
             menuOut = false
         }
+
+        // Animate the constraint changes
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
     
     //SHOW USER DETAILS
