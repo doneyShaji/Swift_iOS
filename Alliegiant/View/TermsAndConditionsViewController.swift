@@ -17,7 +17,7 @@ class TermsAndConditionsViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let contentLabel = UILabel()
-        contentLabel.text = "Here are the terms and conditions..."
+        contentLabel.text = "By using Alliegiant, you agree to comply with our terms and conditions. We reserve the right to update or modify these terms at any time without prior notice. All products are subject to availability and may be withdrawn at any time. Prices are subject to change without notice. We are not responsible for any typographical errors or inaccuracies in product descriptions. You agree to provide accurate and current information when making a purchase and to comply with all applicable laws regarding online conduct and acceptable content. Unauthorized use of our website or its contents is prohibited. For more detailed terms, please visit our full Terms and Conditions page."
         contentLabel.numberOfLines = 0
         contentLabel.translatesAutoresizingMaskIntoConstraints = false
         

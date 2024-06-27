@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+// MARK: - Delegate Protocol: Boss
 protocol UserDetailsDelegate{
     func didUpdateDetails(name: String)
 }
@@ -36,8 +36,27 @@ class MyAccountViewController: UIViewController {
             super.viewDidLoad()
             loadUserDetails()
             toggleEditingMode(false)
+            setupUIAccount()
         }
-    
+    //MARK: - Button Designs
+    func setupUIAccount(){
+        editButton.configuration = .tinted()
+        editButton.configuration?.title = "Edit"
+        editButton.configuration?.image = UIImage(systemName: "square.and.pencil.circle")
+        editButton.configuration?.imagePadding = 8
+        editButton.configuration?.baseForegroundColor = .systemPink
+        editButton.configuration?.baseBackgroundColor = .systemPink
+        editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+        
+        logoutButton.configuration = .tinted()
+        logoutButton.configuration?.title = "Logout"
+        logoutButton.configuration?.image = UIImage(systemName: "person.crop.circle.badge.minus")
+        logoutButton.configuration?.imagePadding = 8
+        logoutButton.configuration?.baseForegroundColor = .systemPink
+        logoutButton.configuration?.baseBackgroundColor = .systemPink
+        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+    }
+    //MARK: - Hamburger Menu
     @IBOutlet weak var trailing: NSLayoutConstraint!
     @IBOutlet weak var leading: NSLayoutConstraint!
     
@@ -60,7 +79,7 @@ class MyAccountViewController: UIViewController {
         })
     }
     
-    //SHOW USER DETAILS
+    //MARK: -SHOW USER DETAILS
     func loadUserDetails() {
             if let userData = UserDefaults.standard.data(forKey: "userDetails"),
                let userDetails = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String] {
@@ -76,7 +95,7 @@ class MyAccountViewController: UIViewController {
                editPhoneNumber.text = userDetails["phoneNumber"]
            }
         }
-    
+    //MARK: - Toggle button name : LOGOUT -> UPDATE
     func toggleEditingMode(_ enable: Bool) {
             editFirstNameTextField.isHidden = !enable
             editLastNameTextField.isHidden = !enable

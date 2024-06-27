@@ -1,39 +1,52 @@
 import Foundation
-//struct ProductAPI{
-//    let title: String
-//    let thumbnail: String
-//}
+
 struct WeatherManager {
     var titlesAndThumbnails: [(title: String, thumbnail: String, description: String)] = []
     
     func fetchData(completion: @escaping ([(String, String, String)]) -> Void) {
-        let weatherURL = "https://dummyjson.com/products"
-        performRequest(weatherURL: weatherURL, completion: completion)
+        let categories = ["womens-shoes", "womens-bags","womens-dresses","mens-shirts","mens-shoes"]
+        var combinedResults: [(String, String, String)] = []
+        let dispatchGroup = DispatchGroup()
+        
+        for category in categories {
+            dispatchGroup.enter()
+            let weatherURL = "https://dummyjson.com/products/category/\(category)"
+            performRequest(weatherURL: weatherURL) { result in
+                if let result = result {
+                    combinedResults.append(contentsOf: result)
+                }
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(combinedResults)
+        }
     }
     
-    private func performRequest(weatherURL: String, completion: @escaping ([(String, String, String)]) -> Void) {
-        // 1. Create a URL
+    private func performRequest(weatherURL: String, completion: @escaping ([(String, String, String)]?) -> Void) {
         if let url = URL(string: weatherURL) {
-            
-            // 2. Create a URLSession
             let session = URLSession(configuration: .default)
-            
-            // 3. Give the session a task
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
                     print(error!)
+                    completion(nil)
                     return
                 }
                 
                 if let safeData = data {
                     if let titlesAndThumbnails = self.parseJSON(weatherData: safeData) {
                         completion(titlesAndThumbnails)
+                    } else {
+                        completion(nil)
                     }
+                } else {
+                    completion(nil)
                 }
             }
-            
-            // 4. Start the task
             task.resume()
+        } else {
+            completion(nil)
         }
     }
     
@@ -41,16 +54,8 @@ struct WeatherManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(ProductResponse.self, from: weatherData)
-                       
-                       // Create an array to store tuples of title and thumbnail
-                       let titlesAndThumbnails = decodedData.products.map { ($0.title, $0.thumbnail, $0.description) }
-                       
-                       // Print the stored product details
-                       for detail in titlesAndThumbnails {
-                           print("Title: \(detail.0), Thumbnail: \(detail.1), Thumbnail: \(detail.2)")
-                       }
-                       
-                       return titlesAndThumbnails
+            let titlesAndThumbnails = decodedData.products.map { ($0.title, $0.thumbnail, $0.description) }
+            return titlesAndThumbnails
         } catch {
             print(error)
             return nil

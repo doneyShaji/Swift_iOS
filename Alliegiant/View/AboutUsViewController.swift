@@ -18,7 +18,13 @@ class AboutUsViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let contentLabel = UILabel()
-        contentLabel.text = "Information about us..."
+        contentLabel.text = """
+Welcome to Alliegiant!
+
+At Alliegiant we believe shopping should be an enjoyable and seamless experience. Our mission is to provide you with the best products at unbeatable prices, all from the comfort of your home. We aim to continuously expand our product range and enhance our services to meet the evolving needs of our customers. Our vision is to be the go-to destination for online shopping, offering an unparalleled experience that combines convenience, variety, and affordability.
+
+Thank you for choosing Alliegiant. Happy shopping!
+"""
         contentLabel.numberOfLines = 0
         contentLabel.translatesAutoresizingMaskIntoConstraints = false
         

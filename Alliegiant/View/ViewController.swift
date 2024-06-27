@@ -76,20 +76,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
             
             if let viewControllers = tabBarController.viewControllers {
-                let index = viewControllers.firstIndex(of: viewController)!
-                
-                // Check if the tab bar item at the specific index is selected
-                if index == 2 { // Replace 1 with the index of your specific tab bar item
-                    // Perform your specific functionality here
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let index = viewControllers.firstIndex(of: viewController)!
+                    
+                    // Check if the tab bar item at the specific index is selected
+                    if index == 3 { // Replace 3 with the index of your specific tab bar item
+                        // Get the current top view controller
+                        if let topViewController = self.navigationController?.topViewController, !(topViewController is MyAccountViewController) {
+                            // Perform your specific functionality here
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             if let myAccountVC = storyboard.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
                                 myAccountVC.selectionDelegate = self
                                 self.navigationController?.pushViewController(myAccountVC, animated: true)
                             }
-                    return false // Return false if you don't want to switch to this tab
+                        }
+                        return false // Return false if you don't want to switch to this tab
+                    }
                 }
-            }
-            return true
+                return true
         }
         
         // Custom function to perform specific functionality
@@ -139,7 +142,7 @@ extension ViewController {
     
 }
 
-//TableView - Header
+//MARK: -TableView - Header
 extension ViewController{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = table.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeaderView") as! CustomHeaderView
@@ -158,7 +161,7 @@ extension ViewController{
     }
 }
 
-// Delegate - Protocol - function
+//MARK: - Delegate - Protocol - function
 extension ViewController: UserDetailsDelegate{
     func didUpdateDetails(name: String) {
             print(name)
