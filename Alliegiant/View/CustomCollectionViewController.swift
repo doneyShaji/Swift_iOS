@@ -1,4 +1,3 @@
-
 import UIKit
 
 struct Colours {
@@ -15,6 +14,7 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
     let activityIndicator = UIActivityIndicatorView(style: .large)
     var isSearching = false
     var searchBar: UISearchBar?
+    var searchTimer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,12 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
             self.collectionView.reloadData()
         }
     }
+    // Implement the UICollectionViewDelegateFlowLayout method
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let padding: CGFloat = 40 // total padding (left + right)
+            let collectionViewSize = collectionView.frame.size.width - padding
+            return CGSize(width: collectionViewSize / 2 - 10, height: collectionViewSize / 2)
+        }
 }
 
 //MARK: - DATA SOURCE
@@ -66,15 +72,21 @@ extension CustomCollectionViewController{
 //MARK: - Search Bar
 extension CustomCollectionViewController{
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchBarCollectionView", for: indexPath)
-        if let searchBar = searchView.viewWithTag(1) as? UISearchBar {
-                    searchBar.delegate = self
-                    self.searchBar = searchBar
-                }
-                return searchView
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchBarCollectionView", for: indexPath)
+            if let searchBar = searchView.viewWithTag(1) as? UISearchBar {
+                searchBar.delegate = self
+                self.searchBar = searchBar
+            }
+            return searchView
+        }
+        
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            searchTimer?.invalidate() // Invalidate the previous timer
+            searchTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(performSearch), userInfo: searchText, repeats: false)
+        }
+        
+        @objc func performSearch(_ timer: Timer) {
+            guard let searchText = timer.userInfo as? String else { return }
             if searchText.isEmpty {
                 isSearching = false
                 filteredColours = colours
@@ -84,12 +96,8 @@ extension CustomCollectionViewController{
             }
             collectionView.reloadData()
         }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder() // Dismiss the keyboard
+        
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.resignFirstResponder() // Dismiss the keyboard
+        }
     }
-}
-
-
-
-

@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +22,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-KV-DLj">
-                    <rect key="frame" x="10" y="55" width="373" height="13"/>
+                    <rect key="frame" x="10" y="55" width="373" height="14.333333333333329"/>
                     <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="12"/>
                     <color key="textColor" systemColor="systemPinkColor"/>
                     <nil key="highlightedColor"/>
@@ -31,10 +31,12 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="0.86274509803921573" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <color key="tintColor" red="1" green="0.86274509803921573" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <accessibility key="accessibilityConfiguration">
+                <accessibilityTraits key="traits" header="YES"/>
+            </accessibility>
             <constraints>
                 <constraint firstItem="vDn-KV-DLj" firstAttribute="top" secondItem="P2F-Vm-u0Q" secondAttribute="bottom" constant="8" id="8fb-UO-MEV"/>
-                <constraint firstItem="P2F-Vm-u0Q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="Msk-Eq-x4V"/>
-                <constraint firstAttribute="bottom" secondItem="vDn-KV-DLj" secondAttribute="bottom" constant="2" id="N96-b7-YVO"/>
+                <constraint firstItem="P2F-Vm-u0Q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="SD5-Gl-VZp"/>
                 <constraint firstItem="vDn-KV-DLj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="T4f-KD-CSU"/>
                 <constraint firstItem="vDn-KV-DLj" firstAttribute="top" secondItem="P2F-Vm-u0Q" secondAttribute="bottom" constant="8" id="gKi-dE-51o"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P2F-Vm-u0Q" secondAttribute="trailing" constant="144" id="jZm-rw-zhV"/>
@@ -51,7 +53,7 @@
     <resources>
         <image name="cropped_image" width="1431.6666259765625" height="1431.6666259765625"/>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

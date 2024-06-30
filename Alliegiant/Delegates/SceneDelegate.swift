@@ -14,25 +14,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
             guard let windowScene = (scene as? UIWindowScene) else { return }
 
-            let window = UIWindow(windowScene: windowScene)
+            window = UIWindow(windowScene: windowScene)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            if let userData = UserDefaults.standard.data(forKey: "userDetails"),
-               let _ = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String] {
-                // User is logged in, set the main tab bar controller as root
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
-                    window.rootViewController = tabBarController
-                }
+            if UserManager.shared.isLoggedIn() {
+                // Navigate to the main tab bar controller if the user is logged in
+                let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+                window?.rootViewController = mainTabBarController
             } else {
-                // User is not logged in, set the login view controller as root
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-                    window.rootViewController = loginViewController
-                }
+                // Show the login screen if no user is logged in
+                let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                let navigationController = UINavigationController(rootViewController: loginViewController)
+                window?.rootViewController = navigationController
             }
-            
-            self.window = window
-            window.makeKeyAndVisible()
+
+            window?.makeKeyAndVisible()
         }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -5,57 +5,59 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var table: UITableView!
     
     struct Apple: Decodable {
-        let title: String
-        let imageName: String
-        let productPrice: String
-        let deliveryDescprition: String
-        let productDescription: String
-    }
-    
-    var data: [Apple] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        table.dataSource = self
-        table.delegate = self
-        loadData()
-        
-        //Table view Header -xib
-        
-        table.register(UINib(nibName: "CustomHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
-        
-        // Enable automatic dimension for row height - DYNAMIC CELL HEIGHT BASED ON THE CONTENT
-        // Removed the image's bottom constraint
-        table.rowHeight = UITableView.automaticDimension
-        
-        // Set this ViewController as the delegate of the TabBarController
-        if let tabBarController = self.tabBarController {
-            tabBarController.delegate = self
+            let title: String
+            let imageName: String
+            let productPrice: String
+            let deliveryDescprition: String
+            let productDescription: String
         }
-        table.separatorColor = .systemPink
-        table.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-    }
-    
+
+        var data: [Apple] = []
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            table.dataSource = self
+            table.delegate = self
+            loadData()
+
+            // Table view Header -xib
+            table.register(UINib(nibName: "CustomHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomHeaderView")
+
+            // Enable automatic dimension for row height - DYNAMIC CELL HEIGHT BASED ON THE CONTENT
+            table.rowHeight = UITableView.automaticDimension
+
+
+            // Adjust content inset to remove excess space
+        
+
+            // Set this ViewController as the delegate of the TabBarController
+            if let tabBarController = self.tabBarController {
+                tabBarController.delegate = self
+            }
+            table.separatorColor = .systemPink
+            table.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        }
+
+        
+
+        
     
     @IBAction func menuButtonTapped(_ sender: Any) {
 
         let menuViewController = MenuViewController()
-               
                menuViewController.modalPresentationStyle = .pageSheet
 //               menuViewController.sheetPresentationController?.detents = [.medium()]
 //               
 //               menuViewController.sheetPresentationController?.prefersGrabberVisible = true
 //               present(menuViewController, animated: true)
-        if let sheet = menuViewController.sheetPresentationController {
+                if let sheet = menuViewController.sheetPresentationController {
                 // Custom detent
-                let customDetent = UISheetPresentationController.Detent.custom { context in
-                    return 225 // The height you want for the view controller
+                    let customDetent = UISheetPresentationController.Detent.custom { context in
+                        return 225 // The height you want for the view controller
                 }
-                
                 sheet.detents = [customDetent]
                 sheet.prefersGrabberVisible = true
             }
-            
             present(menuViewController, animated: true)
     }
     
