@@ -17,6 +17,8 @@
 		045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */; };
 		045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002522C0F2E26005DFF25 /* WeatherManager.swift */; };
 		045C01172C22D5CF009D0C58 /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */; };
+		046449BB2C32B9C6001F0F0C /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */; };
+		046449BD2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */; };
 		046E3A2D2BCE7CE70097D632 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E3A2C2BCE7CE70097D632 /* AppDelegate.swift */; };
 		046E3A2F2BCE7CE70097D632 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E3A2E2BCE7CE70097D632 /* SceneDelegate.swift */; };
 		046E3A312BCE7CE70097D632 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E3A302BCE7CE70097D632 /* ViewController.swift */; };
@@ -55,6 +57,8 @@
 		045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		045002522C0F2E26005DFF25 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
+		046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuVCViewController.swift; sourceTree = "<group>"; };
 		046E3A292BCE7CE70097D632 /* Alliegiant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alliegiant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046E3A2C2BCE7CE70097D632 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046E3A2E2BCE7CE70097D632 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				2F1850962C31CC9E00E32E06 /* ImageScrollView.swift */,
 				2FE01EDA2C31CF7900E7A260 /* HomePageViewController.swift */,
 				2F566C642C31EC350081F2A8 /* HomePageTableViewCell.swift */,
+				046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */,
+				046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -349,6 +355,8 @@
 				04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */,
 				04FA49B42C2A7C7F002C8364 /* DepartmentStoreTableViewCell.swift in Sources */,
 				2FE01EDB2C31CF7900E7A260 /* HomePageViewController.swift in Sources */,
+				046449BD2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift in Sources */,
+				046449BB2C32B9C6001F0F0C /* SlideInTransition.swift in Sources */,
 				04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */,
 				04FA49B22C2A7874002C8364 /* NetworkingManagerCocoaPods.swift in Sources */,
 				04FA49B02C2A738F002C8364 /* DepartmentStoreProductModel.swift in Sources */,

@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let menuViewController = MenuViewController()
                menuViewController.modalPresentationStyle = .pageSheet
 //               menuViewController.sheetPresentationController?.detents = [.medium()]
-//               
+//
 //               menuViewController.sheetPresentationController?.prefersGrabberVisible = true
 //               present(menuViewController, animated: true)
                 if let sheet = menuViewController.sheetPresentationController {
