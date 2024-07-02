@@ -28,19 +28,18 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
         }
     }
 
+    @IBAction func cartBtnTapped(_ sender: Any) {
+        guard let cartVC = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else {
+                    fatalError("Unable to instantiate CartViewController from storyboard.")
+                }
+                navigationController?.pushViewController(cartVC, animated: true)
+    }
     func updateCollectionView(with titlesAndThumbnails: [(String, String, String)]) {
         DispatchQueue.main.async {
             self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1, description: $2) }
             self.filteredColours = self.colours
             self.collectionView.reloadData()
         }
-    }
-
-    // Implement the UICollectionViewDelegateFlowLayout method
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 40 // total padding (left + right)
-        let collectionViewSize = collectionView.frame.size.width - padding
-        return CGSize(width: collectionViewSize / 2 - 10, height: collectionViewSize / 2)
     }
 }
 

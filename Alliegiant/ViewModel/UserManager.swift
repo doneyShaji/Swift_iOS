@@ -9,7 +9,6 @@ struct User: Codable {
     let password: String
 }
 
-// Helper class to manage users
 class UserManager {
     static let shared = UserManager()
     
@@ -19,12 +18,15 @@ class UserManager {
     private var registeredUsers: [User] = []
     private var loggedInUser: User?
     
+    var currentUser: User? {
+        return loggedInUser
+    }
+    
     private init() {
         loadUsers()
         loadLoggedInUser()
     }
     
-    // Register a new user
     func register(user: User) -> Bool {
         if registeredUsers.contains(where: { $0.email == user.email }) {
             return false // Email already exists
@@ -35,7 +37,6 @@ class UserManager {
         return true
     }
     
-    // Login a user
     func login(email: String, password: String) -> Bool {
         if let user = registeredUsers.first(where: { $0.email == email && $0.password == password }) {
             loggedInUser = user
@@ -45,25 +46,32 @@ class UserManager {
         return false
     }
     
-    // Logout the current user
     func logout() {
         loggedInUser = nil
         saveLoggedInUser()
     }
     
-    // Check if a user is logged in
     func isLoggedIn() -> Bool {
         return loggedInUser != nil
     }
     
-    // Save registered users to UserDefaults as JSON
+    func updateUserDetails(_ updatedUser: User) {
+        if let index = registeredUsers.firstIndex(where: { $0.email == updatedUser.email }) {
+            registeredUsers[index] = updatedUser
+            if loggedInUser?.email == updatedUser.email {
+                loggedInUser = updatedUser
+            }
+            saveUsers()
+            saveLoggedInUser()
+        }
+    }
+    
     private func saveUsers() {
         if let data = try? JSONEncoder().encode(registeredUsers) {
             UserDefaults.standard.set(data, forKey: registeredUsersKey)
         }
     }
     
-    // Load registered users from UserDefaults as JSON
     private func loadUsers() {
         if let data = UserDefaults.standard.data(forKey: registeredUsersKey),
            let users = try? JSONDecoder().decode([User].self, from: data) {
@@ -71,7 +79,6 @@ class UserManager {
         }
     }
     
-    // Save logged-in user to UserDefaults as JSON
     private func saveLoggedInUser() {
         if let user = loggedInUser {
             if let data = try? JSONEncoder().encode(user) {
@@ -82,7 +89,6 @@ class UserManager {
         }
     }
     
-    // Load logged-in user from UserDefaults as JSON
     private func loadLoggedInUser() {
         if let data = UserDefaults.standard.data(forKey: loggedInUserKey),
            let user = try? JSONDecoder().decode(User.self, from: data) {

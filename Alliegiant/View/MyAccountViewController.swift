@@ -81,22 +81,20 @@ class MyAccountViewController: UIViewController {
     
     //MARK: -SHOW USER DETAILS
     func loadUserDetails() {
-            if let userData = UserDefaults.standard.data(forKey: "userDetails"),
-               let userDetails = try? JSONSerialization.jsonObject(with: userData, options: []) as? [String: String] {
-               
-               firstNameLabel.text = userDetails["firstName"]
-               lastNameLabel.text = userDetails["lastName"]
-               emailLabel.text = userDetails["email"]
-               phoneNumberLabel.text = userDetails["phoneNumber"]
-               
-               editFirstNameTextField.text = userDetails["firstName"]
-               editLastNameTextField.text = userDetails["lastName"]
-               editEmailTextField.text = userDetails["email"]
-               editPhoneNumber.text = userDetails["phoneNumber"]
-           }
+            guard let user = UserManager.shared.currentUser else { return }
+            
+            firstNameLabel.text = user.firstName
+            lastNameLabel.text = user.lastName
+            emailLabel.text = user.email
+            phoneNumberLabel.text = user.phoneNumber
+            
+            editFirstNameTextField.text = user.firstName
+            editLastNameTextField.text = user.lastName
+            editEmailTextField.text = user.email
+            editPhoneNumber.text = user.phoneNumber
         }
-    //MARK: - Toggle button name : LOGOUT -> UPDATE
-    func toggleEditingMode(_ enable: Bool) {
+        
+        func toggleEditingMode(_ enable: Bool) {
             editFirstNameTextField.isHidden = !enable
             editLastNameTextField.isHidden = !enable
             editEmailTextField.isHidden = !enable
@@ -118,46 +116,51 @@ class MyAccountViewController: UIViewController {
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         if isEditingMode {
-                guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
-                      let lastName = editLastNameTextField.text, !lastName.isEmpty,
-                      let email = editEmailTextField.text, email.isValidEmail,
-                      let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
-                    showAlert(message: "Please make sure all fields are filled correctly.")
-                    return
-                }
-                
-                let userDetails = [
-                    "firstName": firstName,
-                    "lastName": lastName,
-                    "email": email,
-                    "phoneNumber": phoneNumber
-                ]
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: userDetails, options: [])
-                    UserDefaults.standard.set(jsonData, forKey: "userDetails")
+                    guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
+                          let lastName = editLastNameTextField.text, !lastName.isEmpty,
+                          let email = editEmailTextField.text, email.isValidEmail,
+                          let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
+                        showAlert(message: "Please make sure all fields are filled correctly.")
+                        return
+                    }
+                    
+                    let updatedUser = User(
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        phoneNumber: phoneNumber,
+                        password: UserManager.shared.currentUser?.password ?? ""
+                    )
+                    
+                    UserManager.shared.updateUserDetails(updatedUser)
+                    
                     showAlert(message: "Details updated successfully!") { [self] in
                         self.isEditingMode = false
                         self.toggleEditingMode(false)
                         self.loadUserDetails()
-                        selectionDelegate.didUpdateDetails(name: "Update")
                     }
-                } catch {
-                    showAlert(message: "Failed to update user details.")
+                } else {
+                    UserManager.shared.logout()
+                    navigateToLoginViewController()
                 }
-            } else {
-                UserDefaults.standard.removeObject(forKey: "userDetails")
-                print("User details have been removed.")
+            }
+            
+            func showAlert(message: String, completion: (() -> Void)? = nil) {
+                let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                    completion?()
+                }))
+                present(alert, animated: true, completion: nil)
+            }
+            
+            func navigateToLoginViewController() {
                 if let loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
                     loginViewController.modalPresentationStyle = .fullScreen
                     present(loginViewController, animated: true, completion: nil)
                 }
             }
+            
+            func didUpdateDetails(name: String) {
+                loadUserDetails()
+            }
         }
-           func showAlert(message: String, completion: (() -> Void)? = nil) {
-            let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                completion?()
-            }))
-            present(alert, animated: true, completion: nil)
-        }
-}

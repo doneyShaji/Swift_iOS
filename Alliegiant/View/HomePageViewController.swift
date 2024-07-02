@@ -59,21 +59,11 @@ class HomePageViewController: UIViewController {
         }
     
     @IBAction func menuHomeTapped(_ sender: Any) {
-        let menuViewController = MenuViewController()
-               menuViewController.modalPresentationStyle = .pageSheet
-//               menuViewController.sheetPresentationController?.detents = [.medium()]
-//
-//               menuViewController.sheetPresentationController?.prefersGrabberVisible = true
-//               present(menuViewController, animated: true)
-                if let sheet = menuViewController.sheetPresentationController {
-                // Custom detent
-                    let customDetent = UISheetPresentationController.Detent.custom { context in
-                        return 225 // The height you want for the view controller
-                }
-                sheet.detents = [customDetent]
-                sheet.prefersGrabberVisible = true
-            }
-            present(menuViewController, animated: true)
+        print("here")
+        let menuViewController = MyAccountViewController()
+        menuViewController.modalPresentationStyle = .fullScreen
+        present(menuViewController, animated: true)
+                
     }
     @IBAction func segmentedControlBtn(_ sender: Any) {
         loadSegmentData()
