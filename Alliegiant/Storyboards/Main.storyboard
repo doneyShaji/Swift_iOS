@@ -1273,6 +1273,15 @@
                                     <action selector="addToCart:" destination="1LG-76-8Xe" eventType="touchUpInside" id="NhP-iJ-4tV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIH-rr-BwP">
+                                <rect key="frame" x="302" y="59" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="cartBtnDetailTapped:" destination="1LG-76-8Xe" eventType="touchUpInside" id="jNq-6z-Q1D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rzl-cR-Kao"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -19,25 +19,42 @@ class CollectionDetailViewController: UIViewController {
     @IBOutlet weak var decrementButton: UIButton!
     
     var collectionLabel: String?
-    var collectionImage: String?
-    var collectionDescription: String?
-    var quantity: Int = 1
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        var collectionImage: String?
+        var collectionDescription: String?
+        var quantity: Int = 1
         
-        collectionDetailVC.text = collectionLabel
-        collectionViewDescription.text = collectionDescription
-        quantityLabel.text = "\(quantity)"
-        //        loadImage(from: colour.thumbnail)
-        print(collectionImage ?? "No image URL provided")
-        
-        // Load the image if collectionImage contains a valid URL string
-        if let imageUrlString = collectionImage {
-                    ImageLoader.loadImage(from: imageUrlString) { [weak self] image in
-                        self?.collectionViewDetailImage.image = image
-                    }
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            collectionDetailVC.text = collectionLabel
+            collectionViewDescription.text = collectionDescription
+            quantityLabel.text = "\(quantity)"
+            print(collectionImage ?? "No image URL provided")
+            
+            // Load the image if collectionImage contains a valid URL string
+            if let imageUrlString = collectionImage {
+                ImageLoader.loadImage(from: imageUrlString) { [weak self] image in
+                    self?.collectionViewDetailImage.image = image
+                }
+            }
         }
+        
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            // Check if the item is already in the cart and update the quantity
+            if let existingItem = CartManager.shared.items.first(where: { $0.name == collectionLabel }) {
+                quantity = existingItem.quantity
+            } else {
+                quantity = 1
+            }
+            quantityLabel.text = "\(quantity)"
+        }
+    @IBAction func cartBtnDetailTapped(_ sender: Any) {
+        guard let cartDetailVC = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else {
+                    fatalError("Unable to instantiate CartViewController from storyboard.")
+                }
+                navigationController?.pushViewController(cartDetailVC, animated: true)
     }
     
     @IBAction func incrementQuantity(_ sender: Any) {

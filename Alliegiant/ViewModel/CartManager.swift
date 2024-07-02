@@ -15,7 +15,7 @@ class CartManager {
     
     func add(item: CartItem) {
         if let index = items.firstIndex(where: { $0.name == item.name }) {
-            items[index].quantity += item.quantity
+            items[index].quantity = item.quantity
         } else {
             items.append(item)
         }
