@@ -11,6 +11,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var cartTableView: UITableView!
     var emptyCartLabel: UILabel!
+    @IBOutlet weak var checkOutBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,38 +20,44 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         // Initialize and configure the empty cart label
-                emptyCartLabel = UILabel()
-                emptyCartLabel.translatesAutoresizingMaskIntoConstraints = false
-                emptyCartLabel.text = "Your cart is empty."
-                emptyCartLabel.textAlignment = .center
-                emptyCartLabel.font = UIFont.systemFont(ofSize: 20)
-                emptyCartLabel.textColor = .gray
-                view.addSubview(emptyCartLabel)
-                
-                // Constraint setup for empty cart label
-                NSLayoutConstraint.activate([
-                    emptyCartLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                    emptyCartLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-                ])
-                
-                // Initially hide the table view and show the empty cart message
-                cartTableView.isHidden = true
-                emptyCartLabel.isHidden = false
+        emptyCartLabel = UILabel()
+        emptyCartLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyCartLabel.text = "Your cart is empty."
+        emptyCartLabel.textAlignment = .center
+        emptyCartLabel.font = UIFont.systemFont(ofSize: 20)
+        emptyCartLabel.textColor = .gray
+        view.addSubview(emptyCartLabel)
+        
+        // Constraint setup for empty cart label
+        NSLayoutConstraint.activate([
+            emptyCartLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyCartLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        // Set up the checkout button
+        setupCheckoutButton()
+        
+        // Initially hide the table view and show the empty cart message
+        updateCartView()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cartTableView.reloadData()
-        
-        // Show or hide table view and empty cart message based on cart items
-                if CartManager.shared.items.isEmpty {
-                    cartTableView.isHidden = true
-                    emptyCartLabel.isHidden = false
-                } else {
-                    cartTableView.isHidden = false
-                    emptyCartLabel.isHidden = true
-                }
+        updateCartView()
+    }
+    
+    func updateCartView() {
+        if CartManager.shared.items.isEmpty {
+            cartTableView.isHidden = true
+            emptyCartLabel.isHidden = false
+            checkOutBtn.isHidden = true  // Hide the button if the cart is empty
+        } else {
+            cartTableView.isHidden = false
+            emptyCartLabel.isHidden = true
+            checkOutBtn.isHidden = false  // Show the button if there are items
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,7 +79,29 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 157.0
+        return 157.0
+    }
+    // Setup the checkout button
+        private func setupCheckoutButton() {
+            
+            checkOutBtn.configuration = .tinted()
+            checkOutBtn.configuration?.title = "Checkout"
+            checkOutBtn.configuration?.image = UIImage(systemName: "creditcard")
+            checkOutBtn.configuration?.imagePadding = 8
+            checkOutBtn.configuration?.baseForegroundColor = .systemIndigo
+            checkOutBtn.configuration?.baseBackgroundColor = .systemIndigo
+            checkOutBtn.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
         }
+        
+        // Action method for checkout button
+        @objc private func checkoutButtonTapped() {
+            let alert = UIAlertController(title: "Success", message: "Successfully checked out!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                        CartManager.shared.clearCart()
+                        self.updateCartView()
+                        self.cartTableView.reloadData()
+                    })
+                    present(alert, animated: true, completion: nil)
+                }
 }
 

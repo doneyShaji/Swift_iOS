@@ -39,7 +39,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
 
         
-
+    @IBAction func cartAppleBtn(_ sender: Any) {
+        print("here")
+        guard let cartDetailVC = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else {
+                    fatalError("Unable to instantiate CartViewController from storyboard.")
+                }
+                navigationController?.pushViewController(cartDetailVC, animated: true)
+    }
+    
         
     
     @IBAction func menuButtonTapped(_ sender: Any) {

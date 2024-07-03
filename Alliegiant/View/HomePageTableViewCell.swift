@@ -13,5 +13,7 @@ class HomePageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var homeTableViewTitle: UILabel!
     
+    @IBOutlet weak var homePriceLabel: UILabel!
     
+    @IBOutlet weak var homeBrandLabel: UILabel!
 }

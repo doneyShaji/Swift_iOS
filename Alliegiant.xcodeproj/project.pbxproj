@@ -17,6 +17,7 @@
 		045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */; };
 		045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002522C0F2E26005DFF25 /* WeatherManager.swift */; };
 		045C01172C22D5CF009D0C58 /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */; };
+		046077B52C3528D500628431 /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046077B42C3528D500628431 /* HomeNavigationBar.swift */; };
 		046449BB2C32B9C6001F0F0C /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */; };
 		046449BD2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */; };
 		046DCE792C33D66B004DDF30 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DCE782C33D66B004DDF30 /* CartItem.swift */; };
@@ -33,6 +34,7 @@
 		0486DB152C17255700F2F547 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486DB142C17255700F2F547 /* ProductModel.swift */; };
 		04A7CA5B2C19A79600E25695 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7CA5A2C19A79600E25695 /* LoginViewController.swift */; };
 		04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */; };
+		04B5C99F2C3522A1001413DA /* WelcomeDesignHomePage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B5C99E2C3522A1001413DA /* WelcomeDesignHomePage.xib */; };
 		04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
 		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
@@ -61,6 +63,7 @@
 		045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		045002522C0F2E26005DFF25 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
+		046077B42C3528D500628431 /* HomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
 		046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuVCViewController.swift; sourceTree = "<group>"; };
 		046DCE782C33D66B004DDF30 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		0486DB142C17255700F2F547 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		04A7CA5A2C19A79600E25695 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
+		04B5C99E2C3522A1001413DA /* WelcomeDesignHomePage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeDesignHomePage.xib; sourceTree = "<group>"; };
 		04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewCollectionVC.swift; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */,
 				046DCE7C2C33D9A0004DDF30 /* CartViewController.swift */,
 				046DCE7E2C33FD00004DDF30 /* CartTableViewCell.swift */,
+				04B5C99E2C3522A1001413DA /* WelcomeDesignHomePage.xib */,
+				046077B42C3528D500628431 /* HomeNavigationBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B5C99F2C3522A1001413DA /* WelcomeDesignHomePage.xib in Resources */,
 				045C01172C22D5CF009D0C58 /* CustomHeaderView.xib in Resources */,
 				046E3A362BCE7CE90097D632 /* Assets.xcassets in Resources */,
 				046E3A392BCE7CE90097D632 /* Base in Resources */,
@@ -370,6 +377,7 @@
 				04FA49B42C2A7C7F002C8364 /* DepartmentStoreTableViewCell.swift in Sources */,
 				2FE01EDB2C31CF7900E7A260 /* HomePageViewController.swift in Sources */,
 				046449BD2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift in Sources */,
+				046077B52C3528D500628431 /* HomeNavigationBar.swift in Sources */,
 				046449BB2C32B9C6001F0F0C /* SlideInTransition.swift in Sources */,
 				04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */,
 				04FA49B22C2A7874002C8364 /* NetworkingManagerCocoaPods.swift in Sources */,

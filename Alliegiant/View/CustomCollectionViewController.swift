@@ -3,7 +3,9 @@ import UIKit
 struct Colours {
     let title: String
     let thumbnail: String
-    var description: String
+    let description: String
+    let price: Double
+    let brand: String
 }
 
 var weatherManager = WeatherManager()
@@ -34,9 +36,9 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
                 }
                 navigationController?.pushViewController(cartVC, animated: true)
     }
-    func updateCollectionView(with titlesAndThumbnails: [(String, String, String)]) {
+    func updateCollectionView(with titlesAndThumbnails: [(String, String, String, Double, String)]) {
         DispatchQueue.main.async {
-            self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1, description: $2) }
+            self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4) }
             self.filteredColours = self.colours
             self.collectionView.reloadData()
         }

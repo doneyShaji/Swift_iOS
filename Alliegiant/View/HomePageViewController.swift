@@ -14,28 +14,22 @@ class HomePageViewController: UIViewController {
             let title: String
             let thumbnail: String
             let description: String
+            let price: Double
+            let brand: String
         }
-
-//        var homeData: [Details] = [
-//                Details(title: "MacBook Air M2", imageName: "Image1"),
-//                Details(title: "MacBook Air M2", imageName: "Image1"),
-//                Details(title: "MacBook Air M2", imageName: "Image1")
-//        ]
-//    
-//    var homeData1: [Details] = [
-//            Details(title: "MacBook Air M2", imageName: "image2"),
-//            Details(title: "MacBook Air M2", imageName: "image2"),
-//            Details(title: "MacBook Air M2", imageName: "image2")
-//    ]
+    
     
     var homeData: [Details] = []
     
     @IBOutlet weak var pages: UIPageControl!
     @IBOutlet weak var imageCollectionView: UICollectionView!
-    
+    @IBOutlet weak var checkOutBtn: UIButton!
     var imageArray = ["card_1","card_2","card_3","card_4","card_5","card_6"]
     var index = 0
     
+    @IBAction func checkOutBtnTapped(_ sender: Any) {
+        print("here")
+    }
     
     @IBOutlet weak var tableViewHome: UITableView!
     @IBOutlet weak var segmentedControlHome: UISegmentedControl!
@@ -45,13 +39,27 @@ class HomePageViewController: UIViewController {
 
         override func viewDidLoad() {
             super.viewDidLoad()
-            Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
-            loadSegmentData()
+            
+            // Remove the default navigation bar if using a navigation controller
+                    self.navigationController?.isNavigationBarHidden = true
+                    
+                    // Load and add the custom navigation bar
+                    if let customNavBar = Bundle.main.loadNibNamed("WelcomeDesignHomePage", owner: self, options: nil)?.first as? HomeNavigationBar {
+                        customNavBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100)
+                        view.addSubview(customNavBar)
+                        // Adjust other UI elements' frames to account for the custom nav bar height
+                        // For example, you can adjust the tableViewHome's frame
+                        let yOffset = customNavBar.frame.height
+                        tableViewHome.frame = CGRect(x: 0, y: yOffset, width: view.frame.width, height: view.frame.height - yOffset)
+                    }
+//
+                    Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
+                    loadSegmentData()
         }
 
-        func updateTableView(with titlesAndThumbnails: [(String, String, String)]) {
+        func updateTableView(with titlesAndThumbnails: [(String, String, String, Double, String)]) {
             DispatchQueue.main.async {
-                self.homeData = titlesAndThumbnails.map { Details(title: $0, thumbnail: $1, description: $2) }
+                self.homeData = titlesAndThumbnails.map { Details(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4) }
                 self.tableViewHome.reloadData()
                 ActivityIndicator.shared.hideActivityIndicator()
                 self.view.backgroundColor = .white
@@ -84,7 +92,7 @@ class HomePageViewController: UIViewController {
             let category: String
             switch segmentedControlHome.selectedSegmentIndex {
             case 0:
-                category = "womens-dresses"
+                category = "womens-bags"
             case 1:
                 category = "mens-shirts"
             default:
@@ -125,6 +133,8 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
             let tableData = homeData[tableViewIndexPath.row]
             
             segmentControlCell.homeTableViewTitle.text = tableData.title
+            segmentControlCell.homeBrandLabel.text =  tableData.brand
+            segmentControlCell.homePriceLabel.text = "$\(String(tableData.price))"
             ImageLoader.loadImage(from: tableData.thumbnail) { image in
                 segmentControlCell.homeTableViewIMG.image = image
             }

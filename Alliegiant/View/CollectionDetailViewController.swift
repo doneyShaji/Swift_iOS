@@ -51,6 +51,7 @@ class CollectionDetailViewController: UIViewController {
             quantityLabel.text = "\(quantity)"
         }
     @IBAction func cartBtnDetailTapped(_ sender: Any) {
+        print("here")
         guard let cartDetailVC = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else {
                     fatalError("Unable to instantiate CartViewController from storyboard.")
                 }

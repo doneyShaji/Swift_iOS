@@ -11,6 +11,11 @@ class CartManager {
     static let shared = CartManager()
     private(set) var items: [CartItem] = []
     
+    
+    func clearCart() {
+            items.removeAll()
+        }
+    
     private init() {}
     
     func add(item: CartItem) {
