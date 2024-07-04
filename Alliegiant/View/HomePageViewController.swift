@@ -8,7 +8,6 @@
 import UIKit
 
 class HomePageViewController: UIViewController {
-
     
     struct Details {
             let title: String
@@ -40,21 +39,18 @@ class HomePageViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            // Remove the default navigation bar if using a navigation controller
-                    self.navigationController?.isNavigationBarHidden = true
-                    
-                    // Load and add the custom navigation bar
-                    if let customNavBar = Bundle.main.loadNibNamed("WelcomeDesignHomePage", owner: self, options: nil)?.first as? HomeNavigationBar {
-                        customNavBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100)
-                        view.addSubview(customNavBar)
-                        // Adjust other UI elements' frames to account for the custom nav bar height
-                        // For example, you can adjust the tableViewHome's frame
-                        let yOffset = customNavBar.frame.height
-                        tableViewHome.frame = CGRect(x: 0, y: yOffset, width: view.frame.width, height: view.frame.height - yOffset)
-                    }
-//
-                    Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
-                    loadSegmentData()
+            self.navigationController?.isNavigationBarHidden = true
+
+            // Load and add the custom navigation bar
+            let customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 50))
+            customNavBar.firstNameLabel.text = "Doney"
+            view.addSubview(customNavBar)
+
+            
+            tableViewHome.delegate = self
+                    tableViewHome.dataSource = self
+                Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
+                loadSegmentData()
         }
 
         func updateTableView(with titlesAndThumbnails: [(String, String, String, Double, String)]) {
@@ -123,7 +119,7 @@ extension HomePageViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 }
 
-extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomePageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeData.count
     }
@@ -140,5 +136,24 @@ extension HomePageViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             return segmentControlCell
+        }
+}
+
+extension HomePageViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedProduct = homeData[indexPath.row]
+                ImageLoader.loadImage(from: selectedProduct.thumbnail) { image in
+                    guard let homeDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeDetailViewController") as? HomeDetailViewController else {
+                        return
+                    }
+                    homeDetailVC.titleText = selectedProduct.title
+                    homeDetailVC.imageDetail = image
+                    homeDetailVC.descriptionDetail = selectedProduct.description
+                    homeDetailVC.priceDetail = "$\(String(selectedProduct.price))"
+                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(homeDetailVC, animated: true)
+                    }
+                }
         }
 }

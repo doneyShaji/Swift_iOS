@@ -44,9 +44,15 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
         cartTableView.reloadData()
         updateCartView()
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            self.tabBarController?.tabBar.isHidden = false
+        }
     
     func updateCartView() {
         if CartManager.shared.items.isEmpty {
@@ -103,5 +109,6 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     })
                     present(alert, animated: true, completion: nil)
                 }
+    
 }
 

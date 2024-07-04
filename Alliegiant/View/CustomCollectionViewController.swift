@@ -76,16 +76,68 @@ extension CustomCollectionViewController {
 // MARK: - Search Bar
 extension CustomCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchBarCollectionView", for: indexPath)
-        if let searchBar = searchView.viewWithTag(1) as? UISearchBar {
-            searchBar.delegate = self
-            self.searchBar = searchBar
+            let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SearchBarCollectionView", for: indexPath)
+            
+            if let searchBar = searchView.viewWithTag(1) as? UISearchBar {
+                searchBar.delegate = self
+                self.searchBar = searchBar
+            }
+            
+            if let filterButton = searchView.viewWithTag(2) as? UIButton {
+                configureFilterButton(filterButton)
+            }
+            return searchView
         }
-        return searchView
-    }
+    func configureFilterButton(_ button: UIButton) {
+            let ascendingAction = UIAction(title: "Ascending (A-Z)") { _ in
+                self.filteredColours.sort { $0.title < $1.title }
+                self.collectionView.reloadData()
+            }
+            let descendingAction = UIAction(title: "Descending (Z-A)") { _ in
+                self.filteredColours.sort { $0.title > $1.title }
+                self.collectionView.reloadData()
+            }
+            let priceHighToLowAction = UIAction(title: "Price: High to Low") { _ in
+                self.filteredColours.sort { $0.price > $1.price }
+                self.collectionView.reloadData()
+            }
+            let priceLowToHighAction = UIAction(title: "Price: Low to High") { _ in
+                self.filteredColours.sort { $0.price < $1.price }
+                self.collectionView.reloadData()
+            }
+            let clearFilterAction = UIAction(title: "Clear Filter") { _ in
+                self.filteredColours = self.colours
+                self.collectionView.reloadData()
+            }
+
+            let menu = UIMenu(title: "", children: [ascendingAction, descendingAction, priceHighToLowAction, priceLowToHighAction, clearFilterAction])
+            
+        
+        // Configure the button
+        // Configure the button
+            var configuration = UIButton.Configuration.tinted()
+            configuration.title = "Sort"
+            configuration.image = UIImage(systemName: "arrow.up.arrow.down")
+            configuration.baseForegroundColor = .systemPink
+            configuration.baseBackgroundColor = .systemPink
+            configuration.imagePadding = 4 // Adjust if needed
+
+            // Adjust the text size
+            let titleAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 14) // Adjust the font size here
+            ]
+
+            // Adjust the image size
+            configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 14) // Adjust the image size here
+
+            button.configuration = configuration
+            button.showsMenuAsPrimaryAction = true
+            button.menu = menu
+        }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchTimer?.invalidate() // Invalidate the previous timer
+        
         searchTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(performSearch), userInfo: searchText, repeats: false)
     }
 
