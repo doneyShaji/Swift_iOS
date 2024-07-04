@@ -26,6 +26,25 @@ class CollectionDetailViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             
+            
+            // Set navigation title
+            title = "Collection Detail"
+                    
+            // Add cart button to navigation bar
+            let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(addToCartButtonTapped))
+            cartButton.tintColor = .systemPink
+            navigationItem.rightBarButtonItem = cartButton
+            
+            // Configure addToCartButton
+            addToCartButton.configuration = .tinted()
+            addToCartButton.configuration?.title = "Add to Cart"
+            addToCartButton.configuration?.image = UIImage(systemName: "cart")
+            addToCartButton.configuration?.imagePadding = 8
+            addToCartButton.configuration?.baseForegroundColor = .systemPink
+            addToCartButton.configuration?.baseBackgroundColor = .systemRed // or any other background color
+            addToCartButton.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
+                   
+            
             collectionDetailVC.text = collectionLabel
             collectionViewDescription.text = collectionDescription
             quantityLabel.text = "\(quantity)"
@@ -38,10 +57,16 @@ class CollectionDetailViewController: UIViewController {
                 }
             }
         }
+        @objc func addToCartButtonTapped() {
+            guard let cartDetailVC = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else {
+                fatalError("Unable to instantiate CartViewController from storyboard.")
+            }
+            navigationController?.pushViewController(cartDetailVC, animated: true)
+        }
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            
+            tabBarController?.tabBar.isHidden = true
             // Check if the item is already in the cart and update the quantity
             if let existingItem = CartManager.shared.items.first(where: { $0.name == collectionLabel }) {
                 quantity = existingItem.quantity
@@ -50,13 +75,6 @@ class CollectionDetailViewController: UIViewController {
             }
             quantityLabel.text = "\(quantity)"
         }
-    @IBAction func cartBtnDetailTapped(_ sender: Any) {
-        print("here")
-        guard let cartDetailVC = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else {
-                    fatalError("Unable to instantiate CartViewController from storyboard.")
-                }
-                navigationController?.pushViewController(cartDetailVC, animated: true)
-    }
     
     @IBAction func incrementQuantity(_ sender: Any) {
         quantity += 1

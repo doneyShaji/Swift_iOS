@@ -81,28 +81,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             }
         }
-//     MARK: - UITabBarControllerDelegate Methods
-        func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-            
-            if let viewControllers = tabBarController.viewControllers {
-                    let index = viewControllers.firstIndex(of: viewController)!
-                    
-                    // Check if the tab bar item at the specific index is selected
-                    if index == 3 { // Replace 3 with the index of your specific tab bar item
-                        // Get the current top view controller
-                        if let topViewController = self.navigationController?.topViewController, !(topViewController is MyAccountViewController) {
-                            // Perform your specific functionality here
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            if let myAccountVC = storyboard.instantiateViewController(withIdentifier: "MyAccountViewController") as? MyAccountViewController {
-                                myAccountVC.selectionDelegate = self
-                                self.navigationController?.pushViewController(myAccountVC, animated: true)
-                            }
-                        }
-                        return false // Return false if you don't want to switch to this tab
-                    }
-                }
-                return true
-        }
         
         // Custom function to perform specific functionality
         func showAlert() {
@@ -170,18 +148,3 @@ extension ViewController{
     }
 }
 
-//MARK: - Delegate - Protocol - function
-extension ViewController: UserDetailsDelegate{
-    func didUpdateDetails(name: String) {
-            print(name)
-            
-            // Update user details in UserDefaults or wherever you store them
-            if var userDetails = UserDefaults.standard.dictionary(forKey: "userDetails") as? [String: String] {
-                userDetails["firstName"] = name
-                UserDefaults.standard.set(userDetails, forKey: "userDetails")
-            }
-            
-            // Reload the section containing the header view
-            table.reloadSections(IndexSet(integer: 0), with: .automatic)
-        }
-}

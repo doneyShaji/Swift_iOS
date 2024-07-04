@@ -7,15 +7,9 @@
 
 import UIKit
 
-// MARK: - Delegate Protocol: Boss
-protocol UserDetailsDelegate{
-    func didUpdateDetails(name: String)
-}
-
 class MyAccountViewController: UIViewController {
         
-    
-    var selectionDelegate: UserDetailsDelegate!
+    var onNameUpdate: ((String) -> Void)?
     
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
@@ -138,6 +132,7 @@ class MyAccountViewController: UIViewController {
                         self.isEditingMode = false
                         self.toggleEditingMode(false)
                         self.loadUserDetails()
+                        self.onNameUpdate?(firstName)
                     }
                 } else {
                     UserManager.shared.logout()

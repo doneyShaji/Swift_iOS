@@ -26,4 +26,16 @@ class HomeDetailViewController: UIViewController {
         priceHome.text = priceDetail
             
         }
+    // In HomeDetailViewController
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+
+    // In HomePageViewController
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+
 }

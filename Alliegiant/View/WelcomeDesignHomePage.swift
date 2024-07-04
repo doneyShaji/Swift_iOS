@@ -11,6 +11,7 @@ class WelcomeDesignHomePage: UIView {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var profileButton: UIButton!
     
     override init(frame: CGRect){
         super.init(frame: frame)

@@ -35,22 +35,34 @@ class HomePageViewController: UIViewController {
     let first = ["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"]
     let second = ["3","4","5","3","4","5","3","4","5","3","4","5","3","4","5"]
   
+    // Declare customNavBar as an optional property
+        var customNavBar: WelcomeDesignHomePage?
 
         override func viewDidLoad() {
             super.viewDidLoad()
-            
+
             self.navigationController?.isNavigationBarHidden = true
 
-            // Load and add the custom navigation bar
-            let customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 50))
-            customNavBar.firstNameLabel.text = "Doney"
-            view.addSubview(customNavBar)
+            // Initialize and add the custom navigation bar
+            customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 50))
+            guard let userHome = UserManager.shared.currentUser else { return }
 
-            
+            customNavBar?.firstNameLabel.text = userHome.firstName
+            if let customNavBar = customNavBar {
+                view.addSubview(customNavBar)
+            }
+
+            setupMyAccountViewController()
+
             tableViewHome.delegate = self
-                    tableViewHome.dataSource = self
-                Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
-                loadSegmentData()
+            tableViewHome.dataSource = self
+            Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
+            loadSegmentData()
+        }
+
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            customNavBar?.firstNameLabel.text = UserManager.shared.currentUser?.firstName
         }
 
         func updateTableView(with titlesAndThumbnails: [(String, String, String, Double, String)]) {
@@ -99,6 +111,13 @@ class HomePageViewController: UIViewController {
                 self.updateTableView(with: titlesAndThumbnails)
             }
         }
+    func setupMyAccountViewController() {
+            if let myAccountVC = self.tabBarController?.viewControllers?[1] as? MyAccountViewController {
+                myAccountVC.onNameUpdate = { [weak self] updatedName in
+                    self?.customNavBar?.firstNameLabel.text = updatedName
+                }
+            }
+        }
     }
 extension HomePageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -139,21 +158,22 @@ extension HomePageViewController: UITableViewDataSource {
         }
 }
 
-extension HomePageViewController: UITableViewDelegate{
+extension HomePageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedProduct = homeData[indexPath.row]
-                ImageLoader.loadImage(from: selectedProduct.thumbnail) { image in
-                    guard let homeDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeDetailViewController") as? HomeDetailViewController else {
-                        return
-                    }
-                    homeDetailVC.titleText = selectedProduct.title
-                    homeDetailVC.imageDetail = image
-                    homeDetailVC.descriptionDetail = selectedProduct.description
-                    homeDetailVC.priceDetail = "$\(String(selectedProduct.price))"
-                    
-                    DispatchQueue.main.async {
-                        self.navigationController?.pushViewController(homeDetailVC, animated: true)
-                    }
-                }
+        ImageLoader.loadImage(from: selectedProduct.thumbnail) { image in
+            guard let homeDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeDetailViewController") as? HomeDetailViewController else {
+                return
+            }
+            homeDetailVC.titleText = selectedProduct.title
+            homeDetailVC.imageDetail = image
+            homeDetailVC.descriptionDetail = selectedProduct.description
+            homeDetailVC.priceDetail = "$\(String(describing: selectedProduct.price))"
+            
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(homeDetailVC, animated: true)
+            }
         }
+    }
 }
+
