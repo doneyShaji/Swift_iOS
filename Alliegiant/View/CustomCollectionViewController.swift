@@ -68,6 +68,7 @@ extension CustomCollectionViewController {
             detailCollectionVC.collectionLabel = selectedColour.title
             detailCollectionVC.collectionImage = selectedColour.thumbnail
             detailCollectionVC.collectionDescription = selectedColour.description
+            detailCollectionVC.collectionPrice = "$\(String(selectedColour.price))"
             navigationController?.pushViewController(detailCollectionVC, animated: true)
         }
     }
@@ -112,15 +113,12 @@ extension CustomCollectionViewController {
 
             let menu = UIMenu(title: "", children: [ascendingAction, descendingAction, priceHighToLowAction, priceLowToHighAction, clearFilterAction])
             
-        
-        // Configure the button
         // Configure the button
             var configuration = UIButton.Configuration.tinted()
             configuration.title = "Sort"
             configuration.image = UIImage(systemName: "arrow.up.arrow.down")
             configuration.baseForegroundColor = .systemPink
             configuration.baseBackgroundColor = .systemPink
-            configuration.imagePadding = 4 // Adjust if needed
 
             // Adjust the text size
             let titleAttributes: [NSAttributedString.Key: Any] = [

@@ -150,6 +150,7 @@ extension HomePageViewController: UITableViewDataSource {
             segmentControlCell.homeTableViewTitle.text = tableData.title
             segmentControlCell.homeBrandLabel.text =  tableData.brand
             segmentControlCell.homePriceLabel.text = "$\(String(tableData.price))"
+            segmentControlCell.descriptionHomeLabel.text =  tableData.description
             ImageLoader.loadImage(from: tableData.thumbnail) { image in
                 segmentControlCell.homeTableViewIMG.image = image
             }

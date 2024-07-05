@@ -12,6 +12,7 @@ class CollectionDetailViewController: UIViewController {
     @IBOutlet weak var collectionDetailVC: UILabel!
     @IBOutlet weak var collectionViewDetailImage: UIImageView!
     @IBOutlet weak var collectionViewDescription: UILabel!
+    @IBOutlet weak var collectionViewPrice: UILabel!
     
     @IBOutlet weak var addToCartButton: UIButton!
     @IBOutlet weak var quantityLabel: UILabel!
@@ -21,6 +22,7 @@ class CollectionDetailViewController: UIViewController {
     var collectionLabel: String?
         var collectionImage: String?
         var collectionDescription: String?
+    var collectionPrice: String?
         var quantity: Int = 1
         
         override func viewDidLoad() {
@@ -28,7 +30,7 @@ class CollectionDetailViewController: UIViewController {
             
             
             // Set navigation title
-            title = "Collection Detail"
+            title = "TechGear"
                     
             // Add cart button to navigation bar
             let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(addToCartButtonTapped))
@@ -47,6 +49,7 @@ class CollectionDetailViewController: UIViewController {
             
             collectionDetailVC.text = collectionLabel
             collectionViewDescription.text = collectionDescription
+            collectionViewPrice.text = collectionPrice
             quantityLabel.text = "\(quantity)"
             print(collectionImage ?? "No image URL provided")
             
@@ -87,7 +90,7 @@ class CollectionDetailViewController: UIViewController {
                 }
     }
     @IBAction func addToCart(_ sender: Any) {
-        let newItem = CartItem(name: collectionLabel ?? "Unknown", image: collectionImage ?? "", description: collectionDescription ?? "", quantity: quantity)
+        let newItem = CartItem(name: collectionLabel ?? "Unknown", image: collectionImage ?? "", price: collectionPrice ?? "", description: collectionDescription ?? "", quantity: quantity)
                 CartManager.shared.add(item: newItem)
 
                 // Show success message

@@ -7,7 +7,7 @@
 // CartViewController.swift
 import UIKit
 
-class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CartItemCellDelegate {
     
     @IBOutlet weak var cartTableView: UITableView!
     var emptyCartLabel: UILabel!
@@ -74,12 +74,15 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cartCell = cartTableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as! CartTableViewCell
         let item = CartManager.shared.items[indexPath.row]
         cartCell.cartTitle.text = item.name
+        cartCell.cartPrice.text = item.price
         cartCell.cartQuantity.text = "Quantity - \(String(item.quantity))"
         
         // Load the image asynchronously
         ImageLoader.loadImage(from: item.image) { image in
             cartCell.cartImage.image = image
         }
+        // Set the delegate
+        cartCell.delegate = self
         
         return cartCell
     }
@@ -94,8 +97,8 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
             checkOutBtn.configuration?.title = "Checkout"
             checkOutBtn.configuration?.image = UIImage(systemName: "creditcard")
             checkOutBtn.configuration?.imagePadding = 8
-            checkOutBtn.configuration?.baseForegroundColor = .systemIndigo
-            checkOutBtn.configuration?.baseBackgroundColor = .systemIndigo
+            checkOutBtn.configuration?.baseForegroundColor = .systemPink
+            checkOutBtn.configuration?.baseBackgroundColor = .systemPink
             checkOutBtn.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
         }
         
@@ -109,6 +112,16 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     })
                     present(alert, animated: true, completion: nil)
                 }
+    
+    // CartItemCellDelegate method
+        func didTapRemoveButton(on cell: CartTableViewCell) {
+            if let indexPath = cartTableView.indexPath(for: cell) {
+                let item = CartManager.shared.items[indexPath.row]
+                CartManager.shared.remove(item: item)
+                cartTableView.deleteRows(at: [indexPath], with: .automatic)
+                updateCartView()  // Update the view after removing the item
+            }
+        }
     
 }
 

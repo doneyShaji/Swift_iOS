@@ -132,7 +132,7 @@ class MyAccountViewController: UIViewController {
                         self.isEditingMode = false
                         self.toggleEditingMode(false)
                         self.loadUserDetails()
-                        self.onNameUpdate?(firstName)
+//                        self.onNameUpdate?(firstName)
                     }
                 } else {
                     UserManager.shared.logout()
