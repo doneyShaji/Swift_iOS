@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -25,7 +25,34 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         clearErrorMessages()
+        self.firstNameTextField.delegate = self
+        self.lastNameTextField.delegate = self
+        self.emailAddressTextField.delegate = self
+        self.phoneNumberTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.confirmPasswordTextField.delegate = self
+        
         // Do any additional setup after loading the view.
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+            return true
+    }
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.firstNameTextField:
+            self.lastNameTextField.becomeFirstResponder()
+        case self.lastNameTextField:
+            self.emailAddressTextField.becomeFirstResponder()
+        case self.emailAddressTextField:
+            self.phoneNumberTextField.becomeFirstResponder()
+        case self.phoneNumberTextField:
+            self.passwordTextField.becomeFirstResponder()
+        case self.passwordTextField:
+            self.confirmPasswordTextField.becomeFirstResponder()
+        default:
+            self.confirmPasswordTextField.resignFirstResponder()
+        }
     }
     @IBAction func registerButtonTapped(_ sender: Any) {
         clearErrorMessages()
