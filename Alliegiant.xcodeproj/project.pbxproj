@@ -36,6 +36,8 @@
 		0486C0C72C11DC9E00FFD27F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0486C0C62C11DC9E00FFD27F /* Main.storyboard */; };
 		0486DB152C17255700F2F547 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486DB142C17255700F2F547 /* ProductModel.swift */; };
 		04A7CA5B2C19A79600E25695 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7CA5A2C19A79600E25695 /* LoginViewController.swift */; };
+		04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */; };
+		04A8148B2C3BB8EF0001F7F2 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */; };
 		04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */; };
 		04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
@@ -86,6 +88,8 @@
 		0486C0C62C11DC9E00FFD27F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0486DB142C17255700F2F547 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		04A7CA5A2C19A79600E25695 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUsersViewController.swift; sourceTree = "<group>"; };
+		04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
 		04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewCollectionVC.swift; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 				0414C9FC2C36B0AA005094E3 /* WelcomeDesignHomePage.xib */,
 				0414C9FE2C36B124005094E3 /* WelcomeDesignHomePage.swift */,
 				0414CA002C36B5F4005094E3 /* Dummy.swift */,
+				04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */,
+				04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 				046E3A312BCE7CE70097D632 /* ViewController.swift in Sources */,
 				2F1850932C314DAA00E32E06 /* TabBarController.swift in Sources */,
 				0414C9FF2C36B124005094E3 /* WelcomeDesignHomePage.swift in Sources */,
+				04A8148B2C3BB8EF0001F7F2 /* UserTableViewCell.swift in Sources */,
 				046DCE792C33D66B004DDF30 /* CartItem.swift in Sources */,
 				04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */,
 				0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */,
@@ -395,6 +402,7 @@
 				2F566C652C31EC350081F2A8 /* HomePageTableViewCell.swift in Sources */,
 				0414CA012C36B5F4005094E3 /* Dummy.swift in Sources */,
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
+				04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */,
 				04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
 				04005DD52C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift in Sources */,

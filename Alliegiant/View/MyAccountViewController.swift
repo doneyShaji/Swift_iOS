@@ -100,6 +100,8 @@ class MyAccountViewController: UIViewController {
             phoneNumberLabel.isHidden = enable
             
             logoutButton.setTitle(enable ? "Update" : "Logout", for: .normal)
+            editButton.setTitle(enable ? "Cancel Editing" : "Edit", for: .normal)
+            
         }
     
     @IBAction func editButtonTapped(_ sender: Any) {
