@@ -48,6 +48,9 @@
 		04FA49B42C2A7C7F002C8364 /* DepartmentStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA49B32C2A7C7F002C8364 /* DepartmentStoreTableViewCell.swift */; };
 		04FA49B62C2A92E2002C8364 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA49B52C2A92E2002C8364 /* ActivityIndicator.swift */; };
 		04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */; };
+		04FD2A092C3D3D3400A46114 /* AlliegiantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD2A082C3D3D3400A46114 /* AlliegiantTests.swift */; };
+		04FD2A102C3D3DD000A46114 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD2A0F2C3D3DD000A46114 /* LoginTests.swift */; };
+		04FD2A142C3D5FB400A46114 /* LoginValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD2A132C3D5FB400A46114 /* LoginValidation.swift */; };
 		2F1850912C3012CB00E32E06 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1850902C3012CB00E32E06 /* UserManager.swift */; };
 		2F1850932C314DAA00E32E06 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1850922C314DAA00E32E06 /* TabBarController.swift */; };
 		2F1850972C31CC9E00E32E06 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1850962C31CC9E00E32E06 /* ImageScrollView.swift */; };
@@ -55,6 +58,16 @@
 		2FE01EDB2C31CF7900E7A260 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE01EDA2C31CF7900E7A260 /* HomePageViewController.swift */; };
 		B3ADB8D40509704DE894230A /* Pods_Alliegiant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A82F40632F5948230FE2902C /* Pods_Alliegiant.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04FD2A0A2C3D3D3400A46114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 046E3A212BCE7CE70097D632 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 046E3A282BCE7CE70097D632;
+			remoteInfo = Alliegiant;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		04005DD02C2BDD3500D51EFA /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +113,10 @@
 		04FA49B32C2A7C7F002C8364 /* DepartmentStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentStoreTableViewCell.swift; sourceTree = "<group>"; };
 		04FA49B52C2A92E2002C8364 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
+		04FD2A062C3D3D3400A46114 /* AlliegiantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlliegiantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04FD2A082C3D3D3400A46114 /* AlliegiantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliegiantTests.swift; sourceTree = "<group>"; };
+		04FD2A0F2C3D3DD000A46114 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
+		04FD2A132C3D5FB400A46114 /* LoginValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidation.swift; sourceTree = "<group>"; };
 		2F1850902C3012CB00E32E06 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2F1850922C314DAA00E32E06 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2F1850962C31CC9E00E32E06 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
@@ -119,6 +136,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04FD2A032C3D3D3400A46114 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -126,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				046E3A2B2BCE7CE70097D632 /* Alliegiant */,
+				04FD2A072C3D3D3400A46114 /* AlliegiantTests */,
 				046E3A2A2BCE7CE70097D632 /* Products */,
 				5888CD76A6A123FB9A4D8E88 /* Pods */,
 				9602BCBC15508D2E5BB3676F /* Frameworks */,
@@ -136,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				046E3A292BCE7CE70097D632 /* Alliegiant.app */,
+				04FD2A062C3D3D3400A46114 /* AlliegiantTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +238,7 @@
 				04FA49B12C2A7874002C8364 /* NetworkingManagerCocoaPods.swift */,
 				2F1850902C3012CB00E32E06 /* UserManager.swift */,
 				046DCE7A2C33D8BF004DDF30 /* CartManager.swift */,
+				04FD2A132C3D5FB400A46114 /* LoginValidation.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -240,6 +267,15 @@
 				04E149662C29300C00239320 /* AppleProducts.json */,
 			);
 			path = Bundles;
+			sourceTree = "<group>";
+		};
+		04FD2A072C3D3D3400A46114 /* AlliegiantTests */ = {
+			isa = PBXGroup;
+			children = (
+				04FD2A082C3D3D3400A46114 /* AlliegiantTests.swift */,
+				04FD2A0F2C3D3DD000A46114 /* LoginTests.swift */,
+			);
+			path = AlliegiantTests;
 			sourceTree = "<group>";
 		};
 		5888CD76A6A123FB9A4D8E88 /* Pods */ = {
@@ -281,6 +317,24 @@
 			productReference = 046E3A292BCE7CE70097D632 /* Alliegiant.app */;
 			productType = "com.apple.product-type.application";
 		};
+		04FD2A052C3D3D3400A46114 /* AlliegiantTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04FD2A0C2C3D3D3400A46114 /* Build configuration list for PBXNativeTarget "AlliegiantTests" */;
+			buildPhases = (
+				04FD2A022C3D3D3400A46114 /* Sources */,
+				04FD2A032C3D3D3400A46114 /* Frameworks */,
+				04FD2A042C3D3D3400A46114 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04FD2A0B2C3D3D3400A46114 /* PBXTargetDependency */,
+			);
+			name = AlliegiantTests;
+			productName = AlliegiantTests;
+			productReference = 04FD2A062C3D3D3400A46114 /* AlliegiantTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -293,6 +347,10 @@
 				TargetAttributes = {
 					046E3A282BCE7CE70097D632 = {
 						CreatedOnToolsVersion = 15.3;
+					};
+					04FD2A052C3D3D3400A46114 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 046E3A282BCE7CE70097D632;
 					};
 				};
 			};
@@ -310,6 +368,7 @@
 			projectRoot = "";
 			targets = (
 				046E3A282BCE7CE70097D632 /* Alliegiant */,
+				04FD2A052C3D3D3400A46114 /* AlliegiantTests */,
 			);
 		};
 /* End PBXProject section */
@@ -325,6 +384,13 @@
 				046E3A392BCE7CE90097D632 /* Base in Resources */,
 				04E149672C29300C00239320 /* AppleProducts.json in Resources */,
 				0486C0C72C11DC9E00FFD27F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FD2A042C3D3D3400A46114 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +445,7 @@
 			files = (
 				0414C9FB2C36AC01005094E3 /* HomeDetailViewController.swift in Sources */,
 				046E3A312BCE7CE70097D632 /* ViewController.swift in Sources */,
+				04FD2A142C3D5FB400A46114 /* LoginValidation.swift in Sources */,
 				2F1850932C314DAA00E32E06 /* TabBarController.swift in Sources */,
 				0414C9FF2C36B124005094E3 /* WelcomeDesignHomePage.swift in Sources */,
 				04A8148B2C3BB8EF0001F7F2 /* UserTableViewCell.swift in Sources */,
@@ -420,7 +487,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04FD2A022C3D3D3400A46114 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FD2A092C3D3D3400A46114 /* AlliegiantTests.swift in Sources */,
+				04FD2A102C3D3DD000A46114 /* LoginTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04FD2A0B2C3D3D3400A46114 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 046E3A282BCE7CE70097D632 /* Alliegiant */;
+			targetProxy = 04FD2A0A2C3D3D3400A46114 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		046E3A372BCE7CE90097D632 /* LaunchScreen.storyboard */ = {
@@ -616,6 +700,42 @@
 			};
 			name = Release;
 		};
+		04FD2A0D2C3D3D3400A46114 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doney.AlliegiantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alliegiant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Alliegiant";
+			};
+			name = Debug;
+		};
+		04FD2A0E2C3D3D3400A46114 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doney.AlliegiantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alliegiant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Alliegiant";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -633,6 +753,15 @@
 			buildConfigurations = (
 				046E3A3E2BCE7CE90097D632 /* Debug */,
 				046E3A3F2BCE7CE90097D632 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04FD2A0C2C3D3D3400A46114 /* Build configuration list for PBXNativeTarget "AlliegiantTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FD2A0D2C3D3D3400A46114 /* Debug */,
+				04FD2A0E2C3D3D3400A46114 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

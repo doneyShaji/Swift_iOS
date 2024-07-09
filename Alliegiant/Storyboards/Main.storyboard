@@ -607,39 +607,41 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voP-e3-6zQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="749"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="754"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF4-V4-QsQ" userLabel="MenuView">
-                                                <rect key="frame" x="218" y="0.0" width="175" height="666"/>
+                                                <rect key="frame" x="218" y="0.0" width="175" height="671"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNX-ti-T8h">
-                                                        <rect key="frame" x="37" y="20.000000000000004" width="59.333333333333343" height="34.333333333333343"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Help"/>
-                                                        <connections>
-                                                            <segue destination="nDx-qj-Kh7" kind="show" id="Qap-Qx-GaH"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSz-GK-dg1">
-                                                        <rect key="frame" x="20" y="74.333333333333329" width="76.333333333333329" height="34.333333333333329"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Orders"/>
-                                                        <connections>
-                                                            <segue destination="NFa-P6-bym" kind="show" id="bv9-tH-b3J"/>
-                                                        </connections>
-                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Eop-VZ-1A9">
+                                                        <rect key="frame" x="48.666666666666679" y="20" width="76.333333333333314" height="87.666666666666671"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNX-ti-T8h">
+                                                                <rect key="frame" x="17.000000000000004" y="0.0" width="59.333333333333343" height="34.333333333333336"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Help"/>
+                                                                <connections>
+                                                                    <segue destination="nDx-qj-Kh7" kind="show" id="Qap-Qx-GaH"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSz-GK-dg1">
+                                                                <rect key="frame" x="0.0" y="53.333333333333329" width="76.333333333333329" height="34.333333333333329"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Orders"/>
+                                                                <connections>
+                                                                    <segue destination="NFa-P6-bym" kind="show" id="bv9-tH-b3J"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="76.329999999999998" id="1Zb-RR-rIS"/>
+                                                        </constraints>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="aSz-GK-dg1" firstAttribute="leading" secondItem="hF4-V4-QsQ" secondAttribute="leading" constant="20" id="2DB-aa-UcN"/>
                                                     <constraint firstAttribute="width" constant="175" id="2YX-mv-f68"/>
-                                                    <constraint firstItem="QNX-ti-T8h" firstAttribute="top" secondItem="hF4-V4-QsQ" secondAttribute="top" constant="20" id="5w0-ej-AmS"/>
-                                                    <constraint firstItem="aSz-GK-dg1" firstAttribute="top" secondItem="QNX-ti-T8h" secondAttribute="bottom" constant="20" id="AcQ-Hk-HTH"/>
-                                                    <constraint firstItem="QNX-ti-T8h" firstAttribute="leading" secondItem="hF4-V4-QsQ" secondAttribute="leading" constant="37" id="R61-fi-9BZ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="aSz-GK-dg1" secondAttribute="trailing" constant="78.670000000000002" id="aum-X3-8j3"/>
-                                                    <constraint firstAttribute="trailing" secondItem="QNX-ti-T8h" secondAttribute="trailing" constant="78.670000000000002" id="kzW-LS-bpo"/>
-                                                    <constraint firstItem="aSz-GK-dg1" firstAttribute="leading" secondItem="hF4-V4-QsQ" secondAttribute="leading" constant="20" id="v1f-Ai-PhM"/>
-                                                    <constraint firstItem="QNX-ti-T8h" firstAttribute="trailing" secondItem="aSz-GK-dg1" secondAttribute="trailing" id="zCp-iN-nAD"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Eop-VZ-1A9" secondAttribute="trailing" constant="50" id="5a0-nc-j2B"/>
+                                                    <constraint firstItem="Eop-VZ-1A9" firstAttribute="top" secondItem="hF4-V4-QsQ" secondAttribute="top" constant="20" id="Pir-8g-wEi"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThM-In-lW0">

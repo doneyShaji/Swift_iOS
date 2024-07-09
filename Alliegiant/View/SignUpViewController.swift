@@ -77,7 +77,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 
-                guard let password = passwordTextField.text, isPasswordValid(password) else {
+        guard let password = passwordTextField.text, password.isValidPassword else {
                     passwordErrorLabel.text = "Password must be at least 8 characters long."
                     return
                 }
@@ -106,9 +106,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 confirmPasswordErrorLabel.text = ""
             }
             
-            func isPasswordValid(_ password: String) -> Bool {
-                return password.count >= 5
-            }
+//            func isPasswordValid(_ password: String) -> Bool {
+//                return password.count >= 5
+//            }
             
             func showLoginViewController() {
                 if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
@@ -117,11 +117,3 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
 
-
-        extension String {
-            var isValidEmail: Bool {
-                let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-                let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-                return emailTest.evaluate(with: self)
-            }
-        }

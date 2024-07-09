@@ -26,11 +26,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             // Enable automatic dimension for row height - DYNAMIC CELL HEIGHT BASED ON THE CONTENT
             table.rowHeight = UITableView.automaticDimension
 
-
-            // Adjust content inset to remove excess space
-        
-
-            // Set this ViewController as the delegate of the TabBarController
             if let tabBarController = self.tabBarController {
                 tabBarController.delegate = self
             }
@@ -53,10 +48,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         let menuViewController = MenuViewController()
                menuViewController.modalPresentationStyle = .pageSheet
-//               menuViewController.sheetPresentationController?.detents = [.medium()]
-//
-//               menuViewController.sheetPresentationController?.prefersGrabberVisible = true
-//               present(menuViewController, animated: true)
                 if let sheet = menuViewController.sheetPresentationController {
                 // Custom detent
                     let customDetent = UISheetPresentationController.Detent.custom { context in
