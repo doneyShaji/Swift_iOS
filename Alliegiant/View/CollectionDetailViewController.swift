@@ -18,6 +18,7 @@ class CollectionDetailViewController: UIViewController {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var incrementButton: UIButton!
     @IBOutlet weak var decrementButton: UIButton!
+    @IBOutlet weak var quantityIncrementerDecrementer: UIStackView!
     
     var collectionLabel: String?
         var collectionImage: String?
@@ -43,9 +44,8 @@ class CollectionDetailViewController: UIViewController {
             addToCartButton.configuration?.image = UIImage(systemName: "cart")
             addToCartButton.configuration?.imagePadding = 8
             addToCartButton.configuration?.baseForegroundColor = .systemPink
-            addToCartButton.configuration?.baseBackgroundColor = .systemRed // or any other background color
+            addToCartButton.configuration?.baseBackgroundColor = .systemPink // or any other background color
             addToCartButton.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
-                   
             
             collectionDetailVC.text = collectionLabel
             collectionViewDescription.text = collectionDescription

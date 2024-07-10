@@ -1048,7 +1048,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gf-sy-m8q">
                                 <rect key="frame" x="0.0" y="123" width="393" height="643"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wp6-7P-QRd" userLabel="ContentView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wp6-7P-QRd" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="721"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Na-rN-8VF">
@@ -1102,10 +1102,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Password must be at least 8 characters &amp; must contain atleast 1 alphabet &amp; a letter" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acX-BG-aPf">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Password must be at least 8 characters &amp; must contain atleast a alphabet &amp; a letter" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acX-BG-aPf">
                                                 <rect key="frame" x="59" y="578" width="275" height="50.333333333333371"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FirstNameMessage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhz-Jl-v4r">
@@ -1194,12 +1194,12 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="wp6-7P-QRd" secondAttribute="bottom" constant="-48" id="2oa-xm-Jk1"/>
+                                    <constraint firstAttribute="bottom" secondItem="wp6-7P-QRd" secondAttribute="bottom" constant="-78" id="2oa-xm-Jk1"/>
                                     <constraint firstItem="wp6-7P-QRd" firstAttribute="width" secondItem="2Gf-sy-m8q" secondAttribute="width" id="UXA-wi-9kw"/>
                                     <constraint firstAttribute="trailing" secondItem="wp6-7P-QRd" secondAttribute="trailing" id="YEH-2n-qtF"/>
                                     <constraint firstItem="wp6-7P-QRd" firstAttribute="height" secondItem="2Gf-sy-m8q" secondAttribute="height" priority="250" constant="78" id="Yfa-5c-qci"/>
                                     <constraint firstItem="wp6-7P-QRd" firstAttribute="leading" secondItem="2Gf-sy-m8q" secondAttribute="leading" id="mZF-ya-FHE"/>
-                                    <constraint firstItem="wp6-7P-QRd" firstAttribute="top" secondItem="2Gf-sy-m8q" secondAttribute="top" constant="-30" id="qxD-tg-d3m"/>
+                                    <constraint firstItem="wp6-7P-QRd" firstAttribute="top" secondItem="2Gf-sy-m8q" secondAttribute="top" id="qxD-tg-d3m"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="6NN-xU-hei"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="b38-E5-b5e"/>
@@ -1468,7 +1468,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.86274509799999999" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DG5-MX-9R8">
@@ -1523,6 +1523,7 @@
                         <outlet property="collectionViewPrice" destination="cjt-z8-Y75" id="X8u-88-YsT"/>
                         <outlet property="decrementButton" destination="VJe-fO-WZO" id="AYr-z0-aLg"/>
                         <outlet property="incrementButton" destination="flH-89-crB" id="dJ2-oq-Z0u"/>
+                        <outlet property="quantityIncrementerDecrementer" destination="j6o-5G-r7l" id="aoA-hr-39K"/>
                         <outlet property="quantityLabel" destination="NIC-C0-7fh" id="Bw7-Nd-Fad"/>
                     </connections>
                 </viewController>
@@ -1812,9 +1813,6 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
