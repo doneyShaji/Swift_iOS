@@ -17,19 +17,16 @@ final class LoginTests: XCTestCase {
         //When - Act
         let isValid = password.isValidPassword
         //Then - Assert
-        XCTAssertFalse(isValid, "Password Incorrect")
-        XCTAssertFalse("12345678".isValidPassword, "Password should be considered too short")
-        XCTAssertFalse("alpha".isValidPassword, "Password should be considered too short")
+        XCTAssertFalse(isValid, "Password Invalid")
+        XCTAssertFalse("12345678".isValidPassword, "Password Invalid")
+        XCTAssertFalse("alpha".isValidPassword, "Password Invalid")
+        XCTAssertFalse("alpha!dea".isValidPassword, "Password Invalid")
+    }
+    func testValidPassword(){
+        XCTAssertTrue("12345678a".isValidPassword, "Password Valid")
+        XCTAssertTrue("asdfghjk1!".isValidPassword, "Password Valid")
+        XCTAssertTrue("alpha12345".isValidPassword, "Password Valid")
     }
     
-    }
-//    
-//    func testEmailAlpha(){
-//        //Given - Arrange
-//        let email = ""
-//        //When - Act
-//        let isValid = registrationVC.isValidEmail(email)
-//        //Then - Assert
-//        XCTAssertFalse(isValid, "Password should be considered empty")
-//    }
+}
 

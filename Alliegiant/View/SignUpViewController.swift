@@ -8,7 +8,7 @@
 import UIKit
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
@@ -25,19 +25,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         clearErrorMessages()
+        textFieldDelegates()
+        
+    }
+    
+    func textFieldDelegates(){
         self.firstNameTextField.delegate = self
         self.lastNameTextField.delegate = self
         self.emailAddressTextField.delegate = self
         self.phoneNumberTextField.delegate = self
         self.passwordTextField.delegate = self
         self.confirmPasswordTextField.delegate = self
-        
-        // Do any additional setup after loading the view.
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.switchBasedNextTextField(textField)
-            return true
+        return true
     }
+    
     private func switchBasedNextTextField(_ textField: UITextField) {
         switch textField {
         case self.firstNameTextField:
@@ -54,66 +59,81 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             self.confirmPasswordTextField.resignFirstResponder()
         }
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField {
+        case firstNameTextField:
+            firstNameErrorLabel.text = ""
+        case lastNameTextField:
+            lastNameErrorLabel.text = ""
+        case emailAddressTextField:
+            emailErrorLabel.text = ""
+        case phoneNumberTextField:
+            phoneErrorLabel.text = ""
+        case passwordTextField:
+            passwordErrorLabel.text = ""
+        case confirmPasswordTextField:
+            confirmPasswordErrorLabel.text = ""
+        default:
+            break
+        }
+    }
     @IBAction func registerButtonTapped(_ sender: Any) {
         clearErrorMessages()
-                
-                guard let firstName = firstNameTextField.text, !firstName.isEmpty else {
-                    firstNameErrorLabel.text = "First name is required."
-                    return
-                }
-                
-                guard let lastName = lastNameTextField.text, !lastName.isEmpty else {
-                    lastNameErrorLabel.text = "Last name is required."
-                    return
-                }
-                
-                guard let email = emailAddressTextField.text, email.isValidEmail else {
-                    emailErrorLabel.text = "Invalid email address."
-                    return
-                }
-                
-                guard let phoneNumber = phoneNumberTextField.text, !phoneNumber.isEmpty else {
-                    phoneErrorLabel.text = "Phone number is required."
-                    return
-                }
-                
+        
+        guard let firstName = firstNameTextField.text, firstName.isNameValid else {
+            firstNameErrorLabel.text = "First name is Invalid."
+            return
+        }
+        
+        guard let lastName = lastNameTextField.text, lastName.isNameValid else {
+            lastNameErrorLabel.text = "Last name is required."
+            return
+        }
+        
+        guard let email = emailAddressTextField.text, email.isValidEmail else {
+            emailErrorLabel.text = "Invalid email address."
+            return
+        }
+        
+        guard let phoneNumber = phoneNumberTextField.text, phoneNumber.isTenDigits else {
+            phoneErrorLabel.text = "Phone number requires 10 digits."
+            return
+        }
+        
         guard let password = passwordTextField.text, password.isValidPassword else {
-                    passwordErrorLabel.text = "Password must be at least 8 characters long."
-                    return
-                }
-                
-                guard let confirmPassword = confirmPasswordTextField.text, password == confirmPassword else {
-                    confirmPasswordErrorLabel.text = "Passwords do not match."
-                    return
-                }
+            passwordErrorLabel.text = "Invalid Password."
+            return
+        }
+        
+        guard let confirmPassword = confirmPasswordTextField.text, password == confirmPassword else {
+            confirmPasswordErrorLabel.text = "Passwords do not match."
+            return
+        }
         
         let newUser = User(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, password: password)
-                
-                if UserManager.shared.register(user: newUser) {
-                    UserManager.shared.login(email: newUser.email, password: newUser.password)
-                    showLoginViewController()
-                } else {
-                    emailErrorLabel.text = "Email already exists."
-                }
-            }
-            
-            func clearErrorMessages() {
-                firstNameErrorLabel.text = ""
-                lastNameErrorLabel.text = ""
-                emailErrorLabel.text = ""
-                phoneErrorLabel.text = ""
-                passwordErrorLabel.text = ""
-                confirmPasswordErrorLabel.text = ""
-            }
-            
-//            func isPasswordValid(_ password: String) -> Bool {
-//                return password.count >= 5
-//            }
-            
-            func showLoginViewController() {
-                if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-                    navigationController?.pushViewController(loginVC, animated: true)
-                }
-            }
+        
+        if UserManager.shared.register(user: newUser) {
+            UserManager.shared.login(email: newUser.email, password: newUser.password)
+            showLoginViewController()
+        } else {
+            emailErrorLabel.text = "Email already exists."
         }
+    }
+    
+    func clearErrorMessages() {
+        firstNameErrorLabel.text = ""
+        lastNameErrorLabel.text = ""
+        emailErrorLabel.text = ""
+        phoneErrorLabel.text = ""
+        passwordErrorLabel.text = ""
+        confirmPasswordErrorLabel.text = ""
+    }
+    
+    func showLoginViewController() {
+        if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            navigationController?.pushViewController(loginVC, animated: true)
+        }
+    }
+}
 

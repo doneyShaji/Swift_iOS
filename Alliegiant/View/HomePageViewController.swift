@@ -32,8 +32,6 @@ class HomePageViewController: UIViewController {
     
     @IBOutlet weak var tableViewHome: UITableView!
     @IBOutlet weak var segmentedControlHome: UISegmentedControl!
-    let first = ["1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"]
-    let second = ["3","4","5","3","4","5","3","4","5","3","4","5","3","4","5"]
   
     // Declare customNavBar as an optional property
         var customNavBar: WelcomeDesignHomePage?
@@ -58,6 +56,8 @@ class HomePageViewController: UIViewController {
             tableViewHome.dataSource = self
             Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
             loadSegmentData()
+            
+            setupSegmentedControl()
         }
 
         override func viewWillAppear(_ animated: Bool) {
@@ -116,6 +116,32 @@ class HomePageViewController: UIViewController {
                 myAccountVC.onNameUpdate = { [weak self] updatedName in
                     self?.customNavBar?.firstNameLabel.text = updatedName
                 }
+            }
+        }
+    private func setupSegmentedControl() {
+            // Set the default text attributes for the unselected segments
+            let unselectedTextAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: UIColor.white
+            ]
+            segmentedControlHome.setTitleTextAttributes(unselectedTextAttributes, for: .normal)
+
+            // Set the text attributes for the selected segments
+            let selectedTextAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: UIColor.black
+            ]
+            segmentedControlHome.setTitleTextAttributes(selectedTextAttributes, for: .selected)
+
+            // Add target to handle value changes
+            segmentedControlHome.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        }
+
+        @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+            for i in 0..<sender.numberOfSegments {
+                let titleTextAttributes = i == sender.selectedSegmentIndex
+                    ? [NSAttributedString.Key.foregroundColor: UIColor.black]
+                    : [NSAttributedString.Key.foregroundColor: UIColor.white]
+                sender.setTitleTextAttributes(titleTextAttributes, for: .normal)
+                setupSegmentedControl()
             }
         }
     }

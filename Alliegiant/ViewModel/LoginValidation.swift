@@ -19,4 +19,17 @@ extension String {
         let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return passwordTest.evaluate(with: self)
     }
+    
+    var isNameValid: Bool {
+        let nameRegex = "^[A-Za-z]{2,50}$"
+        let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
+        return namePredicate.evaluate(with: self)
+    }
+    
+    var isTenDigits: Bool {
+        let digitsRegex = "^[0-9]{10}$"
+        let digitsPredicate = NSPredicate(format: "SELF MATCHES %@", digitsRegex)
+        return digitsPredicate.evaluate(with: self)
+    }
+
 }
