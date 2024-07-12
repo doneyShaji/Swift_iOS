@@ -11,9 +11,9 @@ import XCTest
 class LoginTests: XCTestCase {
 
     func testValidEmail() {
-        XCTAssertTrue("test@example.com".isValidEmail)
+        XCTAssertTrue("doney@example.com".isValidEmail)
         XCTAssertFalse("invalid-email".isValidEmail)
-        XCTAssertFalse("invalid@domain".isValidEmail)
+        XCTAssertFalse("invalid@email".isValidEmail)
         XCTAssertTrue("user.name+tag+sorting@example.com".isValidEmail)
     }
 

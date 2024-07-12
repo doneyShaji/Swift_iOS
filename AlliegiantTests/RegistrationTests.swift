@@ -8,22 +8,24 @@
 import XCTest
 @testable import Alliegiant
 
-final class RegistrationTests: XCTestCase {
-    func testInvalidPassword(){
-        //Given - Arrange
-        let password = "1234"
-        //When - Act
-        let isValid = password.isValidPassword
-        //Then - Assert
-        XCTAssertFalse(isValid, "Password Invalid")
-        XCTAssertFalse("12345678".isValidPassword, "Password Invalid")
-        XCTAssertFalse("alpha".isValidPassword, "Password Invalid")
-        XCTAssertFalse("alpha!dea".isValidPassword, "Password Invalid")
+class RegistrationTests: XCTestCase {
+    var signUpVC = SignUpViewController()
+    override func setUp() {
+        super.setUp()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else {
+            XCTFail("Could not instantiate SignUpViewController from main storyboard")
+            return
+        }
+        signUpVC = viewController
+        signUpVC.loadViewIfNeeded()
+        
     }
-    func testValidPassword(){
-        XCTAssertTrue("12345678a".isValidPassword, "Password Valid")
-        XCTAssertTrue("asdfghjk1".isValidPassword, "Password Valid")
-        XCTAssertTrue("alpha12345".isValidPassword, "Password Valid")
+    
+    func testEmptyFirstName() {
+        signUpVC.firstNameTextField.text = ""
+        signUpVC.registerButtonTapped(self)
+        XCTAssertEqual(signUpVC.firstNameErrorLabel.text, "First name is Invalid.")
     }
-
+    
 }

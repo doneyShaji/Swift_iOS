@@ -31,21 +31,20 @@ class UserManager {
         if registeredUsers.contains(where: { $0.email == user.email }) {
             return false // Email already exists
         }
-        
         registeredUsers.append(user)
         saveUsers()
         return true
     }
     
     func getRegisteredUsers() -> [User] {
-            return registeredUsers
-        }
+        return registeredUsers
+    }
     func deleteUser(user: User) {
-            if let index = registeredUsers.firstIndex(where: { $0.email == user.email }) {
-                registeredUsers.remove(at: index)
-                saveUsers()
-            }
+        if let index = registeredUsers.firstIndex(where: { $0.email == user.email }) {
+            registeredUsers.remove(at: index)
+            saveUsers()
         }
+    }
     
     func login(email: String, password: String) -> Bool {
         if let user = registeredUsers.first(where: { $0.email == email && $0.password == password }) {

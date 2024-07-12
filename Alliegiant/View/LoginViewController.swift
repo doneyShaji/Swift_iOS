@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         if UserManager.shared.isLoggedIn() {
-                    navigateToMainTabBarController()
+            navigateToMainTabBarController()
         }
     }
     
@@ -32,17 +32,17 @@ class LoginViewController: UIViewController {
             return
         }
         if UserManager.shared.login(email: email, password: password) {
-                    navigateToMainTabBarController()
-                } else {
-                    showAlert(message: "Invalid email or password.")
-                }
+            navigateToMainTabBarController()
+        } else {
+            showAlert(message: "Invalid email or password.")
+        }
     }
     func navigateToMainTabBarController() {
-            if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
-                tabBarController.modalPresentationStyle = .fullScreen
-                present(tabBarController, animated: true, completion: nil)
-            }
+        if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
+            tabBarController.modalPresentationStyle = .fullScreen
+            present(tabBarController, animated: true, completion: nil)
         }
+    }
     func showAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -50,9 +50,9 @@ class LoginViewController: UIViewController {
     }
     @IBAction func signUpButtonTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let myAccountVC = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? MyAccountViewController {
-                    self.navigationController?.pushViewController(myAccountVC, animated: true)
-                }
+        if let myAccountVC = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? MyAccountViewController {
+            self.navigationController?.pushViewController(myAccountVC, animated: true)
+        }
     }
 }
 
