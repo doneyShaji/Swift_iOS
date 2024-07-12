@@ -8,25 +8,33 @@
 import XCTest
 @testable import Alliegiant
 
-final class LoginTests: XCTestCase {
+class LoginTests: XCTestCase {
 
-    
-    func testInvalidPassword(){
-        //Given - Arrange
-        let password = "1234"
-        //When - Act
-        let isValid = password.isValidPassword
-        //Then - Assert
-        XCTAssertFalse(isValid, "Password Invalid")
-        XCTAssertFalse("12345678".isValidPassword, "Password Invalid")
-        XCTAssertFalse("alpha".isValidPassword, "Password Invalid")
-        XCTAssertFalse("alpha!dea".isValidPassword, "Password Invalid")
+    func testValidEmail() {
+        XCTAssertTrue("test@example.com".isValidEmail)
+        XCTAssertFalse("invalid-email".isValidEmail)
+        XCTAssertFalse("invalid@domain".isValidEmail)
+        XCTAssertTrue("user.name+tag+sorting@example.com".isValidEmail)
     }
-    func testValidPassword(){
-        XCTAssertTrue("12345678a".isValidPassword, "Password Valid")
-        XCTAssertTrue("asdfghjk1!".isValidPassword, "Password Valid")
-        XCTAssertTrue("alpha12345".isValidPassword, "Password Valid")
+
+    func testValidPassword() {
+        XCTAssertTrue("password1".isValidPassword)
+        XCTAssertFalse("password".isValidPassword)
+        XCTAssertFalse("12345678".isValidPassword)
+        XCTAssertFalse("short1".isValidPassword)
     }
-    
+
+    func testValidName() {
+        XCTAssertTrue("John".isNameValid)
+        XCTAssertFalse("D".isNameValid)
+        XCTAssertFalse("Dawn123".isNameValid)
+        XCTAssertFalse("Dawn Doney".isNameValid)
+    }
+
+    func testTenDigits() {
+        XCTAssertTrue("1234567890".isTenDigits)
+        XCTAssertFalse("123456789".isTenDigits)
+        XCTAssertFalse("12345678901".isTenDigits)
+        XCTAssertFalse("12345abcde".isTenDigits)
+    }
 }
-

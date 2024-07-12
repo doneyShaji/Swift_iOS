@@ -12,30 +12,34 @@ class HomeDetailViewController: UIViewController {
     var imageDetail: UIImage?
     var descriptionDetail: String?
     var priceDetail: String?
-        
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageHome: UIImageView!
     @IBOutlet weak var descriptionHome: UILabel!
     @IBOutlet weak var priceHome: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
         titleLabel.text = titleText
         imageHome.image = imageDetail
         descriptionHome.text = descriptionDetail
         priceHome.text = priceDetail
-            
-        }
-    // In HomeDetailViewController
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        
+        // Hide the tab bar
+        tabBarController?.tabBar.isHidden = true
     }
-
-    // In HomePageViewController
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        
+        // Show the tab bar
+        tabBarController?.tabBar.isHidden = false
     }
-
+    
 }
