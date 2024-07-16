@@ -6,6 +6,12 @@
 //
 
 import Foundation
+protocol CartManaging {
+    var items: [CartItem] { get }
+    func add(item: CartItem)
+    func remove(item: CartItem)
+    func clearCart()
+}
 
 class CartManager {
     static let shared = CartManager()
@@ -16,7 +22,7 @@ class CartManager {
             items.removeAll()
         }
     
-    private init() {}
+    init() {}
     
     func add(item: CartItem) {
         if let index = items.firstIndex(where: { $0.name == item.name }) {
@@ -35,3 +41,6 @@ class CartManager {
         }
     }
 }
+extension CartManager: CartManaging {}
+
+

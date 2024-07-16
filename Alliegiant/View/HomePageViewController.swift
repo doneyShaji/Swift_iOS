@@ -96,7 +96,7 @@ class HomePageViewController: UIViewController {
             imageCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
         }
 
-        private func loadSegmentData() {
+    internal func loadSegmentData() {
             let category: String
             switch segmentedControlHome.selectedSegmentIndex {
             case 0:

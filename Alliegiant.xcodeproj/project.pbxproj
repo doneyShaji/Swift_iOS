@@ -11,12 +11,21 @@
 		04005DD52C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04005DD42C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift */; };
 		04005DD72C2BE5D600D51EFA /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04005DD62C2BE5D600D51EFA /* AboutUsViewController.swift */; };
 		04005DDD2C2C15C100D51EFA /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04005DDC2C2C15C100D51EFA /* CustomHeaderView.swift */; };
+		040ABAE02C462D2F001F13CD /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040ABADF2C462D2F001F13CD /* URLSessionProtocol.swift */; };
+		040ABAE22C4644E3001F13CD /* CartManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040ABAE12C4644E3001F13CD /* CartManagerTests.swift */; };
 		0414C9FB2C36AC01005094E3 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414C9FA2C36AC01005094E3 /* HomeDetailViewController.swift */; };
 		0414C9FD2C36B0AA005094E3 /* WelcomeDesignHomePage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0414C9FC2C36B0AA005094E3 /* WelcomeDesignHomePage.xib */; };
 		0414C9FF2C36B124005094E3 /* WelcomeDesignHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414C9FE2C36B124005094E3 /* WelcomeDesignHomePage.swift */; };
 		0414CA012C36B5F4005094E3 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414CA002C36B5F4005094E3 /* Dummy.swift */; };
+		0416B4FA2C46535A002B2794 /* CollectionDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416B4F92C46535A002B2794 /* CollectionDetailViewControllerTests.swift */; };
+		0416B4FC2C4664BE002B2794 /* MockCartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416B4FB2C4664BE002B2794 /* MockCartManager.swift */; };
+		0416B5022C4674A3002B2794 /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416B5012C4674A3002B2794 /* LoginViewControllerTests.swift */; };
 		0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0427289D2BCF9DC000420EDD /* mySecondViewController.swift */; };
 		04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */; };
+		0445BC222C452A79002A1EA4 /* WeatherManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445BC212C452A79002A1EA4 /* WeatherManagerTests.swift */; };
+		0445BC262C4542CA002A1EA4 /* WeatherManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445BC252C4542CA002A1EA4 /* WeatherManagerProtocol.swift */; };
+		0445BC2B2C4546BA002A1EA4 /* MockWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445BC2A2C4546BA002A1EA4 /* MockWeatherManager.swift */; };
+		0445BC2F2C454A75002A1EA4 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445BC2E2C454A75002A1EA4 /* MockURLSession.swift */; };
 		0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0450024E2C0EF15A005DFF25 /* CustomCollectionViewCell.swift */; };
 		045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */; };
 		045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002522C0F2E26005DFF25 /* WeatherManager.swift */; };
@@ -35,7 +44,6 @@
 		046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046E3A402BCE87ED0097D632 /* CustomTableViewCell.swift */; };
 		0486C0C72C11DC9E00FFD27F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0486C0C62C11DC9E00FFD27F /* Main.storyboard */; };
 		0486DB152C17255700F2F547 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486DB142C17255700F2F547 /* ProductModel.swift */; };
-		048F48BF2C41454D00CCFAC7 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F48BE2C41454D00CCFAC7 /* MockURLSession.swift */; };
 		04A7CA5B2C19A79600E25695 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7CA5A2C19A79600E25695 /* LoginViewController.swift */; };
 		04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */; };
 		04A8148B2C3BB8EF0001F7F2 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */; };
@@ -50,7 +58,6 @@
 		04FA49B42C2A7C7F002C8364 /* DepartmentStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA49B32C2A7C7F002C8364 /* DepartmentStoreTableViewCell.swift */; };
 		04FA49B62C2A92E2002C8364 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA49B52C2A92E2002C8364 /* ActivityIndicator.swift */; };
 		04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */; };
-		04FD2A092C3D3D3400A46114 /* AlliegiantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD2A082C3D3D3400A46114 /* AlliegiantTests.swift */; };
 		04FD2A102C3D3DD000A46114 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD2A0F2C3D3DD000A46114 /* LoginTests.swift */; };
 		04FD2A142C3D5FB400A46114 /* LoginValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD2A132C3D5FB400A46114 /* LoginValidation.swift */; };
 		2F1850912C3012CB00E32E06 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1850902C3012CB00E32E06 /* UserManager.swift */; };
@@ -76,12 +83,21 @@
 		04005DD42C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		04005DD62C2BE5D600D51EFA /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		04005DDC2C2C15C100D51EFA /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
+		040ABADF2C462D2F001F13CD /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		040ABAE12C4644E3001F13CD /* CartManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManagerTests.swift; sourceTree = "<group>"; };
 		0414C9FA2C36AC01005094E3 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		0414C9FC2C36B0AA005094E3 /* WelcomeDesignHomePage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeDesignHomePage.xib; sourceTree = "<group>"; };
 		0414C9FE2C36B124005094E3 /* WelcomeDesignHomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeDesignHomePage.swift; sourceTree = "<group>"; };
 		0414CA002C36B5F4005094E3 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		0416B4F92C46535A002B2794 /* CollectionDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		0416B4FB2C4664BE002B2794 /* MockCartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCartManager.swift; sourceTree = "<group>"; };
+		0416B5012C4674A3002B2794 /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		0427289D2BCF9DC000420EDD /* mySecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySecondViewController.swift; sourceTree = "<group>"; };
 		04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentStoreViewController.swift; sourceTree = "<group>"; };
+		0445BC212C452A79002A1EA4 /* WeatherManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerTests.swift; sourceTree = "<group>"; };
+		0445BC252C4542CA002A1EA4 /* WeatherManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerProtocol.swift; sourceTree = "<group>"; };
+		0445BC2A2C4546BA002A1EA4 /* MockWeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherManager.swift; sourceTree = "<group>"; };
+		0445BC2E2C454A75002A1EA4 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		0450024E2C0EF15A005DFF25 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		045002522C0F2E26005DFF25 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -102,7 +118,6 @@
 		046E3A402BCE87ED0097D632 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		0486C0C62C11DC9E00FFD27F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0486DB142C17255700F2F547 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
-		048F48BE2C41454D00CCFAC7 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		04A7CA5A2C19A79600E25695 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUsersViewController.swift; sourceTree = "<group>"; };
 		04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -118,7 +133,6 @@
 		04FA49B52C2A92E2002C8364 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		04FD13FF2C1AFD270088AAF0 /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
 		04FD2A062C3D3D3400A46114 /* AlliegiantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlliegiantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04FD2A082C3D3D3400A46114 /* AlliegiantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliegiantTests.swift; sourceTree = "<group>"; };
 		04FD2A0F2C3D3DD000A46114 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		04FD2A132C3D5FB400A46114 /* LoginValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidation.swift; sourceTree = "<group>"; };
 		2F1850902C3012CB00E32E06 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -150,6 +164,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0445BC272C4543E6002A1EA4 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		046E3A202BCE7CE70097D632 = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +264,8 @@
 				2F1850902C3012CB00E32E06 /* UserManager.swift */,
 				046DCE7A2C33D8BF004DDF30 /* CartManager.swift */,
 				04FD2A132C3D5FB400A46114 /* LoginValidation.swift */,
+				0445BC252C4542CA002A1EA4 /* WeatherManagerProtocol.swift */,
+				040ABADF2C462D2F001F13CD /* URLSessionProtocol.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -276,10 +299,16 @@
 		04FD2A072C3D3D3400A46114 /* AlliegiantTests */ = {
 			isa = PBXGroup;
 			children = (
-				04FD2A082C3D3D3400A46114 /* AlliegiantTests.swift */,
+				0445BC272C4543E6002A1EA4 /* Mocks */,
 				04FD2A0F2C3D3DD000A46114 /* LoginTests.swift */,
 				04DF1A1F2C3EB79A00304F2B /* RegistrationTests.swift */,
-				048F48BE2C41454D00CCFAC7 /* MockURLSession.swift */,
+				0445BC212C452A79002A1EA4 /* WeatherManagerTests.swift */,
+				0445BC2A2C4546BA002A1EA4 /* MockWeatherManager.swift */,
+				0445BC2E2C454A75002A1EA4 /* MockURLSession.swift */,
+				040ABAE12C4644E3001F13CD /* CartManagerTests.swift */,
+				0416B4F92C46535A002B2794 /* CollectionDetailViewControllerTests.swift */,
+				0416B4FB2C4664BE002B2794 /* MockCartManager.swift */,
+				0416B5012C4674A3002B2794 /* LoginViewControllerTests.swift */,
 			);
 			path = AlliegiantTests;
 			sourceTree = "<group>";
@@ -469,6 +498,7 @@
 				04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */,
 				04FA49B22C2A7874002C8364 /* NetworkingManagerCocoaPods.swift in Sources */,
 				04FA49B02C2A738F002C8364 /* DepartmentStoreProductModel.swift in Sources */,
+				0445BC262C4542CA002A1EA4 /* WeatherManagerProtocol.swift in Sources */,
 				045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */,
 				04005DD12C2BDD3500D51EFA /* MenuViewController.swift in Sources */,
 				04005DDD2C2C15C100D51EFA /* CustomHeaderView.swift in Sources */,
@@ -479,6 +509,7 @@
 				04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
 				04005DD52C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift in Sources */,
+				040ABAE02C462D2F001F13CD /* URLSessionProtocol.swift in Sources */,
 				046E3A2F2BCE7CE70097D632 /* SceneDelegate.swift in Sources */,
 				2F1850912C3012CB00E32E06 /* UserManager.swift in Sources */,
 				046DCE7B2C33D8BF004DDF30 /* CartManager.swift in Sources */,
@@ -497,10 +528,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				048F48BF2C41454D00CCFAC7 /* MockURLSession.swift in Sources */,
+				0416B5022C4674A3002B2794 /* LoginViewControllerTests.swift in Sources */,
+				0445BC2F2C454A75002A1EA4 /* MockURLSession.swift in Sources */,
+				040ABAE22C4644E3001F13CD /* CartManagerTests.swift in Sources */,
+				0445BC2B2C4546BA002A1EA4 /* MockWeatherManager.swift in Sources */,
+				0445BC222C452A79002A1EA4 /* WeatherManagerTests.swift in Sources */,
 				04DF1A202C3EB79A00304F2B /* RegistrationTests.swift in Sources */,
-				04FD2A092C3D3D3400A46114 /* AlliegiantTests.swift in Sources */,
+				0416B4FA2C46535A002B2794 /* CollectionDetailViewControllerTests.swift in Sources */,
 				04FD2A102C3D3DD000A46114 /* LoginTests.swift in Sources */,
+				0416B4FC2C4664BE002B2794 /* MockCartManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,7 @@ class DepartmentStoreViewController: UIViewController, UITableViewDataSource, UI
         // Do any additional setup after loading the view.
     }
     
+    
 }
 
 // MARK: - UITableViewDataSource

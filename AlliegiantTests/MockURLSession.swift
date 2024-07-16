@@ -2,31 +2,29 @@
 //  MockURLSession.swift
 //  AlliegiantTests
 //
-//  Created by P10 on 12/07/24.
+//  Created by P10 on 15/07/24.
 //
 
 import Foundation
+@testable import Alliegiant
 
-class MockURLSession: URLSession {
-    var nextData: Data?
-    var nextError: Error?
-    var nextResponse: URLResponse?
-
-    override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return MockURLSessionDataTask {
-            completionHandler(self.nextData, self.nextResponse, self.nextError)
+class MockURLSession: URLSessionProtocol {
+    var data: Data?
+    var error: Error?
+    
+    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        let task = MockURLSessionDataTask()
+        task.completionHandler = {
+            completionHandler(self.data, nil, self.error)
         }
+        return task
     }
 }
 
 class MockURLSessionDataTask: URLSessionDataTask {
-    private let closure: () -> Void
-
-    init(closure: @escaping () -> Void) {
-        self.closure = closure
-    }
-
+    var completionHandler: (() -> Void)?
+    
     override func resume() {
-        closure()
+        completionHandler?()
     }
 }

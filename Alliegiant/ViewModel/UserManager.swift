@@ -15,8 +15,8 @@ class UserManager {
     private let registeredUsersKey = "registeredUsers"
     private let loggedInUserKey = "loggedInUser"
     
-    private var registeredUsers: [User] = []
-    private var loggedInUser: User?
+    var registeredUsers: [User] = []
+    var loggedInUser: User?
     
     var currentUser: User? {
         return loggedInUser

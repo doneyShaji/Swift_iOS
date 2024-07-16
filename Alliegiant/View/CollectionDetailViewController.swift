@@ -9,6 +9,7 @@ import UIKit
 
 class CollectionDetailViewController: UIViewController {
     
+    var cartManager: CartManaging = CartManager.shared
     @IBOutlet weak var collectionDetailVC: UILabel!
     @IBOutlet weak var collectionViewDetailImage: UIImageView!
     @IBOutlet weak var collectionViewDescription: UILabel!
@@ -91,7 +92,7 @@ class CollectionDetailViewController: UIViewController {
     }
     @IBAction func addToCart(_ sender: Any) {
         let newItem = CartItem(name: collectionLabel ?? "Unknown", image: collectionImage ?? "", price: collectionPrice ?? "", description: collectionDescription ?? "", quantity: quantity)
-                CartManager.shared.add(item: newItem)
+        cartManager.add(item: newItem)
 
                 // Show success message
                 let alertController = UIAlertController(title: "Success", message: "Item successfully added to cart.", preferredStyle: .alert)
