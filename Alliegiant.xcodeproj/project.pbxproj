@@ -30,6 +30,7 @@
 		045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */; };
 		045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002522C0F2E26005DFF25 /* WeatherManager.swift */; };
 		045C01172C22D5CF009D0C58 /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */; };
+		046331FB2C47D3E70035EB12 /* RazorPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046331FA2C47D3E70035EB12 /* RazorPayViewController.swift */; };
 		046449BB2C32B9C6001F0F0C /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */; };
 		046449BD2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */; };
 		046DCE792C33D66B004DDF30 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DCE782C33D66B004DDF30 /* CartItem.swift */; };
@@ -102,6 +103,7 @@
 		045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		045002522C0F2E26005DFF25 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
+		046331FA2C47D3E70035EB12 /* RazorPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayViewController.swift; sourceTree = "<group>"; };
 		046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuVCViewController.swift; sourceTree = "<group>"; };
 		046DCE782C33D66B004DDF30 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				0414CA002C36B5F4005094E3 /* Dummy.swift */,
 				04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */,
 				04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */,
+				046331FA2C47D3E70035EB12 /* RazorPayViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				04FA49B02C2A738F002C8364 /* DepartmentStoreProductModel.swift in Sources */,
 				0445BC262C4542CA002A1EA4 /* WeatherManagerProtocol.swift in Sources */,
 				045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */,
+				046331FB2C47D3E70035EB12 /* RazorPayViewController.swift in Sources */,
 				04005DD12C2BDD3500D51EFA /* MenuViewController.swift in Sources */,
 				04005DDD2C2C15C100D51EFA /* CustomHeaderView.swift in Sources */,
 				2F566C652C31EC350081F2A8 /* HomePageTableViewCell.swift in Sources */,

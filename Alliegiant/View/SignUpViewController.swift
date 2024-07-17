@@ -115,7 +115,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         if UserManager.shared.register(user: newUser) {
             UserManager.shared.login(email: newUser.email, password: newUser.password)
-            showLoginViewController()
+            showSuccessAlert()
         } else {
             emailErrorLabel.text = "Email already exists."
         }
@@ -135,5 +135,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             navigationController?.pushViewController(loginVC, animated: true)
         }
     }
+    func showSuccessAlert() {
+            let alertController = UIAlertController(title: "Success", message: "You have successfully registered!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                // You can add any additional actions here if needed
+            }
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
 }
 

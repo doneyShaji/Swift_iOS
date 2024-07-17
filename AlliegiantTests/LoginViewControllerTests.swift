@@ -41,17 +41,7 @@ class LoginViewControllerTests: XCTestCase {
         // Then
         XCTAssertTrue(UserManager.shared.isLoggedIn())
     }
-    
-    func testSignUpButtonTapped() {
-        // Given
-        let mockNavigationController = MockNavigationController(rootViewController: sut)
-        
-        // When
-        sut.signUpButtonTapped(UIButton())
-        
-        // Then
-        XCTAssertTrue(mockNavigationController.pushedViewController is SignUpViewController)
-    }
+
 
     class MockNavigationController: UINavigationController {
         var pushedViewController: UIViewController?

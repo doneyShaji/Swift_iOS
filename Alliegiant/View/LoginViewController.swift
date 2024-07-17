@@ -16,9 +16,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if UserManager.shared.isLoggedIn() {
-            navigateToMainTabBarController()
-        }
+        
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
@@ -28,7 +26,7 @@ class LoginViewController: UIViewController {
         }
         
         guard let password = passwordTextField.text, isPasswordValid(password) else {
-            showAlert(message: "Password must be at least 5 characters long.")
+            showAlert(message: "Password must be at least 8 characters long.")
             return
         }
         if UserManager.shared.login(email: email, password: password) {
