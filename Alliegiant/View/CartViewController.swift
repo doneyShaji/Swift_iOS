@@ -6,8 +6,13 @@
 //
 // CartViewController.swift
 import UIKit
+import Razorpay
 
 class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CartItemCellDelegate {
+    
+    let razorPayKey = "rzp_test_rpBn8AgkrcNdDH"
+    var razorPay : RazorpayCheckout? = nil
+    var merchantDetails: MerchantDetails = MerchantDetails.getDefaultData()
     
     @IBOutlet weak var cartTableView: UITableView!
     var emptyCartLabel: UILabel!
@@ -48,11 +53,11 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cartTableView.reloadData()
         updateCartView()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            self.tabBarController?.tabBar.isHidden = false
-        }
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
     func updateCartView() {
         if CartManager.shared.items.isEmpty {
@@ -91,37 +96,97 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return 157.0
     }
     // Setup the checkout button
-        private func setupCheckoutButton() {
-            
-            checkOutBtn.configuration = .tinted()
-            checkOutBtn.configuration?.title = "Checkout"
-            checkOutBtn.configuration?.image = UIImage(systemName: "creditcard")
-            checkOutBtn.configuration?.imagePadding = 8
-            checkOutBtn.configuration?.baseForegroundColor = .systemPink
-            checkOutBtn.configuration?.baseBackgroundColor = .systemPink
-            checkOutBtn.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
-        }
+    private func setupCheckoutButton() {
         
-        // Action method for checkout button
-        @objc private func checkoutButtonTapped() {
-            let alert = UIAlertController(title: "Success", message: "Successfully checked out!", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-                        CartManager.shared.clearCart()
-                        self.updateCartView()
-                        self.cartTableView.reloadData()
-                    })
-                    present(alert, animated: true, completion: nil)
-                }
+        checkOutBtn.configuration = .tinted()
+        checkOutBtn.configuration?.title = "Checkout"
+        checkOutBtn.configuration?.image = UIImage(systemName: "creditcard")
+        checkOutBtn.configuration?.imagePadding = 8
+        checkOutBtn.configuration?.baseForegroundColor = .systemPink
+        checkOutBtn.configuration?.baseBackgroundColor = .systemPink
+        checkOutBtn.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
+    }
+    
+    // Action method for checkout button
+    @objc private func checkoutButtonTapped() {
+        
+        openRazorPayCheckOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.clearCartItems()
+        }
+    }
     
     // CartItemCellDelegate method
-        func didTapRemoveButton(on cell: CartTableViewCell) {
-            if let indexPath = cartTableView.indexPath(for: cell) {
-                let item = CartManager.shared.items[indexPath.row]
-                CartManager.shared.remove(item: item)
-                cartTableView.deleteRows(at: [indexPath], with: .automatic)
-                updateCartView()  // Update the view after removing the item
-            }
+    func didTapRemoveButton(on cell: CartTableViewCell) {
+        if let indexPath = cartTableView.indexPath(for: cell) {
+            let item = CartManager.shared.items[indexPath.row]
+            CartManager.shared.remove(item: item)
+            cartTableView.deleteRows(at: [indexPath], with: .automatic)
+            updateCartView()  // Update the view after removing the item
         }
+    }
+    func clearCartItems(){
+        CartManager.shared.clearCart()
+        updateCartView()
+        cartTableView.reloadData()
+    }
+    func openRazorPayCheckOut(){
+        
+        razorPay = RazorpayCheckout.initWithKey(razorPayKey, andDelegate: self)
+        let options: [String:Any] = [
+            //                    "key": razorPayKey,
+            "amount": "100", //This is in currency subunits. 100 = 100 paise= INR 1.
+            "currency": "INR",//We support more that 92 international currencies.
+            "description": "Pay 100 Rupees Now",
+            //                    "order_id": "order_DBJOWzybf0sJbb",
+            "image": merchantDetails.logo,
+            "name": merchantDetails.name,
+            "prefill": [
+                "contact": "8606725216",
+                "email": "a@b.com"
+            ],
+            "theme": [
+                "color": "#336699"
+            ]
+        ]
+        razorPay?.open(options)
+    }
     
 }
+
+extension CartViewController : RazorpayPaymentCompletionProtocol {
+    
+    func onPaymentError(_ code: Int32, description str: String) {
+        print("error: ", code, str)
+        self.presentAlert(withTitle: "Alert", message: str)
+    }
+    
+    func onPaymentSuccess(_ payment_id: String) {
+        print("success: ", payment_id)
+        self.presentAlert(withTitle: "Success", message: "Payment Succeeded")
+    }
+    
+    func presentAlert(withTitle title: String?, message: String?){
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let OkAction = UIAlertAction(title: "Okay", style: .default)
+            alertController.addAction(OkAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+}
+
+struct MerchantDetails {
+    let name : String
+    let logo : String
+    let color : UIColor
+}
+
+extension MerchantDetails {
+    static func getDefaultData() -> MerchantDetails {
+        let details = MerchantDetails(name: "iOSPaymentGateway", logo: "https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg?t=st=1721283674~exp=1721287274~hmac=6dac28cd7217e18721d9b3ca4038ad446101a3f5402786881b65779df1a79417&w=740", color: .red)
+        return details
+    }
+}
+
 

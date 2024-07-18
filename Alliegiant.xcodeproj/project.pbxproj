@@ -30,9 +30,10 @@
 		045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */; };
 		045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045002522C0F2E26005DFF25 /* WeatherManager.swift */; };
 		045C01172C22D5CF009D0C58 /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */; };
-		046331FB2C47D3E70035EB12 /* RazorPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046331FA2C47D3E70035EB12 /* RazorPayViewController.swift */; };
 		046449BB2C32B9C6001F0F0C /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */; };
 		046449BD2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */; };
+		046D57BE2C493EE9000D0EB0 /* AddToCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D57BD2C493EE9000D0EB0 /* AddToCart.swift */; };
+		046D57C02C493F03000D0EB0 /* AddToCart.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046D57BF2C493F03000D0EB0 /* AddToCart.xib */; };
 		046DCE792C33D66B004DDF30 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DCE782C33D66B004DDF30 /* CartItem.swift */; };
 		046DCE7B2C33D8BF004DDF30 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DCE7A2C33D8BF004DDF30 /* CartManager.swift */; };
 		046DCE7D2C33D9A0004DDF30 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DCE7C2C33D9A0004DDF30 /* CartViewController.swift */; };
@@ -49,6 +50,8 @@
 		04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */; };
 		04A8148B2C3BB8EF0001F7F2 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */; };
 		04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */; };
+		04B10EB32C48D98F0054C2E6 /* CashFreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B10EB22C48D98F0054C2E6 /* CashFreeViewController.swift */; };
+		04B10EB52C48E6870054C2E6 /* RazorPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B10EB42C48E6870054C2E6 /* RazorPayViewController.swift */; };
 		04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
 		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
@@ -103,9 +106,10 @@
 		045002502C0EF8CF005DFF25 /* CustomCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewController.swift; sourceTree = "<group>"; };
 		045002522C0F2E26005DFF25 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
-		046331FA2C47D3E70035EB12 /* RazorPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayViewController.swift; sourceTree = "<group>"; };
 		046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuVCViewController.swift; sourceTree = "<group>"; };
+		046D57BD2C493EE9000D0EB0 /* AddToCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCart.swift; sourceTree = "<group>"; };
+		046D57BF2C493F03000D0EB0 /* AddToCart.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddToCart.xib; sourceTree = "<group>"; };
 		046DCE782C33D66B004DDF30 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
 		046DCE7A2C33D8BF004DDF30 /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManager.swift; sourceTree = "<group>"; };
 		046DCE7C2C33D9A0004DDF30 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 		04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredUsersViewController.swift; sourceTree = "<group>"; };
 		04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
+		04B10EB22C48D98F0054C2E6 /* CashFreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashFreeViewController.swift; sourceTree = "<group>"; };
+		04B10EB42C48E6870054C2E6 /* RazorPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayViewController.swift; sourceTree = "<group>"; };
 		04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewCollectionVC.swift; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -237,7 +243,6 @@
 				04FA49B52C2A92E2002C8364 /* ActivityIndicator.swift */,
 				04005DD02C2BDD3500D51EFA /* MenuViewController.swift */,
 				04005DD42C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift */,
-				04005DD62C2BE5D600D51EFA /* AboutUsViewController.swift */,
 				04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */,
 				2F1850922C314DAA00E32E06 /* TabBarController.swift */,
 				2F1850962C31CC9E00E32E06 /* ImageScrollView.swift */,
@@ -253,7 +258,11 @@
 				0414CA002C36B5F4005094E3 /* Dummy.swift */,
 				04A814882C3BA3060001F7F2 /* RegisteredUsersViewController.swift */,
 				04A8148A2C3BB8EF0001F7F2 /* UserTableViewCell.swift */,
-				046331FA2C47D3E70035EB12 /* RazorPayViewController.swift */,
+				04B10EB22C48D98F0054C2E6 /* CashFreeViewController.swift */,
+				04B10EB42C48E6870054C2E6 /* RazorPayViewController.swift */,
+				04005DD62C2BE5D600D51EFA /* AboutUsViewController.swift */,
+				046D57BD2C493EE9000D0EB0 /* AddToCart.swift */,
+				046D57BF2C493F03000D0EB0 /* AddToCart.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -421,6 +430,7 @@
 				046E3A362BCE7CE90097D632 /* Assets.xcassets in Resources */,
 				046E3A392BCE7CE90097D632 /* Base in Resources */,
 				04E149672C29300C00239320 /* AppleProducts.json in Resources */,
+				046D57C02C493F03000D0EB0 /* AddToCart.xib in Resources */,
 				0486C0C72C11DC9E00FFD27F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +499,7 @@
 				04A8148B2C3BB8EF0001F7F2 /* UserTableViewCell.swift in Sources */,
 				046DCE792C33D66B004DDF30 /* CartItem.swift in Sources */,
 				04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */,
+				04B10EB52C48E6870054C2E6 /* RazorPayViewController.swift in Sources */,
 				0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */,
 				045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */,
 				046E3A2D2BCE7CE70097D632 /* AppDelegate.swift in Sources */,
@@ -500,16 +511,17 @@
 				046449BB2C32B9C6001F0F0C /* SlideInTransition.swift in Sources */,
 				04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */,
 				04FA49B22C2A7874002C8364 /* NetworkingManagerCocoaPods.swift in Sources */,
+				04B10EB32C48D98F0054C2E6 /* CashFreeViewController.swift in Sources */,
 				04FA49B02C2A738F002C8364 /* DepartmentStoreProductModel.swift in Sources */,
 				0445BC262C4542CA002A1EA4 /* WeatherManagerProtocol.swift in Sources */,
 				045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */,
-				046331FB2C47D3E70035EB12 /* RazorPayViewController.swift in Sources */,
 				04005DD12C2BDD3500D51EFA /* MenuViewController.swift in Sources */,
 				04005DDD2C2C15C100D51EFA /* CustomHeaderView.swift in Sources */,
 				2F566C652C31EC350081F2A8 /* HomePageTableViewCell.swift in Sources */,
 				0414CA012C36B5F4005094E3 /* Dummy.swift in Sources */,
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
 				04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */,
+				046D57BE2C493EE9000D0EB0 /* AddToCart.swift in Sources */,
 				04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
 				04005DD52C2BE5AA00D51EFA /* TermsAndConditionsViewController.swift in Sources */,

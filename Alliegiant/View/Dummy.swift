@@ -8,11 +8,13 @@
 import UIKit
 
 class Dummy: UIViewController {
-    @IBOutlet weak var welcomeDesign: WelcomeDesignHomePage!
+    var addToCartDesign: AddToCart?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        welcomeDesign.nameLabel.text = "Yellow"
+        addToCartDesign = AddToCart(frame: CGRect(x: 0, y: 500, width: view.frame.width, height: 50))
+        if let addToCartDesign = addToCartDesign {
+            view.addSubview(addToCartDesign)
+        }
     }
 }

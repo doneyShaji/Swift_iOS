@@ -14,6 +14,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.4)
   - CashfreePG (~> 2.0.12)
+  - CashfreePGCoreSDK
+  - CashfreePGUISDK
   - razorpay-pod (= 1.2.5)
 
 SPEC REPOS:
@@ -35,6 +37,6 @@ SPEC CHECKSUMS:
   CFNetworkSDK: 647c9933e0148a9ebb36f6c1731fad1adfaf7059
   razorpay-pod: aa2df076ea44baab6cc8296c1ccc715fe2ca818c
 
-PODFILE CHECKSUM: f2a6085b240f97a0038de5e7e9cfd779bb0ea03e
+PODFILE CHECKSUM: 858c0b550a054b283552d585fe149b20eccef200
 
 COCOAPODS: 1.15.2
