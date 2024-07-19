@@ -52,6 +52,7 @@
 		04AF87002C11BC2500E6184D /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */; };
 		04B10EB32C48D98F0054C2E6 /* CashFreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B10EB22C48D98F0054C2E6 /* CashFreeViewController.swift */; };
 		04B10EB52C48E6870054C2E6 /* RazorPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B10EB42C48E6870054C2E6 /* RazorPayViewController.swift */; };
+		04C6FAEB2C4A444300CBD06C /* Alliegiant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04C6FAE92C4A444300CBD06C /* Alliegiant.xcdatamodeld */; };
 		04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
 		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
@@ -130,6 +131,7 @@
 		04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
 		04B10EB22C48D98F0054C2E6 /* CashFreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashFreeViewController.swift; sourceTree = "<group>"; };
 		04B10EB42C48E6870054C2E6 /* RazorPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayViewController.swift; sourceTree = "<group>"; };
+		04C6FAEA2C4A444300CBD06C /* Alliegiant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alliegiant.xcdatamodel; sourceTree = "<group>"; };
 		04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewCollectionVC.swift; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		046E3A2B2BCE7CE70097D632 /* Alliegiant */ = {
 			isa = PBXGroup;
 			children = (
+				04C6FB0F2C4A66F900CBD06C /* DB */,
 				04E149652C292FF300239320 /* Bundles */,
 				0486DB1B2C1726DC00F2F547 /* Delegates */,
 				0486DB1A2C1726BA00F2F547 /* Storyboards */,
@@ -210,6 +213,7 @@
 				0486DB172C1725F200F2F547 /* Model */,
 				046E3A352BCE7CE90097D632 /* Assets.xcassets */,
 				046E3A3A2BCE7CE90097D632 /* Info.plist */,
+				04C6FAE92C4A444300CBD06C /* Alliegiant.xcdatamodeld */,
 			);
 			path = Alliegiant;
 			sourceTree = "<group>";
@@ -298,6 +302,13 @@
 				046E3A2E2BCE7CE70097D632 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		04C6FB0F2C4A66F900CBD06C /* DB */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		04E149652C292FF300239320 /* Bundles */ = {
@@ -521,6 +532,7 @@
 				0414CA012C36B5F4005094E3 /* Dummy.swift in Sources */,
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
 				04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */,
+				04C6FAEB2C4A444300CBD06C /* Alliegiant.xcdatamodeld in Sources */,
 				046D57BE2C493EE9000D0EB0 /* AddToCart.swift in Sources */,
 				04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
@@ -827,6 +839,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		04C6FAE92C4A444300CBD06C /* Alliegiant.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04C6FAEA2C4A444300CBD06C /* Alliegiant.xcdatamodel */,
+			);
+			currentVersion = 04C6FAEA2C4A444300CBD06C /* Alliegiant.xcdatamodel */;
+			name = Alliegiant.xcdatamodeld;
+			path = /Users/p10/Desktop/Swift_iOS/Alliegiant/Alliegiant.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 046E3A212BCE7CE70097D632 /* Project object */;
 }

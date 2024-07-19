@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -22,6 +25,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var phoneErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
+    
+    var registeredUsersItems:[RegisteredUsers]?
     override func viewDidLoad() {
         super.viewDidLoad()
         clearErrorMessages()
@@ -111,6 +116,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        let newPerson = RegisteredUsers(context: context)
+                newPerson.firstName = firstName
+                newPerson.lastName = lastName
+                newPerson.emailAddress = email
+                newPerson.phoneNo = Int64(phoneNumber) ?? 0
+                newPerson.password = password
+    
+                do {
+                    try context.save()
+                    print("Saved new user:", newPerson)
+                    showSuccessAlert()
+                } catch {
+                    print("Failed to save new user:", error.localizedDescription)
+                    // Handle error appropriately (e.g., show error message)
+                }
         let newUser = User(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, password: password)
         
         if UserManager.shared.register(user: newUser) {

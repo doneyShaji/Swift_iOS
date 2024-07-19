@@ -110,7 +110,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Action method for checkout button
     @objc private func checkoutButtonTapped() {
         
-        openRazorPayCheckOut()
+                openRazorPayCheckOut()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.clearCartItems()
         }
@@ -135,7 +135,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         razorPay = RazorpayCheckout.initWithKey(razorPayKey, andDelegate: self)
         let options: [String:Any] = [
             //                    "key": razorPayKey,
-            "amount": "100", //This is in currency subunits. 100 = 100 paise= INR 1.
+            "amount": "5000", //This is in currency subunits. 100 = 100 paise= INR 1.
             "currency": "INR",//We support more that 92 international currencies.
             "description": "Pay 100 Rupees Now",
             //                    "order_id": "order_DBJOWzybf0sJbb",
