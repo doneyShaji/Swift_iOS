@@ -116,25 +116,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let newPerson = RegisteredUsers(context: context)
-                newPerson.firstName = firstName
-                newPerson.lastName = lastName
-                newPerson.emailAddress = email
-                newPerson.phoneNo = Int64(phoneNumber) ?? 0
-                newPerson.password = password
-    
-                do {
-                    try context.save()
-                    print("Saved new user:", newPerson)
-                    showSuccessAlert()
-                } catch {
-                    print("Failed to save new user:", error.localizedDescription)
-                    // Handle error appropriately (e.g., show error message)
-                }
         let newUser = User(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, password: password)
         
         if UserManager.shared.register(user: newUser) {
-            UserManager.shared.login(email: newUser.email, password: newUser.password)
             showSuccessAlert()
         } else {
             emailErrorLabel.text = "Email already exists."
@@ -150,18 +134,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         confirmPasswordErrorLabel.text = ""
     }
     
-    func showLoginViewController() {
+    func showSuccessAlert() {
+        let alertController = UIAlertController(title: "Success", message: "You have successfully registered!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.navigateToLoginViewController()
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func navigateToLoginViewController() {
         if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-            navigationController?.pushViewController(loginVC, animated: true)
+            navigationController?.popToViewController(loginVC, animated: true)
         }
     }
-    func showSuccessAlert() {
-            let alertController = UIAlertController(title: "Success", message: "You have successfully registered!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                // You can add any additional actions here if needed
-            }
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
 }
-

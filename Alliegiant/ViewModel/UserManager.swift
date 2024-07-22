@@ -1,7 +1,8 @@
 import Foundation
+import CoreData
+import UIKit
 
-// Define the User struct
-struct User: Codable {
+struct User {
     let firstName: String
     let lastName: String
     let email: String
@@ -11,97 +12,141 @@ struct User: Codable {
 
 class UserManager {
     static let shared = UserManager()
-    
-    private let registeredUsersKey = "registeredUsers"
-    private let loggedInUserKey = "loggedInUser"
-    
-    var registeredUsers: [User] = []
+
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     var loggedInUser: User?
-    
+
     var currentUser: User? {
         return loggedInUser
     }
-    
+
     private init() {
-        loadUsers()
         loadLoggedInUser()
     }
-    
+
     func register(user: User) -> Bool {
-        if registeredUsers.contains(where: { $0.email == user.email }) {
-            return false // Email already exists
-        }
-        registeredUsers.append(user)
-        saveUsers()
-        return true
-    }
-    
-    func getRegisteredUsers() -> [User] {
-        return registeredUsers
-    }
-    func deleteUser(user: User) {
-        if let index = registeredUsers.firstIndex(where: { $0.email == user.email }) {
-            registeredUsers.remove(at: index)
-            saveUsers()
-        }
-    }
-    
-    func login(email: String, password: String) -> Bool {
-        if let user = registeredUsers.first(where: { $0.email == email && $0.password == password }) {
-            loggedInUser = user
-            saveLoggedInUser()
+        let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "emailAddress == %@", user.email)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if !results.isEmpty {
+                return false // Email already exists
+            }
+
+            let newUser = RegisteredUsers(context: context)
+            newUser.firstName = user.firstName
+            newUser.lastName = user.lastName
+            newUser.emailAddress = user.email
+            newUser.phoneNo = Int64(user.phoneNumber) ?? 0
+            newUser.password = user.password
+
+            try context.save()
             return true
+        } catch {
+            print("Failed to register user: \(error.localizedDescription)")
+            return false
+        }
+    }
+
+    func getRegisteredUsers() -> [User] {
+        let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            return results.map { User(firstName: $0.firstName ?? "", lastName: $0.lastName ?? "", email: $0.emailAddress ?? "", phoneNumber: String($0.phoneNo), password: $0.password ?? "") }
+        } catch {
+            print("Failed to fetch registered users: \(error.localizedDescription)")
+            return []
+        }
+    }
+
+    func deleteUser(user: User) {
+        let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "emailAddress == %@", user.email)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let userToDelete = results.first {
+                context.delete(userToDelete)
+                try context.save()
+            }
+        } catch {
+            print("Failed to delete user: \(error.localizedDescription)")
+        }
+    }
+
+    func login(email: String, password: String) -> Bool {
+        let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "emailAddress == %@ AND password == %@", email, password)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let user = results.first {
+                loggedInUser = User(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: user.password ?? "")
+                saveLoggedInUser()
+                return true
+            }
+        } catch {
+            print("Failed to login user: \(error.localizedDescription)")
         }
         return false
     }
-    
+
     func logout() {
         loggedInUser = nil
         saveLoggedInUser()
     }
-    
+
     func isLoggedIn() -> Bool {
         return loggedInUser != nil
     }
-    
+
     func updateUserDetails(_ updatedUser: User) {
-        if let index = registeredUsers.firstIndex(where: { $0.email == updatedUser.email }) {
-            registeredUsers[index] = updatedUser
-            if loggedInUser?.email == updatedUser.email {
-                loggedInUser = updatedUser
+        let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "emailAddress == %@", updatedUser.email)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let userToUpdate = results.first {
+                userToUpdate.firstName = updatedUser.firstName
+                userToUpdate.lastName = updatedUser.lastName
+                userToUpdate.emailAddress = updatedUser.email
+                userToUpdate.phoneNo = Int64(updatedUser.phoneNumber) ?? 0
+                userToUpdate.password = updatedUser.password
+                try context.save()
+
+                if loggedInUser?.email == updatedUser.email {
+                    loggedInUser = updatedUser
+                }
             }
-            saveUsers()
-            saveLoggedInUser()
+        } catch {
+            print("Failed to update user details: \(error.localizedDescription)")
         }
     }
-    
-    private func saveUsers() {
-        if let data = try? JSONEncoder().encode(registeredUsers) {
-            UserDefaults.standard.set(data, forKey: registeredUsersKey)
-        }
-    }
-    
-    private func loadUsers() {
-        if let data = UserDefaults.standard.data(forKey: registeredUsersKey),
-           let users = try? JSONDecoder().decode([User].self, from: data) {
-            registeredUsers = users
-        }
-    }
-    
+
     private func saveLoggedInUser() {
         if let user = loggedInUser {
-            if let data = try? JSONEncoder().encode(user) {
-                UserDefaults.standard.set(data, forKey: loggedInUserKey)
-            }
+            UserDefaults.standard.set(user.email, forKey: "loggedInUserEmail")
         } else {
-            UserDefaults.standard.removeObject(forKey: loggedInUserKey)
+            UserDefaults.standard.removeObject(forKey: "loggedInUserEmail")
         }
     }
-    
+
     private func loadLoggedInUser() {
-        if let data = UserDefaults.standard.data(forKey: loggedInUserKey),
-           let user = try? JSONDecoder().decode(User.self, from: data) {
-            loggedInUser = user
+        if let email = UserDefaults.standard.string(forKey: "loggedInUserEmail") {
+            let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "emailAddress == %@", email)
+
+            do {
+                let results = try context.fetch(fetchRequest)
+                if let user = results.first {
+                    loggedInUser = User(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: user.password ?? "")
+                }
+            } catch {
+                print("Failed to load logged in user: \(error.localizedDescription)")
+            }
         }
     }
 }

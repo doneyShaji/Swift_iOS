@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreData
 class HomePageViewController: UIViewController {
     
     struct Details {
@@ -35,7 +35,8 @@ class HomePageViewController: UIViewController {
   
     // Declare customNavBar as an optional property
         var customNavBar: WelcomeDesignHomePage?
-
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
         override func viewDidLoad() {
             super.viewDidLoad()
 
@@ -43,9 +44,19 @@ class HomePageViewController: UIViewController {
 
             // Initialize and add the custom navigation bar
             customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 50))
-            guard let userHome = UserManager.shared.currentUser else { return }
 
-            customNavBar?.firstNameLabel.text = userHome.firstName
+            // Fetch the user's first name from Core Data
+            
+
+            do {
+                let users = try context.fetch(request)
+                if let userHome = users.first {
+                    customNavBar?.firstNameLabel.text = userHome.firstName
+                }
+            } catch {
+                print("Failed to fetch user details:", error.localizedDescription)
+            }
+
             if let customNavBar = customNavBar {
                 view.addSubview(customNavBar)
             }
@@ -61,8 +72,14 @@ class HomePageViewController: UIViewController {
         }
 
         override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            customNavBar?.firstNameLabel.text = UserManager.shared.currentUser?.firstName
+            do {
+                    let users = try context.fetch(request)
+                    if let userHome = users.first {
+                        customNavBar?.firstNameLabel.text = userHome.firstName
+                    }
+                } catch {
+                    print("Failed to fetch user details:", error.localizedDescription)
+                }
         }
 
         func updateTableView(with titlesAndThumbnails: [(String, String, String, Double, String)]) {

@@ -204,7 +204,6 @@
 		046E3A2B2BCE7CE70097D632 /* Alliegiant */ = {
 			isa = PBXGroup;
 			children = (
-				04C6FB0F2C4A66F900CBD06C /* DB */,
 				04E149652C292FF300239320 /* Bundles */,
 				0486DB1B2C1726DC00F2F547 /* Delegates */,
 				0486DB1A2C1726BA00F2F547 /* Storyboards */,
@@ -302,13 +301,6 @@
 				046E3A2E2BCE7CE70097D632 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
-			sourceTree = "<group>";
-		};
-		04C6FB0F2C4A66F900CBD06C /* DB */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DB;
 			sourceTree = "<group>";
 		};
 		04E149652C292FF300239320 /* Bundles */ = {

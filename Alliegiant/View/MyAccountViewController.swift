@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MyAccountViewController: UIViewController {
         
@@ -25,8 +26,9 @@ class MyAccountViewController: UIViewController {
     @IBOutlet weak var logoutButton: UIButton!
     
     var isEditingMode = false
-    
-    override func viewDidLoad() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        override func viewDidLoad() {
             super.viewDidLoad()
             loadUserDetails()
             toggleEditingMode(false)
@@ -73,19 +75,26 @@ class MyAccountViewController: UIViewController {
         })
     }
     
-    //MARK: -SHOW USER DETAILS
-    func loadUserDetails() {
-            guard let user = UserManager.shared.currentUser else { return }
-            
-            firstNameLabel.text = user.firstName
-            lastNameLabel.text = user.lastName
-            emailLabel.text = user.email
-            phoneNumberLabel.text = user.phoneNumber
-            
-            editFirstNameTextField.text = user.firstName
-            editLastNameTextField.text = user.lastName
-            editEmailTextField.text = user.email
-            editPhoneNumber.text = user.phoneNumber
+    // MARK: - Show User Details
+        func loadUserDetails() {
+            // Fetch the logged-in user's details from Core Data
+            let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+            do {
+                let users = try context.fetch(request)
+                if let user = users.first {
+                    firstNameLabel.text = user.firstName
+                    lastNameLabel.text = user.lastName
+                    emailLabel.text = user.emailAddress
+                    phoneNumberLabel.text = String(user.phoneNo)
+                    
+                    editFirstNameTextField.text = user.firstName
+                    editLastNameTextField.text = user.lastName
+                    editEmailTextField.text = user.emailAddress
+                    editPhoneNumber.text = String(user.phoneNo)
+                }
+            } catch {
+                print("Failed to fetch user details:", error.localizedDescription)
+            }
         }
         
         func toggleEditingMode(_ enable: Bool) {
@@ -112,29 +121,32 @@ class MyAccountViewController: UIViewController {
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         if isEditingMode {
+                    // Update user details in Core Data
                     guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
                           let lastName = editLastNameTextField.text, !lastName.isEmpty,
                           let email = editEmailTextField.text, email.isValidEmail,
-                          let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
+                          let phoneNumber = editPhoneNumber.text, let phoneNo = Int64(phoneNumber) else {
                         showAlert(message: "Please make sure all fields are filled correctly.")
                         return
                     }
                     
-                    let updatedUser = User(
-                        firstName: firstName,
-                        lastName: lastName,
-                        email: email,
-                        phoneNumber: phoneNumber,
-                        password: UserManager.shared.currentUser?.password ?? ""
-                    )
-                    
-                    UserManager.shared.updateUserDetails(updatedUser)
-                    
-                    showAlert(message: "Details updated successfully!") { [self] in
-                        self.isEditingMode = false
-                        self.toggleEditingMode(false)
-                        self.loadUserDetails()
-//                        self.onNameUpdate?(firstName)
+                    let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+                    do {
+                        let users = try context.fetch(request)
+                        if let user = users.first {
+                            user.firstName = firstName
+                            user.lastName = lastName
+                            user.emailAddress = email
+                            user.phoneNo = phoneNo
+                            try context.save()
+                            showAlert(message: "Details updated successfully!") { [weak self] in
+                                self?.isEditingMode = false
+                                self?.toggleEditingMode(false)
+                                self?.loadUserDetails()
+                            }
+                        }
+                    } catch {
+                        print("Failed to update user details:", error.localizedDescription)
                     }
                 } else {
                     UserManager.shared.logout()
