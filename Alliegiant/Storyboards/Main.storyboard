@@ -378,7 +378,7 @@
                                                     <rect key="frame" x="14" y="14" width="364" height="142"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="KoW-uR-1rI">
-                                                            <rect key="frame" x="0.0" y="1" width="323" height="141"/>
+                                                            <rect key="frame" x="0.0" y="1" width="364" height="141"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fjD-T9-3gL">
                                                                     <rect key="frame" x="0.0" y="0.0" width="169" height="141"/>
@@ -388,7 +388,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="XcU-Ta-Mff">
-                                                                    <rect key="frame" x="193" y="30" width="130" height="81"/>
+                                                                    <rect key="frame" x="193" y="30" width="171" height="81"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleCart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLc-NZ-Yus">
                                                                             <rect key="frame" x="0.0" y="0.0" width="59" height="17"/>
@@ -409,28 +409,13 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="130" id="CXD-ji-226"/>
-                                                                    </constraints>
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-Xb-zwW">
-                                                            <rect key="frame" x="323" y="113" width="41" height="29"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" buttonSize="mini">
-                                                                <color key="baseForegroundColor" systemColor="systemPinkColor"/>
-                                                            </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="removeButtonTapped:" destination="vFd-IA-HNB" eventType="touchUpInside" id="fxC-Vz-kSr"/>
-                                                            </connections>
-                                                        </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="JG5-Xb-zwW" secondAttribute="bottom" id="4cd-p0-ccR"/>
-                                                        <constraint firstAttribute="trailing" secondItem="JG5-Xb-zwW" secondAttribute="trailing" id="JCq-K5-47g"/>
-                                                        <constraint firstItem="JG5-Xb-zwW" firstAttribute="top" secondItem="A7b-G8-hPV" secondAttribute="top" constant="113" id="rK7-nf-YeW"/>
-                                                        <constraint firstItem="JG5-Xb-zwW" firstAttribute="leading" secondItem="KoW-uR-1rI" secondAttribute="trailing" id="wHW-CL-oW3"/>
+                                                        <constraint firstAttribute="width" constant="364" id="OXw-60-O9V"/>
+                                                        <constraint firstAttribute="height" constant="142" id="nDk-JY-chv"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -1142,7 +1127,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ave-VR-oLf">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="800"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalCompressionResistancePriority="753" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-jQ-UIj">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalCompressionResistancePriority="753" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wb6-jQ-UIj">
                                                 <rect key="frame" x="30" y="116.33333333333334" width="333" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next" textContentType="name"/>

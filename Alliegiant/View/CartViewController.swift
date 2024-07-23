@@ -92,6 +92,16 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cartCell
     }
     
+    // UITableViewDelegate method for swipe-to-delete
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                let item = CartManager.shared.items[indexPath.row]
+                CartManager.shared.remove(item: item)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                updateCartView()  // Update the view after removing the item
+            }
+        }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 157.0
     }
@@ -110,10 +120,10 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Action method for checkout button
     @objc private func checkoutButtonTapped() {
         
-                openRazorPayCheckOut()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.clearCartItems()
-        }
+        openRazorPayCheckOut()
+        
+        
+        
     }
     
     // CartItemCellDelegate method
@@ -164,6 +174,7 @@ extension CartViewController : RazorpayPaymentCompletionProtocol {
     func onPaymentSuccess(_ payment_id: String) {
         print("success: ", payment_id)
         self.presentAlert(withTitle: "Success", message: "Payment Succeeded")
+        clearCartItems()
     }
     
     func presentAlert(withTitle title: String?, message: String?){

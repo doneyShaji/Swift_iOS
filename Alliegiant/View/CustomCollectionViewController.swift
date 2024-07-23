@@ -136,7 +136,7 @@ extension CustomCollectionViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchTimer?.invalidate() // Invalidate the previous timer
         
-        searchTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(performSearch), userInfo: searchText, repeats: false)
+        searchTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(performSearch), userInfo: searchText, repeats: false)
     }
 
     @objc func performSearch(_ timer: Timer) {

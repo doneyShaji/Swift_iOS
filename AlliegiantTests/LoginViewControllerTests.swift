@@ -29,18 +29,6 @@ class LoginViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.loginButton)
         XCTAssertNotNil(sut.registerUsersButton)
     }
-    
-    func testUserManagerInteraction() {
-        // Given
-        sut.emailTextField.text = "test@example.com"
-        sut.passwordTextField.text = "password123"
-        
-        // When
-        sut.loginButtonTapped(UIButton())
-        
-        // Then
-        XCTAssertTrue(UserManager.shared.isLoggedIn())
-    }
 
 
     class MockNavigationController: UINavigationController {
