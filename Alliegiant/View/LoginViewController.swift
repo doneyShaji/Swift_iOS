@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import GoogleSignIn
+import FirebaseCore
 
 class LoginViewController: UIViewController {
     
@@ -13,14 +16,46 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerUsersButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Check if the user is already logged in
-                if UserManager.shared.isLoggedIn() {
-                    navigateToMainTabBarController()
-                }
+        if Auth.auth().currentUser != nil {
+            navigateToMainTabBarController()
+        }
+        
+        // Configure Google Sign-In
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
     }
+    @IBAction func googleSignInButtonTapped(_ sender: UIButton) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+            guard error == nil else {
+                self.showAlert(message: "Google Sign-In failed. \(error!.localizedDescription)")
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else {
+                self.showAlert(message: "Failed to get Google user data.")
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error {
+                    self.showAlert(message: "Firebase authentication failed. \(error.localizedDescription)")
+                    return
+                }
+                
+                self.navigateToMainTabBarController()
+            }
+        }
+    }
+
+    
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         guard let email = emailTextField.text, email.isValidEmail else {
@@ -28,25 +63,28 @@ class LoginViewController: UIViewController {
                     return
                 }
                 
-        guard let password = passwordTextField.text, password.isValidPassword else {
+                guard let password = passwordTextField.text, password.isValidPassword else {
                     showAlert(message: "Password must be at least 8 characters long.")
                     return
                 }
                 
-                if UserManager.shared.login(email: email, password: password) {
-                    navigateToMainTabBarController()
-                } else {
-                    showAlert(message: "Invalid email or password.")
+                Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                    if let error = error {
+                        self.showAlert(message: "Invalid email or password. \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    self.navigateToMainTabBarController()
                 }
             }
-
+            
             func navigateToMainTabBarController() {
                 if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
                     tabBarController.modalPresentationStyle = .fullScreen
                     present(tabBarController, animated: true, completion: nil)
                 }
             }
-
+            
             func showAlert(message: String) {
                 let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

@@ -2,6 +2,27 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Google Sign in</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.425602245161-2qc34qerktnh8k96q6dgp61jaugeedp6</string>
+			</array>
+		</dict>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>bhim</string>
+		<string>paytmmp</string>
+		<string>phonepe</string>
+		<string>tez</string>
+		<string>credpay</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -21,15 +42,5 @@
 			</array>
 		</dict>
 	</dict>
-    <key>LSApplicationCategoryType</key>
-    <string></string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>bhim</string>
-      <string>paytmmp</string>
-      <string>phonepe</string>
-      <string>tez</string>
-      <string>credpay</string>
-    </array>
 </dict>
 </plist>

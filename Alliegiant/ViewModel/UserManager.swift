@@ -1,6 +1,7 @@
 import Foundation
 import CoreData
 import UIKit
+import FirebaseAuth
 
 struct User {
     let firstName: String
@@ -25,28 +26,25 @@ class UserManager {
         loadLoggedInUser()
     }
 
-    func register(user: User) -> Bool {
-        let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "emailAddress == %@", user.email)
-
-        do {
-            let results = try context.fetch(fetchRequest)
-            if !results.isEmpty {
-                return false // Email already exists
+    func register(user: User, completion: @escaping (Bool, String?) -> Void) {
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { authResult, error in
+            if let error = error {
+                completion(false, error.localizedDescription)
+                return
             }
 
-            let newUser = RegisteredUsers(context: context)
+            let newUser = RegisteredUsers(context: self.context)
             newUser.firstName = user.firstName
             newUser.lastName = user.lastName
             newUser.emailAddress = user.email
             newUser.phoneNo = Int64(user.phoneNumber) ?? 0
-            newUser.password = user.password
 
-            try context.save()
-            return true
-        } catch {
-            print("Failed to register user: \(error.localizedDescription)")
-            return false
+            do {
+                try self.context.save()
+                completion(true, nil)
+            } catch {
+                completion(false, "Failed to save user data: \(error.localizedDescription)")
+            }
         }
     }
 
@@ -55,7 +53,7 @@ class UserManager {
 
         do {
             let results = try context.fetch(fetchRequest)
-            return results.map { User(firstName: $0.firstName ?? "", lastName: $0.lastName ?? "", email: $0.emailAddress ?? "", phoneNumber: String($0.phoneNo), password: $0.password ?? "") }
+            return results.map { User(firstName: $0.firstName ?? "", lastName: $0.lastName ?? "", email: $0.emailAddress ?? "", phoneNumber: String($0.phoneNo), password: "") }
         } catch {
             print("Failed to fetch registered users: \(error.localizedDescription)")
             return []
@@ -77,30 +75,43 @@ class UserManager {
         }
     }
 
-    func login(email: String, password: String) -> Bool {
-        let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "emailAddress == %@ AND password == %@", email, password)
-
-        do {
-            let results = try context.fetch(fetchRequest)
-            if let user = results.first {
-                loggedInUser = User(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: user.password ?? "")
-                saveLoggedInUser()
-                return true
+    func login(email: String, password: String, completion: @escaping (Bool, String?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                completion(false, error.localizedDescription)
+                return
             }
-        } catch {
-            print("Failed to login user: \(error.localizedDescription)")
+
+            let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "emailAddress == %@", email)
+
+            do {
+                let results = try self.context.fetch(fetchRequest)
+                if let user = results.first {
+                    self.loggedInUser = User(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: "")
+                    self.saveLoggedInUser()
+                    completion(true, nil)
+                } else {
+                    completion(false, "User data not found in local storage.")
+                }
+            } catch {
+                completion(false, "Failed to fetch user data: \(error.localizedDescription)")
+            }
         }
-        return false
     }
 
     func logout() {
-        loggedInUser = nil
-        saveLoggedInUser()
+        do {
+            try Auth.auth().signOut()
+            loggedInUser = nil
+            saveLoggedInUser()
+        } catch {
+            print("Failed to log out: \(error.localizedDescription)")
+        }
     }
 
     func isLoggedIn() -> Bool {
-        return loggedInUser != nil
+        return Auth.auth().currentUser != nil
     }
 
     func updateUserDetails(_ updatedUser: User) {
@@ -114,7 +125,6 @@ class UserManager {
                 userToUpdate.lastName = updatedUser.lastName
                 userToUpdate.emailAddress = updatedUser.email
                 userToUpdate.phoneNo = Int64(updatedUser.phoneNumber) ?? 0
-                userToUpdate.password = updatedUser.password
                 try context.save()
 
                 if loggedInUser?.email == updatedUser.email {
@@ -142,7 +152,7 @@ class UserManager {
             do {
                 let results = try context.fetch(fetchRequest)
                 if let user = results.first {
-                    loggedInUser = User(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: user.password ?? "")
+                    loggedInUser = User(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: "")
                 }
             } catch {
                 print("Failed to load logged in user: \(error.localizedDescription)")

@@ -5,5 +5,6 @@ target 'Alliegiant' do
 
   pod 'Alamofire', '~> 5.4'
 pod 'razorpay-pod', '1.2.5'
-pod 'clerk-ios'
+pod 'SkyFloatingLabelTextField'
+
 end

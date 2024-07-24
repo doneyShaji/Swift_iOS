@@ -22,7 +22,10 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         cartTableView.dataSource = self
         cartTableView.delegate = self
-        
+        cartTableView.separatorStyle = .none // Remove default cell separators
+
+        cartTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 50)
+            
         
         // Initialize and configure the empty cart label
         emptyCartLabel = UILabel()
@@ -46,6 +49,14 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         updateCartView()
         
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Ensure proper padding between cells
+        cell.contentView.frame = cell.contentView.frame.insetBy(dx: 0, dy: 10)
+        cell.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

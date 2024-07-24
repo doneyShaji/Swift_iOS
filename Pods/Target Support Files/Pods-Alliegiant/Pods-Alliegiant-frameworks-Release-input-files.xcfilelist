@@ -1,8 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Alliegiant/Pods-Alliegiant-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
-${PODS_XCFRAMEWORKS_BUILD_DIR}/CFNetworkSDK/CFNetworkSDK.framework/CFNetworkSDK
-${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreeAnalyticsSDK/CashfreeAnalyticsSDK.framework/CashfreeAnalyticsSDK
-${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePG/CashfreePG.framework/CashfreePG
-${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGCoreSDK/CashfreePGCoreSDK.framework/CashfreePGCoreSDK
-${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGUISDK/CashfreePGUISDK.framework/CashfreePGUISDK
+${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework
 ${PODS_XCFRAMEWORKS_BUILD_DIR}/razorpay-pod/Razorpay.framework/Razorpay

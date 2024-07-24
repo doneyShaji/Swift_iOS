@@ -23,4 +23,24 @@ class CartTableViewCell: UITableViewCell {
     @IBOutlet weak var cartImage: UIImageView!
     @IBOutlet weak var cartPrice: UILabel!
     
-}
+    override func awakeFromNib() {
+            super.awakeFromNib()
+            setupCell()
+        }
+        
+        private func setupCell() {
+            // Set up the cell's appearance
+            contentView.backgroundColor = .white
+            contentView.layer.cornerRadius = 10
+            contentView.layer.masksToBounds = true
+            
+            // Add padding around the content view
+            contentView.frame = contentView.frame.insetBy(dx: 8, dy: 4)
+        }
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            // Ensure rounded corners are applied correctly
+            contentView.layer.cornerRadius = 10
+        }
+    }

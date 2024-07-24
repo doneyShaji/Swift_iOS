@@ -1,42 +1,24 @@
 PODS:
   - Alamofire (5.9.1)
-  - CashfreeAnalyticsSDK (2.0.14):
-    - CFNetworkSDK (~> 2.0.14)
-  - CashfreePG (2.0.14):
-    - CashfreePGUISDK (~> 2.0.14)
-  - CashfreePGCoreSDK (2.0.14):
-    - CashfreeAnalyticsSDK (~> 2.0.14)
-  - CashfreePGUISDK (2.0.14):
-    - CashfreePGCoreSDK (~> 2.0.14)
-  - CFNetworkSDK (2.0.14)
   - razorpay-pod (1.2.5)
+  - SkyFloatingLabelTextField (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
-  - CashfreePG (~> 2.0.12)
-  - CashfreePGCoreSDK
-  - CashfreePGUISDK
   - razorpay-pod (= 1.2.5)
+  - SkyFloatingLabelTextField
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - CashfreeAnalyticsSDK
-    - CashfreePG
-    - CashfreePGCoreSDK
-    - CashfreePGUISDK
-    - CFNetworkSDK
     - razorpay-pod
+    - SkyFloatingLabelTextField
 
 SPEC CHECKSUMS:
   Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
-  CashfreeAnalyticsSDK: af959220f317521079e08a2575b14f13e8438e82
-  CashfreePG: c74cae8fcc0076cd3d7aa8c639c3a2b9f3cc6049
-  CashfreePGCoreSDK: a7ee674ebea0b0959813a3d74299d07f571ee3a5
-  CashfreePGUISDK: 65f370c55cb09553c762d4b3a544b69f8af3b0a9
-  CFNetworkSDK: 647c9933e0148a9ebb36f6c1731fad1adfaf7059
   razorpay-pod: aa2df076ea44baab6cc8296c1ccc715fe2ca818c
+  SkyFloatingLabelTextField: 79ddc40e4ad59707fedbb48d605417aee48bb78a
 
-PODFILE CHECKSUM: 858c0b550a054b283552d585fe149b20eccef200
+PODFILE CHECKSUM: 807e49ccc1becc209a655a371f2de32bc0a9add5
 
 COCOAPODS: 1.15.2

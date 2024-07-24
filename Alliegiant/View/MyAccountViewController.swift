@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import FirebaseAuth
 
 class MyAccountViewController: UIViewController {
     
@@ -77,23 +78,18 @@ class MyAccountViewController: UIViewController {
     
     // MARK: - Show User Details
     func loadUserDetails() {
-        // Fetch the logged-in user's details from Core Data
-        let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
-        do {
-            let users = try context.fetch(request)
-            if let user = users.first {
-                firstNameLabel.text = user.firstName
-                lastNameLabel.text = user.lastName
-                emailLabel.text = user.emailAddress
-                phoneNumberLabel.text = String(user.phoneNo)
-                
-                editFirstNameTextField.text = user.firstName
-                editLastNameTextField.text = user.lastName
-                editEmailTextField.text = user.emailAddress
-                editPhoneNumber.text = String(user.phoneNo)
-            }
-        } catch {
-            print("Failed to fetch user details:", error.localizedDescription)
+        if let user = Auth.auth().currentUser {
+            firstNameLabel.text = user.displayName ?? "N/A"
+            lastNameLabel.text = user.displayName ?? "N/A" // Adjust this based on how you store the last name
+            emailLabel.text = user.email ?? "N/A"
+            phoneNumberLabel.text = user.phoneNumber ?? "N/A"
+            
+            editFirstNameTextField.text = user.displayName
+            editLastNameTextField.text = user.displayName // Adjust this based on how you store the last name
+            editEmailTextField.text = user.email
+            editPhoneNumber.text = user.phoneNumber
+        } else {
+            showAlert(message: "No user is logged in.")
         }
     }
     
@@ -121,36 +117,39 @@ class MyAccountViewController: UIViewController {
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         if isEditingMode {
-            // Update user details in Core Data
+            // Update user details in Firebase
             guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
                   let lastName = editLastNameTextField.text, !lastName.isEmpty,
                   let email = editEmailTextField.text, email.isValidEmail,
-                  let phoneNumber = editPhoneNumber.text, let phoneNo = Int64(phoneNumber) else {
+                  let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
                 showAlert(message: "Please make sure all fields are filled correctly.")
                 return
             }
             
-            let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
-            do {
-                let users = try context.fetch(request)
-                if let user = users.first {
-                    user.firstName = firstName
-                    user.lastName = lastName
-                    user.emailAddress = email
-                    user.phoneNo = phoneNo
-                    try context.save()
-                    showAlert(message: "Details updated successfully!") { [weak self] in
-                        self?.isEditingMode = false
-                        self?.toggleEditingMode(false)
-                        self?.loadUserDetails()
+            if let user = Auth.auth().currentUser {
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.displayName = "\(firstName) \(lastName)" // Adjust based on how you want to store first and last name
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        print("Failed to update user details:", error.localizedDescription)
+                        self.showAlert(message: "Failed to update details: \(error.localizedDescription)")
+                    } else {
+                        self.showAlert(message: "Details updated successfully!") { [weak self] in
+                            self?.isEditingMode = false
+                            self?.toggleEditingMode(false)
+                            self?.loadUserDetails()
+                        }
                     }
                 }
-            } catch {
-                print("Failed to update user details:", error.localizedDescription)
             }
         } else {
-            UserManager.shared.logout()
-            navigateToLoginViewController()
+            do {
+                try Auth.auth().signOut()
+                navigateToLoginViewController()
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+                showAlert(message: "Error signing out: \(signOutError.localizedDescription)")
+            }
         }
     }
     
