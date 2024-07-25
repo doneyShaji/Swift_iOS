@@ -6,6 +6,7 @@ struct Colours {
     let description: String
     let price: Double
     let brand: String
+    let images: [String]
 }
 
 var weatherManager = WeatherManager()
@@ -17,7 +18,7 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
     var isSearching = false
     var searchBar: UISearchBar?
     var searchTimer: Timer?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,9 +37,9 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
                 }
                 navigationController?.pushViewController(cartVC, animated: true)
     }
-    func updateCollectionView(with titlesAndThumbnails: [(String, String, String, Double, String)]) {
+    func updateCollectionView(with titlesAndThumbnails: [(String, String, String, Double, String, [String])]) {
         DispatchQueue.main.async {
-            self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4) }
+            self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4, images: $5) }
             self.filteredColours = self.colours
             self.collectionView.reloadData()
         }

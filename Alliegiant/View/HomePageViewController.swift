@@ -15,6 +15,7 @@ class HomePageViewController: UIViewController {
             let description: String
             let price: Double
             let brand: String
+        let images: [String]
         }
     
     
@@ -82,14 +83,14 @@ class HomePageViewController: UIViewController {
                 }
         }
 
-        func updateTableView(with titlesAndThumbnails: [(String, String, String, Double, String)]) {
-            DispatchQueue.main.async {
-                self.homeData = titlesAndThumbnails.map { Details(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4) }
-                self.tableViewHome.reloadData()
-                ActivityIndicator.shared.hideActivityIndicator()
-                self.view.backgroundColor = .white
-            }
+    func updateTableView(with titlesAndThumbnails: [(String, String, String, Double, String, [String])]) {
+        DispatchQueue.main.async {
+            self.homeData = titlesAndThumbnails.map { Details(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4, images: $5) }
+            self.tableViewHome.reloadData()
+            ActivityIndicator.shared.hideActivityIndicator()
+            self.view.backgroundColor = .white
         }
+    }
     
     @IBAction func menuHomeTapped(_ sender: Any) {
         print("here")
@@ -210,7 +211,8 @@ extension HomePageViewController: UITableViewDelegate {
                 return
             }
             homeDetailVC.titleText = selectedProduct.title
-            homeDetailVC.imageDetail = image
+            homeDetailVC.images = selectedProduct.images // Pass images array
+
             homeDetailVC.descriptionDetail = selectedProduct.description
             homeDetailVC.priceDetail = "$\(String(describing: selectedProduct.price))"
             

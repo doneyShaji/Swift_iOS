@@ -1,12 +1,12 @@
 import Foundation
 
 struct WeatherManager: WeatherManagerProtocol {
-    func fetchData(for category: String, completion: @escaping ([(String, String, String, Double, String)]) -> Void) {
+    func fetchData(for category: String, completion: @escaping ([(String, String, String, Double, String, [String])]) -> Void) {
         let weatherURL = "https://dummyjson.com/products/category/\(category)"
         performRequest(weatherURL: weatherURL, completion: completion)
     }
 
-    internal func performRequest(weatherURL: String, completion: @escaping ([(String, String, String, Double, String)]) -> Void) {
+    internal func performRequest(weatherURL: String, completion: @escaping ([(String, String, String, Double, String, [String])]) -> Void) {
         if let url = URL(string: weatherURL) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -25,11 +25,11 @@ struct WeatherManager: WeatherManagerProtocol {
         }
     }
 
-    internal func parseJSON(weatherData: Data) -> [(String, String, String, Double, String)]? {
+    internal func parseJSON(weatherData: Data) -> [(String, String, String, Double, String, [String])]? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(ProductResponse.self, from: weatherData)
-            let titlesAndThumbnails = decodedData.products.map { ($0.title, $0.thumbnail, $0.description, $0.price, $0.brand) }
+            let titlesAndThumbnails = decodedData.products.map { ($0.title, $0.thumbnail, $0.description, $0.price, $0.brand, $0.images) }
             return titlesAndThumbnails
         } catch {
             print(error)

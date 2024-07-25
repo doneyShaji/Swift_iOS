@@ -57,6 +57,7 @@
 		04B99E8E2C510A22009170FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B99E8D2C510A22009170FE /* GoogleService-Info.plist */; };
 		04B99E912C510B11009170FE /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 04B99E902C510B11009170FE /* GoogleSignIn */; };
 		04B99E932C510B11009170FE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 04B99E922C510B11009170FE /* GoogleSignInSwift */; };
+		04C66DF12C52268700F95896 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */; };
 		04C6FAEB2C4A444300CBD06C /* Alliegiant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04C6FAE92C4A444300CBD06C /* Alliegiant.xcdatamodeld */; };
 		04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
@@ -135,6 +136,7 @@
 		04AF86FF2C11BC2500E6184D /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
 		04B10EB42C48E6870054C2E6 /* RazorPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayViewController.swift; sourceTree = "<group>"; };
 		04B99E8D2C510A22009170FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		04C6FAEA2C4A444300CBD06C /* Alliegiant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alliegiant.xcdatamodel; sourceTree = "<group>"; };
 		04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewCollectionVC.swift; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				04005DD62C2BE5D600D51EFA /* AboutUsViewController.swift */,
 				046D57BD2C493EE9000D0EB0 /* AddToCart.swift */,
 				046D57BF2C493F03000D0EB0 /* AddToCart.xib */,
+				04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				04005DDD2C2C15C100D51EFA /* CustomHeaderView.swift in Sources */,
 				2F566C652C31EC350081F2A8 /* HomePageTableViewCell.swift in Sources */,
 				0414CA012C36B5F4005094E3 /* Dummy.swift in Sources */,
+				04C66DF12C52268700F95896 /* ImageCollectionViewCell.swift in Sources */,
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
 				04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */,
 				04C6FAEB2C4A444300CBD06C /* Alliegiant.xcdatamodeld in Sources */,
