@@ -12,7 +12,7 @@ import FirebaseAuth
 class MyAccountViewController: UIViewController {
     
     var onNameUpdate: ((String) -> Void)?
-    
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -79,6 +79,12 @@ class MyAccountViewController: UIViewController {
     // MARK: - Show User Details
     func loadUserDetails() {
         if let user = Auth.auth().currentUser {
+            print("User ID: \(user.uid)")
+                        print("Display Name: \(user.displayName ?? "N/A")")
+                        print("Email: \(user.email ?? "N/A")")
+                        print("Phone Number: \(user.phoneNumber ?? "N/A")")
+                        print("Photo URL: \(user.photoURL?.absoluteString ?? "N/A")")
+                        print("Provider Data: \(user.providerData)")
             firstNameLabel.text = user.displayName ?? "N/A"
             lastNameLabel.text = user.displayName ?? "N/A" // Adjust this based on how you store the last name
             emailLabel.text = user.email ?? "N/A"
@@ -88,11 +94,30 @@ class MyAccountViewController: UIViewController {
             editLastNameTextField.text = user.displayName // Adjust this based on how you store the last name
             editEmailTextField.text = user.email
             editPhoneNumber.text = user.phoneNumber
+            
+            if let photoURL = Auth.auth().currentUser?.photoURL {
+                            loadProfileImage(from: photoURL)
+                        }
         } else {
             showAlert(message: "No user is logged in.")
         }
     }
-    
+    func loadProfileImage(from url: URL) {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("Error loading image: \(error)")
+                    return
+                }
+                guard let data = data, let image = UIImage(data: data) else {
+                    print("Error loading image data")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.profileImageView.image = image
+                }
+            }
+            task.resume()
+        }
     func toggleEditingMode(_ enable: Bool) {
         editFirstNameTextField.isHidden = !enable
         editLastNameTextField.isHidden = !enable

@@ -7,6 +7,12 @@ struct Colours {
     let price: Double
     let brand: String
     let images: [String]
+    let rating: Double
+    let warrantyInformation: String
+    let shippingInformation: String
+    let availabilityStatus: String
+    let minimumOrderQuantity: Int
+    let returnPolicy: String
 }
 
 var weatherManager = WeatherManager()
@@ -21,7 +27,6 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         ActivityIndicator.shared.showActivityIndicator(on: self.view)
         
         // Specify the category when calling fetchData
@@ -37,9 +42,9 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
                 }
                 navigationController?.pushViewController(cartVC, animated: true)
     }
-    func updateCollectionView(with titlesAndThumbnails: [(String, String, String, Double, String, [String])]) {
+    func updateCollectionView(with titlesAndThumbnails: [(String, String, String, Double, String, [String], Double, String, String, String, Int, String)]) {
         DispatchQueue.main.async {
-            self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4, images: $5) }
+            self.colours = titlesAndThumbnails.map { Colours(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4, images: $5, rating: $6, warrantyInformation: $7, shippingInformation: $8, availabilityStatus: $9, minimumOrderQuantity: $10, returnPolicy: $11) }
             self.filteredColours = self.colours
             self.collectionView.reloadData()
         }
@@ -55,6 +60,7 @@ extension CustomCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
         cell.setup(with: filteredColours[indexPath.row])
+        
         return cell
     }
 }

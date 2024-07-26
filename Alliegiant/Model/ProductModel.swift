@@ -18,5 +18,18 @@ struct Product: Decodable {
     let price: Double
     let brand: String
     let images: [String]
+    let rating: Double
+    let warrantyInformation: String
+    let shippingInformation: String
+    let availabilityStatus: String
+    let minimumOrderQuantity: Int
+    let returnPolicy: String
+    let reviews: [Review]
 }
 
+struct Review: Decodable {
+    let rating: Int
+    let comment: String
+    let date: String
+    let reviewerName: String
+}

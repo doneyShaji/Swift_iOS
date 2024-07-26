@@ -15,7 +15,14 @@ class HomePageViewController: UIViewController {
             let description: String
             let price: Double
             let brand: String
-        let images: [String]
+            let images: [String]
+            let rating: Double
+            let warrantyInformation: String
+            let shippingInformation: String
+            let availabilityStatus: String
+            let minimumOrderQuantity: Int
+            let returnPolicy: String
+            let reviews: [Review]
         }
     
     
@@ -83,14 +90,14 @@ class HomePageViewController: UIViewController {
                 }
         }
 
-    func updateTableView(with titlesAndThumbnails: [(String, String, String, Double, String, [String])]) {
-        DispatchQueue.main.async {
-            self.homeData = titlesAndThumbnails.map { Details(title: $0, thumbnail: $1, description: $2, price: $3, brand: $4, images: $5) }
-            self.tableViewHome.reloadData()
-            ActivityIndicator.shared.hideActivityIndicator()
-            self.view.backgroundColor = .white
+    func updateTableView(with products: [Product]) {
+            DispatchQueue.main.async {
+                self.homeData = products.map { Details(title: $0.title, thumbnail: $0.thumbnail, description: $0.description, price: $0.price, brand: $0.brand, images: $0.images, rating: $0.rating, warrantyInformation: $0.warrantyInformation, shippingInformation: $0.shippingInformation, availabilityStatus: $0.availabilityStatus, minimumOrderQuantity: $0.minimumOrderQuantity, returnPolicy: $0.returnPolicy, reviews: $0.reviews) }
+                self.tableViewHome.reloadData()
+                ActivityIndicator.shared.hideActivityIndicator()
+                self.view.backgroundColor = .white
+            }
         }
-    }
     
     @IBAction func menuHomeTapped(_ sender: Any) {
         print("here")
@@ -212,10 +219,14 @@ extension HomePageViewController: UITableViewDelegate {
             }
             homeDetailVC.titleText = selectedProduct.title
             homeDetailVC.images = selectedProduct.images // Pass images array
-
             homeDetailVC.descriptionDetail = selectedProduct.description
             homeDetailVC.priceDetail = "$\(String(describing: selectedProduct.price))"
-            
+            homeDetailVC.ratingDetail = "\(String(describing: selectedProduct.rating))"
+            homeDetailVC.availability = selectedProduct.availabilityStatus
+            homeDetailVC.maximumQuantity = "\(String(describing: selectedProduct.minimumOrderQuantity))"
+            homeDetailVC.brandDetail = selectedProduct.brand
+            homeDetailVC.warrantyDetail = selectedProduct.warrantyInformation
+            homeDetailVC.shippingDetail = selectedProduct.shippingInformation
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(homeDetailVC, animated: true)
             }
