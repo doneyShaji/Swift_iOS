@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class HomeDetailViewController: UIViewController{
     
     @IBOutlet var pageImage: UIPageControl!
@@ -23,7 +25,7 @@ class HomeDetailViewController: UIViewController{
     var brandDetail: String?
     var warrantyDetail: String?
     var shippingDetail: String?
-    
+    var idDetail: Int?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionHome: UILabel!
@@ -59,7 +61,7 @@ class HomeDetailViewController: UIViewController{
         brandHome.text = brandDetail
         warrantyInformationHome.text = warrantyDetail
         shippingInformationHome.text = shippingDetail
-        
+        print(idDetail ?? 0)
         // Underline the rating detail text with a star icon
         let starAttachment = NSTextAttachment()
         let starImage = UIImage(systemName: "star.fill")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
@@ -145,17 +147,14 @@ class HomeDetailViewController: UIViewController{
     }
     
     @IBAction func reviewDisplayBtn(_ sender: Any) {
-        let menuViewController = MenuViewController()
-               menuViewController.modalPresentationStyle = .pageSheet
-                if let sheet = menuViewController.sheetPresentationController {
-                // Custom detent
-                    let customDetent = UISheetPresentationController.Detent.custom { context in
-                        return 225 // The height you want for the view controller
-                }
-                sheet.detents = [customDetent]
+        let reviewViewController = ReviewTableViewController()
+            reviewViewController.productId = idDetail // Pass the selected product ID here
+            reviewViewController.modalPresentationStyle = .pageSheet
+            if let sheet = reviewViewController.sheetPresentationController {
+                sheet.detents = [.medium()]
                 sheet.prefersGrabberVisible = true
             }
-            present(menuViewController, animated: true)
+            present(reviewViewController, animated: true)
     }
     
 }

@@ -22,6 +22,8 @@
 		0416B5022C4674A3002B2794 /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416B5012C4674A3002B2794 /* LoginViewControllerTests.swift */; };
 		0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0427289D2BCF9DC000420EDD /* mySecondViewController.swift */; };
 		04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */; };
+		043E92062C5795120064B030 /* ReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E92052C5795120064B030 /* ReviewTableViewController.swift */; };
+		043E92082C57AA200064B030 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E92072C57AA200064B030 /* ReviewTableViewCell.swift */; };
 		0445BC222C452A79002A1EA4 /* WeatherManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445BC212C452A79002A1EA4 /* WeatherManagerTests.swift */; };
 		0445BC262C4542CA002A1EA4 /* WeatherManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445BC252C4542CA002A1EA4 /* WeatherManagerProtocol.swift */; };
 		0445BC2B2C4546BA002A1EA4 /* MockWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445BC2A2C4546BA002A1EA4 /* MockWeatherManager.swift */; };
@@ -104,6 +106,8 @@
 		0416B5012C4674A3002B2794 /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		0427289D2BCF9DC000420EDD /* mySecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySecondViewController.swift; sourceTree = "<group>"; };
 		04309AA42C29940F0034D178 /* DepartmentStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentStoreViewController.swift; sourceTree = "<group>"; };
+		043E92052C5795120064B030 /* ReviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewController.swift; sourceTree = "<group>"; };
+		043E92072C57AA200064B030 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		0445BC212C452A79002A1EA4 /* WeatherManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerTests.swift; sourceTree = "<group>"; };
 		0445BC252C4542CA002A1EA4 /* WeatherManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerProtocol.swift; sourceTree = "<group>"; };
 		0445BC2A2C4546BA002A1EA4 /* MockWeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherManager.swift; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 				046D57BD2C493EE9000D0EB0 /* AddToCart.swift */,
 				046D57BF2C493F03000D0EB0 /* AddToCart.xib */,
 				04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */,
+				043E92052C5795120064B030 /* ReviewTableViewController.swift */,
+				043E92072C57AA200064B030 /* ReviewTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -535,12 +541,14 @@
 				046449BD2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift in Sources */,
 				046449BB2C32B9C6001F0F0C /* SlideInTransition.swift in Sources */,
 				04FD14002C1AFD270088AAF0 /* ImageServices.swift in Sources */,
+				043E92062C5795120064B030 /* ReviewTableViewController.swift in Sources */,
 				04FA49B22C2A7874002C8364 /* NetworkingManagerCocoaPods.swift in Sources */,
 				04FA49B02C2A738F002C8364 /* DepartmentStoreProductModel.swift in Sources */,
 				0445BC262C4542CA002A1EA4 /* WeatherManagerProtocol.swift in Sources */,
 				045002512C0EF8CF005DFF25 /* CustomCollectionViewController.swift in Sources */,
 				04005DD12C2BDD3500D51EFA /* MenuViewController.swift in Sources */,
 				04005DDD2C2C15C100D51EFA /* CustomHeaderView.swift in Sources */,
+				043E92082C57AA200064B030 /* ReviewTableViewCell.swift in Sources */,
 				2F566C652C31EC350081F2A8 /* HomePageTableViewCell.swift in Sources */,
 				0414CA012C36B5F4005094E3 /* Dummy.swift in Sources */,
 				04C66DF12C52268700F95896 /* ImageCollectionViewCell.swift in Sources */,

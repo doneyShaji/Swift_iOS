@@ -10,6 +10,7 @@ import CoreData
 class HomePageViewController: UIViewController {
     
     struct Details {
+        let id: Int
             let title: String
             let thumbnail: String
             let description: String
@@ -92,7 +93,7 @@ class HomePageViewController: UIViewController {
 
     func updateTableView(with products: [Product]) {
             DispatchQueue.main.async {
-                self.homeData = products.map { Details(title: $0.title, thumbnail: $0.thumbnail, description: $0.description, price: $0.price, brand: $0.brand, images: $0.images, rating: $0.rating, warrantyInformation: $0.warrantyInformation, shippingInformation: $0.shippingInformation, availabilityStatus: $0.availabilityStatus, minimumOrderQuantity: $0.minimumOrderQuantity, returnPolicy: $0.returnPolicy, reviews: $0.reviews) }
+                self.homeData = products.map { Details(id: $0.id, title: $0.title, thumbnail: $0.thumbnail, description: $0.description, price: $0.price, brand: $0.brand, images: $0.images, rating: $0.rating, warrantyInformation: $0.warrantyInformation, shippingInformation: $0.shippingInformation, availabilityStatus: $0.availabilityStatus, minimumOrderQuantity: $0.minimumOrderQuantity, returnPolicy: $0.returnPolicy, reviews: $0.reviews) }
                 self.tableViewHome.reloadData()
                 ActivityIndicator.shared.hideActivityIndicator()
                 self.view.backgroundColor = .white
@@ -227,6 +228,7 @@ extension HomePageViewController: UITableViewDelegate {
             homeDetailVC.brandDetail = selectedProduct.brand
             homeDetailVC.warrantyDetail = selectedProduct.warrantyInformation
             homeDetailVC.shippingDetail = selectedProduct.shippingInformation
+            homeDetailVC.idDetail = selectedProduct.id
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(homeDetailVC, animated: true)
             }
