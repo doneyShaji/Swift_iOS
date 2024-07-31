@@ -7,6 +7,8 @@
 
 import UIKit
 import CoreData
+import FirebaseAuth
+
 class HomePageViewController: UIViewController {
     
     struct Details {
@@ -54,17 +56,10 @@ class HomePageViewController: UIViewController {
             // Initialize and add the custom navigation bar
             customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 50))
 
-            // Fetch the user's first name from Core Data
-            
-
-            do {
-                let users = try context.fetch(request)
-                if let userHome = users.first {
-                    customNavBar?.firstNameLabel.text = userHome.firstName
+                if let user = Auth.auth().currentUser {
+                    print("User ID: \(user.displayName ?? "N")")
+                    customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
                 }
-            } catch {
-                print("Failed to fetch user details:", error.localizedDescription)
-            }
 
             if let customNavBar = customNavBar {
                 view.addSubview(customNavBar)
@@ -82,10 +77,10 @@ class HomePageViewController: UIViewController {
 
         override func viewWillAppear(_ animated: Bool) {
             do {
-                    let users = try context.fetch(request)
-                    if let userHome = users.first {
-                        customNavBar?.firstNameLabel.text = userHome.firstName
-                    }
+                if let user = Auth.auth().currentUser {
+                    print("User ID: \(user.displayName ?? "N")")
+                    customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
+                }
                 } catch {
                     print("Failed to fetch user details:", error.localizedDescription)
                 }

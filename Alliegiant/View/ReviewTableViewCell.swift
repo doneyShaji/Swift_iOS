@@ -2,15 +2,15 @@
 //  ReviewTableViewCell.swift
 //  Alliegiant
 //
-//  Created by P10 on 29/07/24.
+//  Created by P10 on 30/07/24.
 //
 
 import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var nameReviewTitle: UILabel!
-    @IBOutlet weak var ratingReviewTitle: UILabel!
-    @IBOutlet weak var descriptionReview: UILabel!
     
+    @IBOutlet weak var nameReview: UILabel!
+    @IBOutlet weak var ratingReview: UILabel!
+    @IBOutlet weak var emailReview: UILabel!
+    @IBOutlet weak var descriptionReview: UILabel!
 }

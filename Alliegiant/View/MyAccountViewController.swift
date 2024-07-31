@@ -75,6 +75,22 @@ class MyAccountViewController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
+    @IBAction func moreButtonClicked(_ sender: Any) {
+        let menuViewController = MenuViewController()
+               menuViewController.modalPresentationStyle = .pageSheet
+                if let sheet = menuViewController.sheetPresentationController {
+                // Custom detent
+                    let customDetent = UISheetPresentationController.Detent.custom { context in
+                        return 300 // The height you want for the view controller
+                }
+                sheet.detents = [customDetent]
+                sheet.prefersGrabberVisible = true
+            }
+            present(menuViewController, animated: true)
+        
+        
+        
+    }
     
     // MARK: - Show User Details
     func loadUserDetails() {

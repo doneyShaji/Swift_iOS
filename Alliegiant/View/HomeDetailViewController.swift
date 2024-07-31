@@ -9,8 +9,10 @@ import UIKit
 
 
 
-class HomeDetailViewController: UIViewController{
+class HomeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var targetScrollView: UIView!
     @IBOutlet var pageImage: UIPageControl!
     var seriesImage: [String] = ["card_1","card_2","card_3","card_4","card_5","card_6"]
     
@@ -44,6 +46,9 @@ class HomeDetailViewController: UIViewController{
     @IBOutlet weak var ratingDetailHome: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var reviewTableView: UITableView!
+        var reviews: [Review] = []
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         detaillView.layer.cornerRadius = 50
@@ -52,31 +57,32 @@ class HomeDetailViewController: UIViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "Product Detail"
         titleLabel.text = titleText
         descriptionHome.text = descriptionDetail
         priceHome.text = priceDetail
         availabilityStatusHome.text = availability
-        maximumOrderQuantityHome.text = maximumQuantity
-        brandHome.text = brandDetail
-        warrantyInformationHome.text = warrantyDetail
+        warrantyInformationHome.text = "Warranty: \(warrantyDetail ?? "")"
         shippingInformationHome.text = shippingDetail
         print(idDetail ?? 0)
+        ratingDetailHome.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+
         // Underline the rating detail text with a star icon
         let starAttachment = NSTextAttachment()
         let starImage = UIImage(systemName: "star.fill")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
         starAttachment.image = starImage
-        starAttachment.bounds = CGRect(x: 0, y: -2, width: 16, height: 16) // Adjust bounds as needed
-        
+        starAttachment.bounds = CGRect(x: 0, y: -2, width: 12, height: 12) // Adjust bounds as needed
+
         let starAttributedString = NSAttributedString(attachment: starAttachment)
-        let textAttributedString = NSAttributedString(string: "\(ratingDetail ?? "") Reviews", attributes: [
-            .underlineStyle: NSUnderlineStyle.single.rawValue
+        let textAttributedString = NSAttributedString(string: " \(ratingDetail ?? "") Reviews", attributes: [
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .font: UIFont.systemFont(ofSize: 12) // Ensure the text font size matches the button's font size
         ])
-        
+
         let combinedAttributedString = NSMutableAttributedString()
         combinedAttributedString.append(starAttributedString)
         combinedAttributedString.append(textAttributedString)
-        
+
         ratingDetailHome.setAttributedTitle(combinedAttributedString, for: .normal)
         
         
@@ -88,25 +94,37 @@ class HomeDetailViewController: UIViewController{
         collectionView.reloadData()
         
         
-        // Load the XIB file
-        let addToCartDesign = AddToCart(frame: .zero) // Initial frame is .zero
-
-        // Add it as a subview
-        view.addSubview(addToCartDesign)
-
-        // Disable autoresizing mask translation
-        addToCartDesign.translatesAutoresizingMaskIntoConstraints = false
-
-        // Set constraints to pin it to the bottom of the screen
-        NSLayoutConstraint.activate([
-            addToCartDesign.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            addToCartDesign.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            addToCartDesign.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            addToCartDesign.heightAnchor.constraint(equalToConstant: 50) // Set the height
-        ])
+        setupAddToCartDesign()
+                setupReviewTableView()
+                fetchReviews()
 
 
                 
+    }
+    func setupAddToCartDesign() {
+            let addToCartDesign = AddToCart(frame: .zero)
+            view.addSubview(addToCartDesign)
+            addToCartDesign.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                addToCartDesign.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                addToCartDesign.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                addToCartDesign.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            ])
+        }
+        
+        func setupReviewTableView() {
+            reviewTableView.dataSource = self
+            reviewTableView.delegate = self
+        }
+        
+    func fetchReviews() {
+        guard let productId = idDetail else { return }
+        WeatherManager().fetchReviews(for: productId) { [weak self] reviews in
+            DispatchQueue.main.async {
+                self?.reviews = reviews
+                self?.reviewTableView.reloadData()
+            }
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -128,34 +146,58 @@ class HomeDetailViewController: UIViewController{
     @IBAction func readMoreBtnAction(_ sender: Any) {
         isExpanded.toggle()
                 
-                UIView.animate(withDuration: 0.3) {
-                    if self.isExpanded {
-                        self.descriptionHome.text = self.descriptionDetail
-                        self.descriptionHome.numberOfLines = 0
-                        self.readMore.setTitle("See Less", for: .normal)
-                        self.readMore.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-                    } else {
-                        self.descriptionHome.text = self.descriptionDetail
-                        self.descriptionHome.numberOfLines = 2
-                        self.readMore.setTitle("Read More", for: .normal)
-                        self.readMore.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-                
-                    }
-                    
-                    self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.3) {
+            if self.isExpanded {
+                self.descriptionHome.text = self.descriptionDetail
+                self.descriptionHome.numberOfLines = 0
+                self.readMore.setTitle("See Less", for: .normal)
+                self.readMore.titleLabel?.font = UIFont.systemFont(ofSize: 9) // Set the font size to 9
+            } else {
+                self.descriptionHome.text = self.descriptionDetail
+                self.descriptionHome.numberOfLines = 2
+                self.readMore.setTitle("Read More", for: .normal)
+                self.readMore.titleLabel?.font = UIFont.systemFont(ofSize: 9) // Set the font size to 9
+            }
+            
+            self.view.layoutIfNeeded()
+        
+
                 }
     }
     
     @IBAction func reviewDisplayBtn(_ sender: Any) {
-        let reviewViewController = ReviewTableViewController()
-            reviewViewController.productId = idDetail // Pass the selected product ID here
-            reviewViewController.modalPresentationStyle = .pageSheet
-            if let sheet = reviewViewController.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-            }
-            present(reviewViewController, animated: true)
+//        let reviewViewController = ReviewTableViewController()
+//            reviewViewController.productId = idDetail // Pass the selected product ID here
+//            reviewViewController.modalPresentationStyle = .pageSheet
+//            if let sheet = reviewViewController.sheetPresentationController {
+//                sheet.detents = [.medium()]
+//                sheet.prefersGrabberVisible = true
+//            }
+//            present(reviewViewController, animated: true)
+        // Calculate the target frame
+               let targetRect = targetScrollView.frame
+               scrollView.scrollRectToVisible(targetRect, animated: true)
     }
+    // MARK: - UITableViewDataSource methods
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return reviews.count
+        }
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewTableViewCell
+            let review = reviews[indexPath.row]
+            cell.nameReview.text = review.reviewerName
+            cell.ratingReview.text = String(review.rating)
+            cell.descriptionReview.text = review.comment
+            cell.emailReview.text = review.reviewerEmail
+            
+            return cell
+        }
+        
+        // MARK: - UITableViewDelegate methods
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     
 }
 
