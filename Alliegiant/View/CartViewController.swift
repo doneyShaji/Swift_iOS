@@ -7,6 +7,7 @@
 // CartViewController.swift
 import UIKit
 import Razorpay
+import FirebaseAuth
 
 class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CartItemCellDelegate {
     
@@ -130,11 +131,15 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // Action method for checkout button
     @objc private func checkoutButtonTapped() {
-        
-        openRazorPayCheckOut()
-        
-        
-        
+        if Auth.auth().currentUser == nil {
+                let loginVC = LoginViewController()
+                loginVC.modalPresentationStyle = .fullScreen
+                present(loginVC, animated: true, completion: nil)
+            } else {
+                // Proceed to checkout
+                print("Proceed to checkout")
+                openRazorPayCheckOut()
+            }
     }
     
     // CartItemCellDelegate method

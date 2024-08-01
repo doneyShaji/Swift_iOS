@@ -65,13 +65,13 @@ class MenuViewController: UIViewController {
         button.configuration?.image = UIImage(systemName: image)
         button.configuration?.imagePadding = 8
         button.configuration?.cornerStyle = .medium
-        button.configuration?.baseForegroundColor = .systemBlue
-        button.configuration?.baseBackgroundColor = .systemBlue
+        button.configuration?.baseForegroundColor = .systemYellow
+        button.configuration?.baseBackgroundColor = .systemYellow
     }
     
     func setupLogoutButton() {
         logoutButton.setTitle("Log Out", for: .normal)
-        logoutButton.setTitleColor(.systemBlue, for: .normal)
+        logoutButton.setTitleColor(.systemYellow, for: .normal)
         logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
     }

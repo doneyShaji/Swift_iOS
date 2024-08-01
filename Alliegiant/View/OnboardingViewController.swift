@@ -29,9 +29,9 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         
         slides = [
-            OnboardingSlide(title: "Delicious Dishes", description: "Experience a variety of amazing dishes from different cultures around the world.", image: #imageLiteral(resourceName: "slide2")),
-                  OnboardingSlide(title: "World-Class Chefs", description: "Our dishes are prepared by only the best.", image: #imageLiteral(resourceName: "slide1")),
-                  OnboardingSlide(title: "Instant World-Wide Delivery", description: "Your orders will be delivered instantly irrespective of your location around the world.", image: #imageLiteral(resourceName: "slide3"))
+            OnboardingSlide(title: "Effortless Ordering", description: "Browse and place orders with ease, from anywhere, at any time.", image: #imageLiteral(resourceName: "Shopping")),
+                  OnboardingSlide(title: "Simple & Secure Payments", description: "Experience hassle-free payments with secure and flexible options.", image: #imageLiteral(resourceName: "Payment")),
+                  OnboardingSlide(title: "Fast & Reliable Delivery", description: "Enjoy quick and reliable delivery to your doorstep, no matter your location.", image: #imageLiteral(resourceName: "Delivery"))
         ]
         
         collectionViewOnboard.dataSource = self

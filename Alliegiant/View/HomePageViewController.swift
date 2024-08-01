@@ -48,32 +48,36 @@ class HomePageViewController: UIViewController {
         var customNavBar: WelcomeDesignHomePage?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
-        override func viewDidLoad() {
-            super.viewDidLoad()
-
-            self.navigationController?.isNavigationBarHidden = true
-
-            // Initialize and add the custom navigation bar
-            customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 50))
-
-                if let user = Auth.auth().currentUser {
-                    print("User ID: \(user.displayName ?? "N")")
-                    customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
-                }
-
-            if let customNavBar = customNavBar {
-                view.addSubview(customNavBar)
-            }
-
-            setupMyAccountViewController()
-
-            tableViewHome.delegate = self
-            tableViewHome.dataSource = self
-            Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
-            loadSegmentData()
-            
-            setupSegmentedControl()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationController?.isNavigationBarHidden = true
+        
+        // Initialize and add the custom navigation bar
+        customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 50))
+        
+        if let user = Auth.auth().currentUser {
+            print("User ID: \(user.displayName ?? "N")")
+            customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
         }
+        
+        if let customNavBar = customNavBar {
+            view.addSubview(customNavBar)
+        }
+        
+        setupMyAccountViewController()
+        
+        tableViewHome.delegate = self
+        tableViewHome.dataSource = self
+        tableViewHome.separatorStyle = .none
+        tableViewHome.rowHeight = 150
+        
+        Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
+        loadSegmentData()
+        
+        setupSegmentedControl()
+    }
+
 
         override func viewWillAppear(_ animated: Bool) {
             do {
@@ -191,20 +195,21 @@ extension HomePageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt tableViewIndexPath: IndexPath) -> UITableViewCell {
-            let segmentControlCell = tableViewHome.dequeueReusableCell(withIdentifier: "firstHomeCell", for: tableViewIndexPath) as! HomePageTableViewCell
-            let tableData = homeData[tableViewIndexPath.row]
-            
-            segmentControlCell.homeTableViewTitle.text = tableData.title
-            segmentControlCell.homeBrandLabel.text =  tableData.brand
-            segmentControlCell.homePriceLabel.text = "$\(String(tableData.price))"
-            segmentControlCell.descriptionHomeLabel.text =  tableData.description
-            ImageLoader.loadImage(from: tableData.thumbnail) { image in
-                segmentControlCell.homeTableViewIMG.image = image
-            }
-            
-            return segmentControlCell
+        let segmentControlCell = tableViewHome.dequeueReusableCell(withIdentifier: "firstHomeCell", for: tableViewIndexPath) as! HomePageTableViewCell
+        let tableData = homeData[tableViewIndexPath.row]
+        
+        segmentControlCell.homeTableViewTitle.text = tableData.title
+        segmentControlCell.homeBrandLabel.text = tableData.brand
+        segmentControlCell.homePriceLabel.text = "$\(String(tableData.price))"
+        segmentControlCell.descriptionHomeLabel.text = tableData.description
+        ImageLoader.loadImage(from: tableData.thumbnail) { image in
+            segmentControlCell.homeTableViewIMG.image = image
         }
+        
+        return segmentControlCell
+    }
 }
+
 
 extension HomePageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
