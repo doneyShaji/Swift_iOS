@@ -9,7 +9,7 @@ import UIKit
 import Razorpay
 import FirebaseAuth
 
-class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CartItemCellDelegate {
+class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CartItemCellDelegate, LoginViewControllerDelegate {
     
     let razorPayKey = "rzp_test_rpBn8AgkrcNdDH"
     var razorPay : RazorpayCheckout? = nil
@@ -132,15 +132,27 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Action method for checkout button
     @objc private func checkoutButtonTapped() {
         if Auth.auth().currentUser == nil {
-                let loginVC = LoginViewController()
-                loginVC.modalPresentationStyle = .fullScreen
-                present(loginVC, animated: true, completion: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace "Main" with the name of your storyboard if different
+                    if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
+                        if let loginVC = loginNavController.viewControllers.first as? LoginViewController {
+                            loginVC.delegate = self
+                        }
+                        loginNavController.modalPresentationStyle = .fullScreen
+                        present(loginNavController, animated: true, completion: nil)
+                    }
             } else {
                 // Proceed to checkout
                 print("Proceed to checkout")
                 openRazorPayCheckOut()
             }
     }
+    
+    func loginViewControllerDidLogin(_ controller: LoginViewController) {
+            // Dismiss the login view controller and proceed to checkout
+            controller.dismiss(animated: true) {
+                self.openRazorPayCheckOut()
+            }
+        }
     
     // CartItemCellDelegate method
     func didTapRemoveButton(on cell: CartTableViewCell) {
@@ -172,7 +184,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 "email": "a@b.com"
             ],
             "theme": [
-                "color": "#336699"
+                "color": "#ffc801"
             ]
         ]
         razorPay?.open(options)
@@ -211,7 +223,7 @@ struct MerchantDetails {
 
 extension MerchantDetails {
     static func getDefaultData() -> MerchantDetails {
-        let details = MerchantDetails(name: "iOSPaymentGateway", logo: "https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg?t=st=1721283674~exp=1721287274~hmac=6dac28cd7217e18721d9b3ca4038ad446101a3f5402786881b65779df1a79417&w=740", color: .red)
+        let details = MerchantDetails(name: "AlligiantSwift", logo: "https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg?t=st=1721283674~exp=1721287274~hmac=6dac28cd7217e18721d9b3ca4038ad446101a3f5402786881b65779df1a79417&w=740", color: .red)
         return details
     }
 }

@@ -10,7 +10,12 @@ import FirebaseAuth
 import GoogleSignIn
 import FirebaseCore
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func loginViewControllerDidLogin(_ controller: LoginViewController)
+}
+
 class LoginViewController: UIViewController {
+    weak var delegate: LoginViewControllerDelegate?
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -74,7 +79,7 @@ class LoginViewController: UIViewController {
                         return
                     }
                     
-                    self.navigateToMainTabBarController()
+                    self.delegate?.loginViewControllerDidLogin(self)
                 }
             }
             
