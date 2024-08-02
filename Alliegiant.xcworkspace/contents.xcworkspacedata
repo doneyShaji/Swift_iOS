@@ -5,10 +5,22 @@
       location = "container:"
       name = "DB">
       <FileRef
+         location = "group:OrderItem+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:OrderItem+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
          location = "group:RegisteredUsers+CoreDataClass.swift">
       </FileRef>
       <FileRef
          location = "group:RegisteredUsers+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:Order+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:Order+CoreDataProperties.swift">
       </FileRef>
    </Group>
    <FileRef

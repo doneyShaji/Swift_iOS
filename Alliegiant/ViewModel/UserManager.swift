@@ -1,9 +1,17 @@
+//
+//  UserManager.swift
+//  Alliegiant
+//
+//  Created by P10 on 12/06/24.
+//
+
 import Foundation
 import CoreData
 import UIKit
 import FirebaseAuth
 
 struct User {
+    let userID: String
     let firstName: String
     let lastName: String
     let email: String
@@ -38,7 +46,8 @@ class UserManager {
             newUser.lastName = user.lastName
             newUser.emailAddress = user.email
             newUser.phoneNo = Int64(user.phoneNumber) ?? 0
-
+            newUser.userID = user.userID
+            
             do {
                 try self.context.save()
                 completion(true, nil)
@@ -53,7 +62,7 @@ class UserManager {
 
         do {
             let results = try context.fetch(fetchRequest)
-            return results.map { User(firstName: $0.firstName ?? "", lastName: $0.lastName ?? "", email: $0.emailAddress ?? "", phoneNumber: String($0.phoneNo), password: "") }
+            return results.map { User(userID: $0.userID ?? "", firstName: $0.firstName ?? "", lastName: $0.lastName ?? "", email: $0.emailAddress ?? "", phoneNumber: String($0.phoneNo), password: "") }
         } catch {
             print("Failed to fetch registered users: \(error.localizedDescription)")
             return []
@@ -88,7 +97,7 @@ class UserManager {
             do {
                 let results = try self.context.fetch(fetchRequest)
                 if let user = results.first {
-                    self.loggedInUser = User(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: "")
+                    self.loggedInUser = User(userID: user.userID ?? "", firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: "")
                     self.saveLoggedInUser()
                     completion(true, nil)
                 } else {
@@ -152,7 +161,7 @@ class UserManager {
             do {
                 let results = try context.fetch(fetchRequest)
                 if let user = results.first {
-                    loggedInUser = User(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: "")
+                    loggedInUser = User(userID: user.userID ?? "", firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: "")
                 }
             } catch {
                 print("Failed to load logged in user: \(error.localizedDescription)")

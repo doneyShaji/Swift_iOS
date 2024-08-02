@@ -2,7 +2,7 @@
 //  RegisteredUsers+CoreDataProperties.swift
 //  
 //
-//  Created by P10 on 19/07/24.
+//  Created by P10 on 02/08/24.
 //
 //
 
@@ -16,10 +16,28 @@ extension RegisteredUsers {
         return NSFetchRequest<RegisteredUsers>(entityName: "RegisteredUsers")
     }
 
+    @NSManaged public var emailAddress: String?
     @NSManaged public var firstName: String?
     @NSManaged public var lastName: String?
-    @NSManaged public var emailAddress: String?
     @NSManaged public var phoneNo: Int64
-    @NSManaged public var password: String?
+    @NSManaged public var userID: String?
+    @NSManaged public var orders: NSSet?
+
+}
+
+// MARK: Generated accessors for orders
+extension RegisteredUsers {
+
+    @objc(addOrdersObject:)
+    @NSManaged public func addToOrders(_ value: Order)
+
+    @objc(removeOrdersObject:)
+    @NSManaged public func removeFromOrders(_ value: Order)
+
+    @objc(addOrders:)
+    @NSManaged public func addToOrders(_ values: NSSet)
+
+    @objc(removeOrders:)
+    @NSManaged public func removeFromOrders(_ values: NSSet)
 
 }

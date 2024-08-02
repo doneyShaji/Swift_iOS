@@ -124,8 +124,8 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         checkOutBtn.configuration?.title = "Checkout"
         checkOutBtn.configuration?.image = UIImage(systemName: "creditcard")
         checkOutBtn.configuration?.imagePadding = 8
-        checkOutBtn.configuration?.baseForegroundColor = .systemPink
-        checkOutBtn.configuration?.baseBackgroundColor = .systemPink
+        checkOutBtn.configuration?.baseForegroundColor = .systemYellow
+        checkOutBtn.configuration?.baseBackgroundColor = .systemYellow
         checkOutBtn.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
     }
     
@@ -141,9 +141,12 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         present(loginNavController, animated: true, completion: nil)
                     }
             } else {
-                // Proceed to checkout
-                print("Proceed to checkout")
-                openRazorPayCheckOut()
+                if let userID = Auth.auth().currentUser?.uid{
+                    CartManager.shared.createOrder(for: userID)
+                    print("Proceed to checkout")
+                    openRazorPayCheckOut()
+                }
+                
             }
     }
     

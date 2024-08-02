@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 protocol CartManaging {
     var items: [CartItem] { get }
     func add(item: CartItem)
@@ -39,6 +40,34 @@ class CartManager {
                 items.remove(at: index)
             }
         }
+    }
+    
+    func createOrder(for userID: String){
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let newOrder = Order(context: context)
+        newOrder.user = userID
+        newOrder.date = Date()
+        newOrder.orderID = UUID()
+        newOrder.totalAmount = CartManager.shared.items.reduce(0) { $0 + ((Double($1.price) ?? 0) * Double($1.quantity))}
+        
+        for cartItem in CartManager.shared.items {
+            let orderItem = OrderItem(context: context)
+            orderItem.productName = cartItem.name
+            orderItem.price = Double(cartItem.price) ?? 0
+            orderItem.quantity = Int64(cartItem.quantity)
+            orderItem.order = newOrder
+            
+            newOrder.addToOrderItems(orderItem)
+            
+        }
+        
+        do {
+                try context.save()
+                print("Order saved successfully")
+            } catch {
+                print("Failed to save order: \(error)")
+            }
     }
 }
 extension CartManager: CartManaging {}

@@ -2,7 +2,7 @@
 //  RegisteredUsers+CoreDataClass.swift
 //  
 //
-//  Created by P10 on 19/07/24.
+//  Created by P10 on 02/08/24.
 //
 //
 

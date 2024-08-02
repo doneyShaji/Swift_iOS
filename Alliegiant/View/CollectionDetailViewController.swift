@@ -36,16 +36,16 @@ class CollectionDetailViewController: UIViewController {
                     
             // Add cart button to navigation bar
             let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(addToCartButtonTapped))
-            cartButton.tintColor = .systemPink
+            cartButton.tintColor = .black
             navigationItem.rightBarButtonItem = cartButton
             
             // Configure addToCartButton
-            addToCartButton.configuration = .tinted()
+            addToCartButton.configuration = .filled()
             addToCartButton.configuration?.title = "Add to Cart"
             addToCartButton.configuration?.image = UIImage(systemName: "cart")
             addToCartButton.configuration?.imagePadding = 8
-            addToCartButton.configuration?.baseForegroundColor = .systemPink
-            addToCartButton.configuration?.baseBackgroundColor = .systemPink // or any other background color
+            addToCartButton.configuration?.baseForegroundColor = .black
+            addToCartButton.configuration?.baseBackgroundColor = .systemYellow
             addToCartButton.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
             
             collectionDetailVC.text = collectionLabel

@@ -65,8 +65,8 @@ class MenuViewController: UIViewController {
         button.configuration?.image = UIImage(systemName: image)
         button.configuration?.imagePadding = 8
         button.configuration?.cornerStyle = .medium
-        button.configuration?.baseForegroundColor = .systemYellow
-        button.configuration?.baseBackgroundColor = .systemYellow
+        button.configuration?.baseForegroundColor = .black
+        button.configuration?.baseBackgroundColor = .yellow
     }
     
     func setupLogoutButton() {

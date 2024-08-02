@@ -18,6 +18,12 @@ class MyAccountViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     
+    @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var firstNameTitle: UILabel!
+    @IBOutlet weak var lastNameTitle: UILabel!
+    @IBOutlet weak var emailTitle: UILabel!
+    @IBOutlet weak var phoneTitle: UILabel!
+    
     @IBOutlet weak var editFirstNameTextField: UITextField!
     @IBOutlet weak var editLastNameTextField: UITextField!
     @IBOutlet weak var editEmailTextField: UITextField!
@@ -25,15 +31,23 @@ class MyAccountViewController: UIViewController {
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
+    var notLoggedInLabel: UILabel!
+    var loginButton: UIButton!
     
     var isEditingMode = false
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadUserDetails()
-        toggleEditingMode(false)
+        
         setupUIAccount()
+        
+        if Auth.auth().currentUser == nil {
+            showNotLoggedInUI()
+        } else {
+            loadUserDetails()
+            toggleEditingMode(false)
+        }
     }
     //MARK: - Button Designs
     func setupUIAccount(){
@@ -52,6 +66,17 @@ class MyAccountViewController: UIViewController {
         logoutButton.configuration?.baseForegroundColor = .systemPink
         logoutButton.configuration?.baseBackgroundColor = .systemPink
         logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+        
+        // Initialize notLoggedInLabel and loginButton
+        notLoggedInLabel = UILabel()
+        notLoggedInLabel.text = "You are not logged in."
+        notLoggedInLabel.textAlignment = .center
+        notLoggedInLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        loginButton = UIButton(type: .system)
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.addTarget(self, action: #selector(navigateToLoginViewController), for: .touchUpInside)
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
     }
     //MARK: - Hamburger Menu
     @IBOutlet weak var trailing: NSLayoutConstraint!
@@ -77,30 +102,54 @@ class MyAccountViewController: UIViewController {
     }
     @IBAction func moreButtonClicked(_ sender: Any) {
         let menuViewController = MenuViewController()
-               menuViewController.modalPresentationStyle = .pageSheet
-                if let sheet = menuViewController.sheetPresentationController {
-                // Custom detent
-                    let customDetent = UISheetPresentationController.Detent.custom { context in
-                        return 300 // The height you want for the view controller
-                }
-                sheet.detents = [customDetent]
-                sheet.prefersGrabberVisible = true
+        menuViewController.modalPresentationStyle = .pageSheet
+        if let sheet = menuViewController.sheetPresentationController {
+            // Custom detent
+            let customDetent = UISheetPresentationController.Detent.custom { context in
+                return 300 // The height you want for the view controller
             }
-            present(menuViewController, animated: true)
+            sheet.detents = [customDetent]
+            sheet.prefersGrabberVisible = true
+        }
+        present(menuViewController, animated: true)
         
         
         
     }
-    
-    // MARK: - Show User Details
+    // MARK: - Show Not Logged In UI
+    func showNotLoggedInUI() {
+        view.addSubview(notLoggedInLabel)
+        view.addSubview(loginButton)
+        
+        NSLayoutConstraint.activate([
+            notLoggedInLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            notLoggedInLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
+            
+            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.topAnchor.constraint(equalTo: notLoggedInLabel.bottomAnchor, constant: 10)
+        ])
+        
+        // Hide other UI elements
+        profileImageView.isHidden = true
+        firstNameLabel.isHidden = true
+        lastNameLabel.isHidden = true
+        emailLabel.isHidden = true
+        phoneNumberLabel.isHidden = true
+        editFirstNameTextField.isHidden = true
+        editLastNameTextField.isHidden = true
+        editEmailTextField.isHidden = true
+        editPhoneNumber.isHidden = true
+        editButton.isHidden = true
+        logoutButton.isHidden = true
+        firstNameTitle.isHidden = true
+        lastNameTitle.isHidden = true
+        emailTitle.isHidden = true
+        phoneTitle.isHidden = true
+        menuBtn.isHidden = true
+    }
+    // MARK: - Load User Details
     func loadUserDetails() {
         if let user = Auth.auth().currentUser {
-            print("User ID: \(user.uid)")
-                        print("Display Name: \(user.displayName ?? "N/A")")
-                        print("Email: \(user.email ?? "N/A")")
-                        print("Phone Number: \(user.phoneNumber ?? "N/A")")
-                        print("Photo URL: \(user.photoURL?.absoluteString ?? "N/A")")
-                        print("Provider Data: \(user.providerData)")
             firstNameLabel.text = user.displayName ?? "N/A"
             lastNameLabel.text = user.displayName ?? "N/A" // Adjust this based on how you store the last name
             emailLabel.text = user.email ?? "N/A"
@@ -111,29 +160,29 @@ class MyAccountViewController: UIViewController {
             editEmailTextField.text = user.email
             editPhoneNumber.text = user.phoneNumber
             
-            if let photoURL = Auth.auth().currentUser?.photoURL {
-                            loadProfileImage(from: photoURL)
-                        }
+            if let photoURL = user.photoURL {
+                loadProfileImage(from: photoURL)
+            }
         } else {
-            showAlert(message: "No user is logged in.")
+            showNotLoggedInUI()
         }
     }
     func loadProfileImage(from url: URL) {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                if let error = error {
-                    print("Error loading image: \(error)")
-                    return
-                }
-                guard let data = data, let image = UIImage(data: data) else {
-                    print("Error loading image data")
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.profileImageView.image = image
-                }
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error loading image: \(error)")
+                return
             }
-            task.resume()
+            guard let data = data, let image = UIImage(data: data) else {
+                print("Error loading image data")
+                return
+            }
+            DispatchQueue.main.async {
+                self.profileImageView.image = image
+            }
         }
+        task.resume()
+    }
     func toggleEditingMode(_ enable: Bool) {
         editFirstNameTextField.isHidden = !enable
         editLastNameTextField.isHidden = !enable
@@ -202,14 +251,22 @@ class MyAccountViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func navigateToLoginViewController() {
-        if let loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-            loginViewController.modalPresentationStyle = .fullScreen
-            present(loginViewController, animated: true, completion: nil)
+    @objc func navigateToLoginViewController() {
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = scene.windows.first else {
+            return
         }
-    }
-    
-    func didUpdateDetails(name: String) {
-        loadUserDetails()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                window.rootViewController = loginNavController
+                window.makeKeyAndVisible()
+            }, completion: { _ in
+                // Log the order of the view controllers in the navigation stack
+                print("Current Navigation Stack: \(loginNavController.viewControllers)")
+            })
+        }
     }
 }

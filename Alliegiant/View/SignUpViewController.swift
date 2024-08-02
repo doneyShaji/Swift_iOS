@@ -118,8 +118,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     confirmPasswordErrorLabel.text = "Passwords do not match."
                     return
                 }
-                
-                let user = User(firstName: firstName, lastName: lastName, email: email, phoneNumber: phone, password: password)
+        let userFirebaseID = Auth.auth().currentUser?.uid
+        let user = User(userID: userFirebaseID ?? "", firstName: firstName, lastName: lastName, email: email, phoneNumber: phone, password: password)
                 
                 UserManager.shared.register(user: user) { success, error in
                     if success {
