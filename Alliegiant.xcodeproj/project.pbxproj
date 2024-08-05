@@ -67,7 +67,6 @@
 		04B99E912C510B11009170FE /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 04B99E902C510B11009170FE /* GoogleSignIn */; };
 		04B99E932C510B11009170FE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 04B99E922C510B11009170FE /* GoogleSignInSwift */; };
 		04C66DF12C52268700F95896 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */; };
-		04C6FAEB2C4A444300CBD06C /* Alliegiant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04C6FAE92C4A444300CBD06C /* Alliegiant.xcdatamodeld */; };
 		04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
 		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
@@ -83,6 +82,7 @@
 		04FE1AA82C5CEB8C001F3B34 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE1AA72C5CEB8C001F3B34 /* OrdersViewController.swift */; };
 		04FE1AAA2C5CF1A1001F3B34 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE1AA92C5CF1A1001F3B34 /* OrderDetailViewController.swift */; };
 		04FE1AAC2C5D0099001F3B34 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE1AAB2C5D0099001F3B34 /* OrdersTableViewCell.swift */; };
+		2F08352C2C5E927900C745BA /* Alliegiant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F08352A2C5E927900C745BA /* Alliegiant.xcdatamodeld */; };
 		2F1850912C3012CB00E32E06 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1850902C3012CB00E32E06 /* UserManager.swift */; };
 		2F1850972C31CC9E00E32E06 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1850962C31CC9E00E32E06 /* ImageScrollView.swift */; };
 		2F566C652C31EC350081F2A8 /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F566C642C31EC350081F2A8 /* HomePageTableViewCell.swift */; };
@@ -129,7 +129,6 @@
 		045C01162C22D5CF009D0C58 /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
 		046449BA2C32B9C6001F0F0C /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		046449BC2C32B9F1001F0F0C /* ProfileMenuVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuVCViewController.swift; sourceTree = "<group>"; };
-		0468772D2C5CD74A006709C9 /* Alliegiant 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Alliegiant 2.xcdatamodel"; sourceTree = "<group>"; };
 		046D57BD2C493EE9000D0EB0 /* AddToCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCart.swift; sourceTree = "<group>"; };
 		046D57BF2C493F03000D0EB0 /* AddToCart.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddToCart.xib; sourceTree = "<group>"; };
 		046DCE782C33D66B004DDF30 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
@@ -159,7 +158,6 @@
 		04B10EB42C48E6870054C2E6 /* RazorPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayViewController.swift; sourceTree = "<group>"; };
 		04B99E8D2C510A22009170FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		04C6FAEA2C4A444300CBD06C /* Alliegiant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alliegiant.xcdatamodel; sourceTree = "<group>"; };
 		04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewCollectionVC.swift; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +174,7 @@
 		04FE1AA72C5CEB8C001F3B34 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		04FE1AA92C5CF1A1001F3B34 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		04FE1AAB2C5D0099001F3B34 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
+		2F08352B2C5E927900C745BA /* Alliegiant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alliegiant.xcdatamodel; sourceTree = "<group>"; };
 		2F1850902C3012CB00E32E06 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2F1850962C31CC9E00E32E06 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		2F566C642C31EC350081F2A8 /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = "<group>"; };
@@ -239,6 +238,7 @@
 		046E3A2B2BCE7CE70097D632 /* Alliegiant */ = {
 			isa = PBXGroup;
 			children = (
+				2F08352A2C5E927900C745BA /* Alliegiant.xcdatamodeld */,
 				04AFD06B2C5A34CC0065FAD7 /* Extensions */,
 				04E149652C292FF300239320 /* Bundles */,
 				0486DB1B2C1726DC00F2F547 /* Delegates */,
@@ -249,7 +249,6 @@
 				046E3A352BCE7CE90097D632 /* Assets.xcassets */,
 				04B99E8D2C510A22009170FE /* GoogleService-Info.plist */,
 				046E3A3A2BCE7CE90097D632 /* Info.plist */,
-				04C6FAE92C4A444300CBD06C /* Alliegiant.xcdatamodeld */,
 			);
 			path = Alliegiant;
 			sourceTree = "<group>";
@@ -598,7 +597,6 @@
 				046E3A412BCE87ED0097D632 /* CustomTableViewCell.swift in Sources */,
 				04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */,
 				04FE1AA82C5CEB8C001F3B34 /* OrdersViewController.swift in Sources */,
-				04C6FAEB2C4A444300CBD06C /* Alliegiant.xcdatamodeld in Sources */,
 				046D57BE2C493EE9000D0EB0 /* AddToCart.swift in Sources */,
 				04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,
@@ -610,6 +608,7 @@
 				04AFD06A2C5A31CC0065FAD7 /* OnboardingViewController.swift in Sources */,
 				040ABAE02C462D2F001F13CD /* URLSessionProtocol.swift in Sources */,
 				046E3A2F2BCE7CE70097D632 /* SceneDelegate.swift in Sources */,
+				2F08352C2C5E927900C745BA /* Alliegiant.xcdatamodeld in Sources */,
 				2F1850912C3012CB00E32E06 /* UserManager.swift in Sources */,
 				046DCE7B2C33D8BF004DDF30 /* CartManager.swift in Sources */,
 				04005DD72C2BE5D600D51EFA /* AboutUsViewController.swift in Sources */,
@@ -960,15 +959,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		04C6FAE92C4A444300CBD06C /* Alliegiant.xcdatamodeld */ = {
+		2F08352A2C5E927900C745BA /* Alliegiant.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0468772D2C5CD74A006709C9 /* Alliegiant 2.xcdatamodel */,
-				04C6FAEA2C4A444300CBD06C /* Alliegiant.xcdatamodel */,
+				2F08352B2C5E927900C745BA /* Alliegiant.xcdatamodel */,
 			);
-			currentVersion = 04C6FAEA2C4A444300CBD06C /* Alliegiant.xcdatamodel */;
+			currentVersion = 2F08352B2C5E927900C745BA /* Alliegiant.xcdatamodel */;
 			name = Alliegiant.xcdatamodeld;
-			path = /Users/p10/Desktop/Swift_iOS/Alliegiant/Alliegiant.xcdatamodeld;
+			path = /Users/doneyv.shaji/Desktop/Swift_iOS/Alliegiant/Alliegiant.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

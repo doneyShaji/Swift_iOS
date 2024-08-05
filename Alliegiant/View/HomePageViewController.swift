@@ -13,20 +13,20 @@ class HomePageViewController: UIViewController {
     
     struct Details {
         let id: Int
-            let title: String
-            let thumbnail: String
-            let description: String
-            let price: Double
-            let brand: String
-            let images: [String]
-            let rating: Double
-            let warrantyInformation: String
-            let shippingInformation: String
-            let availabilityStatus: String
-            let minimumOrderQuantity: Int
-            let returnPolicy: String
-            let reviews: [Review]
-        }
+        let title: String
+        let thumbnail: String
+        let description: String
+        let price: Double
+        let brand: String
+        let images: [String]
+        let rating: Double
+        let warrantyInformation: String
+        let shippingInformation: String
+        let availabilityStatus: String
+        let minimumOrderQuantity: Int
+        let returnPolicy: String
+        let reviews: [Review]
+    }
     
     
     var homeData: [Details] = []
@@ -43,9 +43,9 @@ class HomePageViewController: UIViewController {
     
     @IBOutlet weak var tableViewHome: UITableView!
     @IBOutlet weak var segmentedControlHome: UISegmentedControl!
-  
+    
     // Declare customNavBar as an optional property
-        var customNavBar: WelcomeDesignHomePage?
+    var customNavBar: WelcomeDesignHomePage?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
     override func viewDidLoad() {
@@ -54,12 +54,12 @@ class HomePageViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         // Initialize and add the custom navigation bar
-        customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 50))
+        customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 35))
         
-        if let user = Auth.auth().currentUser {
-            print("User ID: \(user.displayName ?? "N")")
-            customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
-        }
+        //        if let user = Auth.auth().currentUser {
+        //            print("User ID: \(user.displayName ?? "N")")
+        //            customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
+        //        }
         
         if let customNavBar = customNavBar {
             view.addSubview(customNavBar)
@@ -75,101 +75,119 @@ class HomePageViewController: UIViewController {
         Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
         loadSegmentData()
         
-        setupSegmentedControl()
-    }
-
-
-        override func viewWillAppear(_ animated: Bool) {
-            do {
-                if let user = Auth.auth().currentUser {
-                    print("User ID: \(user.displayName ?? "N")")
-                    customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
-                }
-                } catch {
-                    print("Failed to fetch user details:", error.localizedDescription)
-                }
-        }
-
-    func updateTableView(with products: [Product]) {
-            DispatchQueue.main.async {
-                self.homeData = products.map { Details(id: $0.id, title: $0.title, thumbnail: $0.thumbnail, description: $0.description, price: $0.price, brand: $0.brand, images: $0.images, rating: $0.rating, warrantyInformation: $0.warrantyInformation, shippingInformation: $0.shippingInformation, availabilityStatus: $0.availabilityStatus, minimumOrderQuantity: $0.minimumOrderQuantity, returnPolicy: $0.returnPolicy, reviews: $0.reviews) }
-                self.tableViewHome.reloadData()
-                ActivityIndicator.shared.hideActivityIndicator()
-                self.view.backgroundColor = .white
+//        setupSegmentedControl()
+        
+        if let tabBar = self.tabBarController?.tabBar {
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.backgroundColor = UIColor(white: 0.95, alpha: 1.0) // Very light grey color
+            tabBar.standardAppearance = tabBarAppearance
+            
+            if #available(iOS 15.0, *) {
+                tabBar.scrollEdgeAppearance = tabBarAppearance
             }
+            
+            tabBar.tintColor = UIColor(hex: "#FFC801") // Set the selected item color
+            tabBar.unselectedItemTintColor = UIColor.darkGray // Set the unselected item color
         }
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //            do {
+        //                if let user = Auth.auth().currentUser {
+        //                    print("User ID: \(user.displayName ?? "N")")
+        //                    customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
+        //                }
+        //                } catch {
+        //                    print("Failed to fetch user details:", error.localizedDescription)
+        //                }
+    }
+    
+    func updateTableView(with products: [Product]) {
+        DispatchQueue.main.async {
+            self.homeData = products.map { Details(id: $0.id, title: $0.title, thumbnail: $0.thumbnail, description: $0.description, price: $0.price, brand: $0.brand, images: $0.images, rating: $0.rating, warrantyInformation: $0.warrantyInformation, shippingInformation: $0.shippingInformation, availabilityStatus: $0.availabilityStatus, minimumOrderQuantity: $0.minimumOrderQuantity, returnPolicy: $0.returnPolicy, reviews: $0.reviews) }
+            self.tableViewHome.reloadData()
+            ActivityIndicator.shared.hideActivityIndicator()
+            self.view.backgroundColor = .white
+        }
+    }
     
     @IBAction func menuHomeTapped(_ sender: Any) {
         print("here")
         let menuViewController = MyAccountViewController()
         menuViewController.modalPresentationStyle = .fullScreen
         present(menuViewController, animated: true)
-                
+        
     }
     @IBAction func segmentedControlBtn(_ sender: Any) {
         loadSegmentData()
     }
     
     @objc func scrollingImgSetup() {
-            if index < imageArray.count - 1 {
-                index += 1
-            } else {
-                index = 0
-            }
-            pages.numberOfPages = imageArray.count
-            pages.currentPage = index
-            imageCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
+        if index < imageArray.count - 1 {
+            index += 1
+        } else {
+            index = 0
         }
-
+        pages.numberOfPages = imageArray.count
+        pages.currentPage = index
+        imageCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
+    }
+    
     internal func loadSegmentData() {
-            let category: String
-            switch segmentedControlHome.selectedSegmentIndex {
-            case 0:
-                category = "womens-bags"
-            case 1:
-                category = "mens-shirts"
-            default:
-                return
-            }
-            ActivityIndicator.shared.showActivityIndicator(on: self.view)
-            weatherManager.fetchData(for: category) { titlesAndThumbnails in
-                self.updateTableView(with: titlesAndThumbnails)
-            }
+        let category: String
+        switch segmentedControlHome.selectedSegmentIndex {
+        case 0:
+            category = "womens-bags"
+        case 1:
+            category = "mens-shirts"
+        case 2:
+            category = "laptops"
+        case 3:
+            category = "tablets"
+        default:
+            return
         }
+        ActivityIndicator.shared.showActivityIndicator(on: self.view)
+        weatherManager.fetchData(for: category) { titlesAndThumbnails in
+            self.updateTableView(with: titlesAndThumbnails)
+        }
+    }
     func setupMyAccountViewController() {
-            if let myAccountVC = self.tabBarController?.viewControllers?[1] as? MyAccountViewController {
-                myAccountVC.onNameUpdate = { [weak self] updatedName in
-                    self?.customNavBar?.firstNameLabel.text = updatedName
-                }
-            }
-        }
-    private func setupSegmentedControl() {
-            // Set the default text attributes for the unselected segments
-            let unselectedTextAttributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.white
-            ]
-            segmentedControlHome.setTitleTextAttributes(unselectedTextAttributes, for: .normal)
-
-            // Set the text attributes for the selected segments
-            let selectedTextAttributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.black
-            ]
-            segmentedControlHome.setTitleTextAttributes(selectedTextAttributes, for: .selected)
-
-            // Add target to handle value changes
-            segmentedControlHome.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
-        }
-
-        @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-            for i in 0..<sender.numberOfSegments {
-                let titleTextAttributes = i == sender.selectedSegmentIndex
-                    ? [NSAttributedString.Key.foregroundColor: UIColor.black]
-                    : [NSAttributedString.Key.foregroundColor: UIColor.white]
-                sender.setTitleTextAttributes(titleTextAttributes, for: .normal)
-                setupSegmentedControl()
+        if let myAccountVC = self.tabBarController?.viewControllers?[1] as? MyAccountViewController {
+            myAccountVC.onNameUpdate = { [weak self] updatedName in
+                self?.customNavBar?.firstNameLabel.text = updatedName
             }
         }
     }
+    private func setupSegmentedControl() {
+        //            // Set the default text attributes for the unselected segments
+        //            let unselectedTextAttributes: [NSAttributedString.Key: Any] = [
+        //                .foregroundColor: UIColor.white
+        //            ]
+        //            segmentedControlHome.setTitleTextAttributes(unselectedTextAttributes, for: .normal)
+        //
+        //            // Set the text attributes for the selected segments
+        //            let selectedTextAttributes: [NSAttributedString.Key: Any] = [
+        //                .foregroundColor: UIColor.black
+        //            ]
+        //            segmentedControlHome.setTitleTextAttributes(selectedTextAttributes, for: .selected)
+        //
+        //            // Add target to handle value changes
+        //            segmentedControlHome.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        //        }
+        //
+        //        @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        //            for i in 0..<sender.numberOfSegments {
+        //                let titleTextAttributes = i == sender.selectedSegmentIndex
+        //                    ? [NSAttributedString.Key.foregroundColor: UIColor.black]
+        //                    : [NSAttributedString.Key.foregroundColor: UIColor.white]
+        //                sender.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        //                setupSegmentedControl()
+        //            }
+        //        }
+    }
+}
 extension HomePageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArray.count

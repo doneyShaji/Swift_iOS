@@ -63,13 +63,13 @@ class LoginViewController: UIViewController {
                     newUser.lastName = loggedInGoggleUser.displayName
                     newUser.emailAddress = loggedInGoggleUser.email
                     if let phoneNumberString = loggedInGoggleUser.phoneNumber, let phoneNumberInt = Int64(phoneNumberString) {
-                            newUser.phoneNo = phoneNumberInt
-                        } else {
-                            newUser.phoneNo = 0
-                        }
-                        
+                        newUser.phoneNo = phoneNumberInt
+                    } else {
+                        newUser.phoneNo = 0
+                    }
+                    
                     newUser.userID = loggedInGoggleUser.uid
-                        
+                    
                     do{
                         try context.save()
                     } catch {
@@ -102,7 +102,9 @@ class LoginViewController: UIViewController {
             } else {
                 self.showAlert(message: errorMessage ?? "Login failed.")
             }
-        }            }
+        }
+    }
+    
     
     func navigateToMainTabBarController() {
         if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController {
@@ -116,4 +118,5 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
 }

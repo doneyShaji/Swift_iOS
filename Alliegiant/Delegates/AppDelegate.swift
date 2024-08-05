@@ -16,7 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        
+        let tabBarAppearance = UITabBarAppearance()
+                tabBarAppearance.backgroundColor = UIColor(white: 0.95, alpha: 1.0) // Very light grey color
+                UITabBar.appearance().standardAppearance = tabBarAppearance
+
+                if #available(iOS 15.0, *) {
+                    UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+                }
+
+                UITabBar.appearance().tintColor = UIColor(hex: "#FFC801") // Set the selected item color
+                UITabBar.appearance().unselectedItemTintColor = UIColor.darkGray // Set the unselected item color
+
             return true
         }
 

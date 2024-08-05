@@ -60,13 +60,13 @@ class MenuViewController: UIViewController {
     }
     
     func setupButton(_ button: UIButton, title: String, image: String) {
-        button.configuration = .tinted()
+        button.configuration = .filled()
         button.configuration?.title = title
         button.configuration?.image = UIImage(systemName: image)
         button.configuration?.imagePadding = 8
         button.configuration?.cornerStyle = .medium
         button.configuration?.baseForegroundColor = .black
-        button.configuration?.baseBackgroundColor = .yellow
+        button.configuration?.baseBackgroundColor = .systemYellow
     }
     
     func setupLogoutButton() {
