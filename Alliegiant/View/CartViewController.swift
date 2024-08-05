@@ -14,7 +14,9 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let razorPayKey = "rzp_test_rpBn8AgkrcNdDH"
     var razorPay : RazorpayCheckout? = nil
     var merchantDetails: MerchantDetails = MerchantDetails.getDefaultData()
-    
+    var totalAmount: Double = 0.0
+
+    @IBOutlet weak var totalAmountLbl: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     var emptyCartLabel: UILabel!
     @IBOutlet weak var checkOutBtn: UIButton!
@@ -26,7 +28,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cartTableView.separatorStyle = .none // Remove default cell separators
         title = "Cart"
         cartTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 50)
-            
+        
         
         // Initialize and configure the empty cart label
         emptyCartLabel = UILabel()
@@ -50,14 +52,14 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         updateCartView()
         
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Ensure proper padding between cells
         cell.contentView.frame = cell.contentView.frame.insetBy(dx: 0, dy: 10)
         cell.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -80,6 +82,15 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cartTableView.isHidden = false
             emptyCartLabel.isHidden = true
             checkOutBtn.isHidden = false  // Show the button if there are items
+            
+            // Calculate the total amount
+            let totalAmount = CartManager.shared.items.reduce(0) { $0 + ((Double($1.price) ?? 0) * Double($1.quantity)) }
+            
+            // Format the total amount to two decimal places
+            let formattedTotalAmount = String(format: "%.2f", totalAmount)
+            
+            // Update the total amount label
+            totalAmountLbl.text = "Total: \(formattedTotalAmount)"
         }
     }
     
@@ -105,14 +116,14 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // UITableViewDelegate method for swipe-to-delete
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                let item = CartManager.shared.items[indexPath.row]
-                CartManager.shared.remove(item: item)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                updateCartView()  // Update the view after removing the item
-            }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let item = CartManager.shared.items[indexPath.row]
+            CartManager.shared.remove(item: item)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            updateCartView()  // Update the view after removing the item
         }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 157.0
@@ -133,29 +144,29 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc private func checkoutButtonTapped() {
         if Auth.auth().currentUser == nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace "Main" with the name of your storyboard if different
-                    if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
-                        if let loginVC = loginNavController.viewControllers.first as? LoginViewController {
-                            loginVC.delegate = self
-                        }
-                        loginNavController.modalPresentationStyle = .fullScreen
-                        present(loginNavController, animated: true, completion: nil)
-                    }
-            } else {
-                if let userID = Auth.auth().currentUser?.uid{
-                    CartManager.shared.createOrder(for: userID)
-                    print("Proceed to checkout")
-                    openRazorPayCheckOut()
+            if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
+                if let loginVC = loginNavController.viewControllers.first as? LoginViewController {
+                    loginVC.delegate = self
                 }
-                
+                loginNavController.modalPresentationStyle = .fullScreen
+                present(loginNavController, animated: true, completion: nil)
             }
+        } else {
+            if let userID = Auth.auth().currentUser?.uid{
+                CartManager.shared.createOrder(for: userID)
+                print("Proceed to checkout")
+                openRazorPayCheckOut()
+            }
+            
+        }
     }
     
     func loginViewControllerDidLogin(_ controller: LoginViewController) {
-            // Dismiss the login view controller and proceed to checkout
-            controller.dismiss(animated: true) {
-                self.openRazorPayCheckOut()
-            }
+        // Dismiss the login view controller and proceed to checkout
+        controller.dismiss(animated: true) {
+            self.openRazorPayCheckOut()
         }
+    }
     
     // CartItemCellDelegate method
     func didTapRemoveButton(on cell: CartTableViewCell) {
@@ -172,11 +183,11 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cartTableView.reloadData()
     }
     func openRazorPayCheckOut(){
-        
+        let totalAmount = CartManager.shared.items.reduce(0) { $0 + ((Double($1.price) ?? 0) * Double($1.quantity)) }
         razorPay = RazorpayCheckout.initWithKey(razorPayKey, andDelegate: self)
         let options: [String:Any] = [
             //                    "key": razorPayKey,
-            "amount": "5000", //This is in currency subunits. 100 = 100 paise= INR 1.
+            "amount": totalAmount * 100, //This is in currency subunits. 100 = 100 paise= INR 1.
             "currency": "INR",//We support more that 92 international currencies.
             "description": "Pay 100 Rupees Now",
             //                    "order_id": "order_DBJOWzybf0sJbb",

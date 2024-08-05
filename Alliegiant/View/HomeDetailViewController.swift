@@ -62,7 +62,7 @@ class HomeDetailViewController: UIViewController, UITableViewDataSource, UITable
         title = "Product Detail"
         titleLabel.text = titleText
         descriptionHome.text = descriptionDetail
-        priceHome.text = priceDetail
+        priceHome.text = "$\(priceDetail!)"
         availabilityStatusHome.text = availability
         warrantyInformationHome.text = "Warranty: \(warrantyDetail ?? "")"
         shippingInformationHome.text = shippingDetail

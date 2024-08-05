@@ -31,5 +31,11 @@ extension String {
         let digitsPredicate = NSPredicate(format: "SELF MATCHES %@", digitsRegex)
         return digitsPredicate.evaluate(with: self)
     }
+    func toDouble() -> Double? {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.locale = Locale(identifier: "en_US") // Adjust locale if needed
+            return formatter.number(from: self)?.doubleValue
+        }
 
 }

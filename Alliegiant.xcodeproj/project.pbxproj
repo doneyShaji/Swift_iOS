@@ -68,7 +68,6 @@
 		04B99E932C510B11009170FE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 04B99E922C510B11009170FE /* GoogleSignInSwift */; };
 		04C66DF12C52268700F95896 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */; };
 		04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */; };
-		04CB7FF02C6090E4004FA4FD /* Alliegiant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04CB7FEE2C6090E4004FA4FD /* Alliegiant.xcdatamodeld */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
 		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
 		04E149672C29300C00239320 /* AppleProducts.json in Resources */ = {isa = PBXBuildFile; fileRef = 04E149662C29300C00239320 /* AppleProducts.json */; };
@@ -85,8 +84,10 @@
 		04FE1AAC2C5D0099001F3B34 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FE1AAB2C5D0099001F3B34 /* OrdersTableViewCell.swift */; };
 		2F1850912C3012CB00E32E06 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1850902C3012CB00E32E06 /* UserManager.swift */; };
 		2F1850972C31CC9E00E32E06 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1850962C31CC9E00E32E06 /* ImageScrollView.swift */; };
+		2F18EF172C612F4500F486A4 /* OrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18EF162C612F4500F486A4 /* OrderDetailTableViewCell.swift */; };
 		2F566C652C31EC350081F2A8 /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F566C642C31EC350081F2A8 /* HomePageTableViewCell.swift */; };
 		2FE01EDB2C31CF7900E7A260 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE01EDA2C31CF7900E7A260 /* HomePageViewController.swift */; };
+		2FFD925F2C612A440057CDA2 /* Alliegiant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2FFD925D2C612A440057CDA2 /* Alliegiant.xcdatamodeld */; };
 		B3ADB8D40509704DE894230A /* Pods_Alliegiant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A82F40632F5948230FE2902C /* Pods_Alliegiant.framework */; };
 /* End PBXBuildFile section */
 
@@ -159,7 +160,6 @@
 		04B99E8D2C510A22009170FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewCollectionVC.swift; sourceTree = "<group>"; };
-		04CB7FEF2C6090E4004FA4FD /* Alliegiant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alliegiant.xcdatamodel; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		04E149662C29300C00239320 /* AppleProducts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AppleProducts.json; sourceTree = "<group>"; };
@@ -177,8 +177,10 @@
 		04FE1AAB2C5D0099001F3B34 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		2F1850902C3012CB00E32E06 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2F1850962C31CC9E00E32E06 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		2F18EF162C612F4500F486A4 /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		2F566C642C31EC350081F2A8 /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = "<group>"; };
 		2FE01EDA2C31CF7900E7A260 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		2FFD925E2C612A440057CDA2 /* Alliegiant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alliegiant.xcdatamodel; sourceTree = "<group>"; };
 		6A45653049DD715D881A0B05 /* Pods-Alliegiant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alliegiant.debug.xcconfig"; path = "Target Support Files/Pods-Alliegiant/Pods-Alliegiant.debug.xcconfig"; sourceTree = "<group>"; };
 		A82F40632F5948230FE2902C /* Pods_Alliegiant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Alliegiant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1D1398194B86ECBD5E8179 /* Pods-Alliegiant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alliegiant.release.xcconfig"; path = "Target Support Files/Pods-Alliegiant/Pods-Alliegiant.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,7 +240,7 @@
 		046E3A2B2BCE7CE70097D632 /* Alliegiant */ = {
 			isa = PBXGroup;
 			children = (
-				04CB7FEE2C6090E4004FA4FD /* Alliegiant.xcdatamodeld */,
+				2FFD925D2C612A440057CDA2 /* Alliegiant.xcdatamodeld */,
 				04AFD06B2C5A34CC0065FAD7 /* Extensions */,
 				04E149652C292FF300239320 /* Bundles */,
 				0486DB1B2C1726DC00F2F547 /* Delegates */,
@@ -311,6 +313,7 @@
 				0404F3F22C5BB92B003765E4 /* HomeCollectionViewCell.swift */,
 				04FE1AA72C5CEB8C001F3B34 /* OrdersViewController.swift */,
 				04FE1AA92C5CF1A1001F3B34 /* OrderDetailViewController.swift */,
+				2F18EF162C612F4500F486A4 /* OrderDetailTableViewCell.swift */,
 				04FE1AAB2C5D0099001F3B34 /* OrdersTableViewCell.swift */,
 			);
 			path = View;
@@ -571,6 +574,7 @@
 				04AFD06F2C5A37650065FAD7 /* OnboardingSlide.swift in Sources */,
 				04B10EB52C48E6870054C2E6 /* RazorPayViewController.swift in Sources */,
 				0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */,
+				2F18EF172C612F4500F486A4 /* OrderDetailTableViewCell.swift in Sources */,
 				045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */,
 				046E3A2D2BCE7CE70097D632 /* AppDelegate.swift in Sources */,
 				046DCE7F2C33FD00004DDF30 /* CartTableViewCell.swift in Sources */,
@@ -608,7 +612,7 @@
 				04AFD06A2C5A31CC0065FAD7 /* OnboardingViewController.swift in Sources */,
 				040ABAE02C462D2F001F13CD /* URLSessionProtocol.swift in Sources */,
 				046E3A2F2BCE7CE70097D632 /* SceneDelegate.swift in Sources */,
-				04CB7FF02C6090E4004FA4FD /* Alliegiant.xcdatamodeld in Sources */,
+				2FFD925F2C612A440057CDA2 /* Alliegiant.xcdatamodeld in Sources */,
 				2F1850912C3012CB00E32E06 /* UserManager.swift in Sources */,
 				046DCE7B2C33D8BF004DDF30 /* CartManager.swift in Sources */,
 				04005DD72C2BE5D600D51EFA /* AboutUsViewController.swift in Sources */,
@@ -959,14 +963,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		04CB7FEE2C6090E4004FA4FD /* Alliegiant.xcdatamodeld */ = {
+		2FFD925D2C612A440057CDA2 /* Alliegiant.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				04CB7FEF2C6090E4004FA4FD /* Alliegiant.xcdatamodel */,
+				2FFD925E2C612A440057CDA2 /* Alliegiant.xcdatamodel */,
 			);
-			currentVersion = 04CB7FEF2C6090E4004FA4FD /* Alliegiant.xcdatamodel */;
+			currentVersion = 2FFD925E2C612A440057CDA2 /* Alliegiant.xcdatamodel */;
 			name = Alliegiant.xcdatamodeld;
-			path = /Users/p10/Desktop/Swift_iOS/Alliegiant/Alliegiant.xcdatamodeld;
+			path = /Users/doneyv.shaji/Desktop/Swift_iOS/Alliegiant/Alliegiant.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

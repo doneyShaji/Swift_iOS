@@ -239,7 +239,7 @@ extension HomePageViewController: UITableViewDelegate {
             homeDetailVC.titleText = selectedProduct.title
             homeDetailVC.images = selectedProduct.images // Pass images array
             homeDetailVC.descriptionDetail = selectedProduct.description
-            homeDetailVC.priceDetail = "$\(String(describing: selectedProduct.price))"
+            homeDetailVC.priceDetail = "\(String(describing: selectedProduct.price))"
             homeDetailVC.ratingDetail = "\(String(describing: selectedProduct.rating))"
             homeDetailVC.availability = selectedProduct.availabilityStatus
             homeDetailVC.maximumQuantity = "\(String(describing: selectedProduct.minimumOrderQuantity))"

@@ -10,6 +10,6 @@ import UIKit
 class OrdersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var orderDate: UILabel!
-    
+    @IBOutlet weak var orderTotal: UILabel!
     @IBOutlet weak var orderID: UILabel!
 }

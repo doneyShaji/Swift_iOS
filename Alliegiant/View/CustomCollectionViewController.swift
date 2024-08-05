@@ -90,7 +90,7 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
                 detailCollectionVC.collectionLabel = selectedColour.title
                 detailCollectionVC.collectionImage = selectedColour.thumbnail
                 detailCollectionVC.collectionDescription = selectedColour.description
-                detailCollectionVC.collectionPrice = "$\(String(selectedColour.price))"
+                detailCollectionVC.collectionPrice = String(selectedColour.price)
                 navigationController?.pushViewController(detailCollectionVC, animated: true)
             }
         }

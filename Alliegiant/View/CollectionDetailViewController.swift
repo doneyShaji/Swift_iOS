@@ -50,7 +50,7 @@ class CollectionDetailViewController: UIViewController {
             
             collectionDetailVC.text = collectionLabel
             collectionViewDescription.text = collectionDescription
-            collectionViewPrice.text = collectionPrice
+            collectionViewPrice.text = "$\(collectionPrice!)"
             quantityLabel.text = "\(quantity)"
             print(collectionImage ?? "No image URL provided")
             

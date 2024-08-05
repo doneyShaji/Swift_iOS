@@ -9,6 +9,7 @@
         <relationship name="users" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RegisteredUsers" inverseName="orders" inverseEntity="RegisteredUsers"/>
     </entity>
     <entity name="OrderItem" representedClassName="OrderItem" syncable="YES" codeGenerationType="class">
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
         <attribute name="orderItemID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="productName" optional="YES" attributeType="String"/>

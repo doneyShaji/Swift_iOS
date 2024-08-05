@@ -34,10 +34,23 @@ extension OrderDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath)
-                let item = orderItems?[indexPath.row]
-                cell.textLabel?.text = item?.productName
-                cell.detailTextLabel?.text = "Quantity: \(item?.quantity ?? 0), Price: \(item?.price ?? 0.0)"
-                return cell
-    }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath) as? OrderDetailTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            let item = orderItems?[indexPath.row]
+            cell.orderDetailLbl.text = item?.productName
+            cell.orderQuantityLbl.text = "Quantity: \(item?.quantity ?? 0)"
+            cell.orderPriceLabel.text = "Price: \(item?.price ?? 0.0)"
+            
+        if let imageUrl = item?.imageURL {
+                ImageLoader.loadImage(from: imageUrl) { image in
+                    cell.orderImage.image = image
+                }
+            } else {
+                cell.orderImage.image = nil
+            }
+            
+            return cell
+        }
 }

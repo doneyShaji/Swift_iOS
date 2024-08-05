@@ -56,6 +56,7 @@ class CartManager {
             orderItem.productName = cartItem.name
             orderItem.price = Double(cartItem.price) ?? 0
             orderItem.quantity = Int64(cartItem.quantity)
+            orderItem.imageURL = cartItem.image
             orderItem.order = newOrder
             
             newOrder.addToOrderItems(orderItem)
