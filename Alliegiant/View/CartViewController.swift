@@ -24,7 +24,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cartTableView.dataSource = self
         cartTableView.delegate = self
         cartTableView.separatorStyle = .none // Remove default cell separators
-
+        title = "Cart"
         cartTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 50)
             
         

@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class HomeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class HomeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddToCartDelegate{
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var targetScrollView: UIView!
@@ -28,7 +28,9 @@ class HomeDetailViewController: UIViewController, UITableViewDataSource, UITable
     var warrantyDetail: String?
     var shippingDetail: String?
     var idDetail: Int?
+    var quantity: Int = 1
     
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionHome: UILabel!
     @IBOutlet weak var priceHome: UILabel!
@@ -98,20 +100,55 @@ class HomeDetailViewController: UIViewController, UITableViewDataSource, UITable
                 setupReviewTableView()
                 fetchReviews()
 
-
-                
+        reviewTableView.separatorStyle = .none
+        reviewTableView.rowHeight = 100
+        
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(addToCartButtonTapped))
+        cartButton.tintColor = .black
+        navigationItem.rightBarButtonItem = cartButton
     }
     func setupAddToCartDesign() {
-            let addToCartDesign = AddToCart(frame: .zero)
-            view.addSubview(addToCartDesign)
-            addToCartDesign.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                addToCartDesign.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                addToCartDesign.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                addToCartDesign.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            ])
+        let addToCartDesign = AddToCart(frame: .zero)
+                view.addSubview(addToCartDesign)
+                addToCartDesign.translatesAutoresizingMaskIntoConstraints = false
+                addToCartDesign.delegate = self
+                NSLayoutConstraint.activate([
+                    addToCartDesign.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                    addToCartDesign.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                    addToCartDesign.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                ])
+                self.addToCartDesign = addToCartDesign
         }
+    
+    func incrementQuantity() {
+            quantity += 1
+            addToCartDesign?.quantityLabel.text = "\(quantity)"
+        }
+
+        func decrementQuantity() {
+            if quantity > 1 {
+                quantity -= 1
+                addToCartDesign?.quantityLabel.text = "\(quantity)"
+            }
+        }
+
+        func addToCart() {
+            let newItem = CartItem(name: titleText ?? "Unknown", image: images.first ?? "", price: priceDetail ?? "", description: descriptionDetail ?? "", quantity: quantity)
+            CartManager.shared.add(item: newItem)
+
+            let alertController = UIAlertController(title: "Success", message: "Item successfully added to cart.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+    
+    @objc func addToCartButtonTapped() {
+        guard let cartDetailVC = storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else {
+                    fatalError("Unable to instantiate CartViewController from storyboard.")
+                }
+                navigationController?.pushViewController(cartDetailVC, animated: true)
         
+        
+    }
         func setupReviewTableView() {
             reviewTableView.dataSource = self
             reviewTableView.delegate = self
@@ -146,17 +183,16 @@ class HomeDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBAction func readMoreBtnAction(_ sender: Any) {
         isExpanded.toggle()
                 
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2) {
             if self.isExpanded {
                 self.descriptionHome.text = self.descriptionDetail
                 self.descriptionHome.numberOfLines = 0
                 self.readMore.setTitle("See Less", for: .normal)
-                self.readMore.titleLabel?.font = UIFont.systemFont(ofSize: 9) // Set the font size to 9
+                
             } else {
                 self.descriptionHome.text = self.descriptionDetail
                 self.descriptionHome.numberOfLines = 2
                 self.readMore.setTitle("Read More", for: .normal)
-                self.readMore.titleLabel?.font = UIFont.systemFont(ofSize: 9) // Set the font size to 9
             }
             
             self.view.layoutIfNeeded()

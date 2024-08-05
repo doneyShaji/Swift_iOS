@@ -34,7 +34,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var pages: UIPageControl!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var checkOutBtn: UIButton!
-    var imageArray = ["card_1","card_2","card_3","card_4","card_5","card_6"]
+    var imageArray = ["card_10","card_8","card_3","card_11","card_4","card_6"]
     var index = 0
     
     @IBAction func checkOutBtnTapped(_ sender: Any) {

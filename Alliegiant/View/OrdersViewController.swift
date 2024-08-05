@@ -8,7 +8,22 @@
 import UIKit
 import FirebaseAuth
 import CoreData
-class OrdersViewController: UIViewController {
+class OrdersViewController: UIViewController, LoginViewControllerDelegate, UINavigationControllerDelegate {
+    func loginViewControllerDidLogin(_ controller: LoginViewController) {
+        controller.dismiss(animated: true) {
+            // Reload the view controller after dismissing the login view controller
+            if let navigationController = self.navigationController {
+                // Pop the current view controller
+                navigationController.popViewController(animated: false)
+                
+                // Instantiate and push the view controller again
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyboard.instantiateViewController(withIdentifier: "OrdersViewController") as! OrdersViewController
+                navigationController.pushViewController(newViewController, animated: false)
+            }
+        }
+    }
+    
 
     @IBOutlet weak var tableView: UITableView!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -111,21 +126,13 @@ class OrdersViewController: UIViewController {
         }
         
         @objc func navigateToLoginViewController() {
-            guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let window = scene.windows.first else {
-                return
-            }
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace "Main" with the name of your storyboard if different
             if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
-                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                    window.rootViewController = loginNavController
-                    window.makeKeyAndVisible()
-                }, completion: { _ in
-                    // Log the order of the view controllers in the navigation stack
-                    print("Current Navigation Stack: \(loginNavController.viewControllers)")
-                })
+                if let loginVC = loginNavController.viewControllers.first as? LoginViewController {
+                    loginVC.delegate = self
+                }
+                loginNavController.modalPresentationStyle = .fullScreen
+                present(loginNavController, animated: true, completion: nil)
             }
         }
     }

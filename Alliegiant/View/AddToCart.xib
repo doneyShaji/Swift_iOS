@@ -11,6 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddToCart" customModule="Alliegiant" customModuleProvider="target">
             <connections>
                 <outlet property="addToCart" destination="Ykh-uU-71i" id="GFQ-ue-78Q"/>
+                <outlet property="decrementButton" destination="nrU-SH-AMu" id="3Nj-kw-jQ2"/>
+                <outlet property="incrementButton" destination="nLn-Ri-c2f" id="a9z-Zm-vHb"/>
+                <outlet property="quantityLabel" destination="whv-O1-e3I" id="egr-OV-wUP"/>
                 <outlet property="quantityStack" destination="Idq-Hw-cs6" id="cnE-YZ-FbM"/>
             </connections>
         </placeholder>
@@ -32,15 +35,18 @@
                             <buttonConfiguration key="configuration" style="plain" image="minus" catalog="system">
                                 <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="decrementButton:" destination="-1" eventType="touchUpInside" id="WSt-fP-FzH"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whv-O1-e3I">
                             <rect key="frame" x="40" y="0.0" width="40" height="35"/>
-                            <color key="backgroundColor" systemColor="systemMintColor"/>
+                            <color key="backgroundColor" systemColor="systemYellowColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="EcZ-L2-3Xc"/>
                                 <constraint firstAttribute="height" constant="35" id="fDp-42-zTu"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -50,33 +56,50 @@
                                 <constraint firstAttribute="width" constant="40" id="0yS-d2-NeZ"/>
                                 <constraint firstAttribute="height" constant="35" id="qpi-85-EbF"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system" cornerStyle="medium">
-                                <backgroundConfiguration key="background"/>
-                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </buttonConfiguration>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="plus" catalog="system">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="incrementButton:" destination="-1" eventType="touchUpInside" id="efc-3U-d0D"/>
+                            </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemMintColor"/>
+                    <color key="backgroundColor" systemColor="systemYellowColor"/>
                     <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Inn-a8-650"/>
                         <constraint firstAttribute="width" constant="120" id="Wiq-BY-Hy6"/>
                         <constraint firstAttribute="height" constant="35" id="XQg-8J-xgZ"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykh-uU-71i">
                     <rect key="frame" x="197" y="9" width="180" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="8qo-a0-jFI"/>
+                        <constraint firstAttribute="height" constant="44" id="SBX-LC-VIx"/>
                         <constraint firstAttribute="width" constant="180" id="dhe-3b-9f3"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="gray" title="Add To Cart" cornerStyle="fixed">
-                        <backgroundConfiguration key="background" cornerRadius="23"/>
-                        <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
-                        <color key="baseForegroundColor" systemColor="groupTableViewBackgroundColor"/>
-                        <color key="baseBackgroundColor" systemColor="systemTealColor"/>
+                    <buttonConfiguration key="configuration" style="gray" title="Add To Cart">
+                        <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="0.0"/>
+                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
                     </buttonConfiguration>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addToCart:" destination="-1" eventType="touchUpInside" id="njO-qB-DUP"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -96,14 +119,8 @@
     <resources>
         <image name="minus" catalog="system" width="128" height="26"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

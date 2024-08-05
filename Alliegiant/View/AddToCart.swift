@@ -6,13 +6,32 @@
 //
 
 import UIKit
+protocol AddToCartDelegate: AnyObject {
+    func incrementQuantity()
+    func decrementQuantity()
+    func addToCart()
+}
 
 class AddToCart: UIView {
-
-    @IBOutlet weak var wishlistBtn: UIButton!
-    @IBOutlet weak var addToCart: UIButton!
     
+    @IBOutlet weak var addToCart: UIButton!
     @IBOutlet weak var quantityStack: UIStackView!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var incrementButton: UIButton!
+    @IBOutlet weak var decrementButton: UIButton!
+    
+    @IBAction func incrementButton(_ sender: Any) {
+        delegate?.incrementQuantity()
+    }
+    @IBAction func decrementButton(_ sender: Any) {
+        delegate?.decrementQuantity()
+    }
+    
+    @IBAction func addToCart(_ sender: UIButton) {
+        delegate?.addToCart()
+    }
+    
+    weak var delegate: AddToCartDelegate?
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -28,8 +47,5 @@ class AddToCart: UIView {
         let viewFromXib = Bundle.main.loadNibNamed("AddToCart", owner: self, options: nil)![0] as! UIView
         viewFromXib.frame = self.bounds
         addSubview(viewFromXib)
-        // Configure the stack view's appearance
-                quantityStack.layer.cornerRadius = 8  // Adjust the radius value as needed
-                quantityStack.layer.masksToBounds = true
     }
 }

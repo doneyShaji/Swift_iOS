@@ -136,18 +136,18 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
 
             let menu = UIMenu(title: "", children: [ascendingAction, descendingAction, priceHighToLowAction, priceLowToHighAction, clearFilterAction])
             
-            var configuration = UIButton.Configuration.tinted()
+            var configuration = UIButton.Configuration.filled()
             configuration.title = "Sort"
             configuration.image = UIImage(systemName: "arrow.up.arrow.down")
-            configuration.baseForegroundColor = .systemPink
-            configuration.baseBackgroundColor = .systemPink
+            configuration.baseForegroundColor = .black
+            configuration.baseBackgroundColor = .systemYellow
 
-            let titleAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 14)
-            ]
+//            let titleAttributes: [NSAttributedString.Key: Any] = [
+//                .font: UIFont.systemFont(ofSize: 14)
+//            ]
+//
+//            configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 14)
 
-            configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 14)
-            
             button.configuration = configuration
             button.showsMenuAsPrimaryAction = true
             button.menu = menu
@@ -158,7 +158,7 @@ class CustomCollectionViewController: UICollectionViewController, UISearchBarDel
             
             searchTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(performSearch), userInfo: searchText, repeats: false)
         }
-
+        
         @objc func performSearch(_ timer: Timer) {
             guard let searchText = timer.userInfo as? String else { return }
             if searchText.isEmpty {

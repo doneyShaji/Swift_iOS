@@ -41,6 +41,7 @@ class UserManager {
                 return
             }
 
+            
             let newUser = RegisteredUsers(context: self.context)
             newUser.firstName = user.firstName
             newUser.lastName = user.lastName
