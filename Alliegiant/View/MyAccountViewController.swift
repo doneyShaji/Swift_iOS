@@ -11,26 +11,15 @@ import FirebaseAuth
 
 class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
     
-    var onNameUpdate: ((String) -> Void)?
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var firstNameLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
-    
-    @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var firstNameTitle: UILabel!
-    @IBOutlet weak var lastNameTitle: UILabel!
-    @IBOutlet weak var emailTitle: UILabel!
-    @IBOutlet weak var phoneTitle: UILabel!
-    
-    @IBOutlet weak var editFirstNameTextField: UITextField!
-    @IBOutlet weak var editLastNameTextField: UITextField!
-    @IBOutlet weak var editEmailTextField: UITextField!
-    @IBOutlet weak var editPhoneNumber: UITextField!
-    
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var accountDetailsView: UIView!
+    
     var notLoggedInLabel: UILabel!
     var loginButton: UIButton!
     
@@ -46,7 +35,14 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
             showNotLoggedInUI()
         } else {
             loadUserDetails()
-            toggleEditingMode(false)
+//            toggleEditingMode(false)
+        }
+        
+        if let user = Auth.auth().currentUser {
+                        if let photoURL = user.photoURL {
+                            loadProfileImage(from: photoURL)
+                        }
+                    
         }
     }
     //MARK: - Button Designs
@@ -54,23 +50,9 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
         profileImageView.layer.masksToBounds = true
         profileImageView.cornerRadius = profileImageView.frame.height / 2
         
-        editButton.configuration = .filled()
-        editButton.configuration?.title = "Edit"
-        editButton.configuration?.image = UIImage(systemName: "square.and.pencil.circle")
-        editButton.configuration?.imagePadding = 8
-        editButton.configuration?.baseForegroundColor = .black
-        editButton.configuration?.baseBackgroundColor = .systemYellow
-        editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+        accountDetailsView.layer.borderColor = UIColor.lightGray.cgColor
+        accountDetailsView.layer.borderWidth = 2.0
         
-        logoutButton.configuration = .filled()
-        logoutButton.configuration?.title = "Logout"
-        logoutButton.configuration?.image = UIImage(systemName: "person.crop.circle.badge.minus")
-        logoutButton.configuration?.imagePadding = 8
-        logoutButton.configuration?.baseForegroundColor = .black
-        logoutButton.configuration?.baseBackgroundColor = .systemYellow
-        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-        
-        // Initialize notLoggedInLabel and loginButton
         notLoggedInLabel = UILabel()
         notLoggedInLabel.text = "You are not logged in."
         notLoggedInLabel.textAlignment = .center
@@ -148,35 +130,31 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
         ])
         
         // Hide other UI elements
-        profileImageView.isHidden = true
-        firstNameLabel.isHidden = true
-        lastNameLabel.isHidden = true
-        emailLabel.isHidden = true
-        phoneNumberLabel.isHidden = true
-        editFirstNameTextField.isHidden = true
-        editLastNameTextField.isHidden = true
-        editEmailTextField.isHidden = true
-        editPhoneNumber.isHidden = true
-        editButton.isHidden = true
-        logoutButton.isHidden = true
-        firstNameTitle.isHidden = true
-        lastNameTitle.isHidden = true
-        emailTitle.isHidden = true
-        phoneTitle.isHidden = true
-        menuBtn.isHidden = true
+//        profileImageView.isHidden = true
+//        firstNameLabel.isHidden = true
+//        lastNameLabel.isHidden = true
+//        emailLabel.isHidden = true
+//        phoneNumberLabel.isHidden = true
+//        editFirstNameTextField.isHidden = true
+//        editLastNameTextField.isHidden = true
+//        editEmailTextField.isHidden = true
+//        editPhoneNumber.isHidden = true
+//        editButton.isHidden = true
+//        logoutButton.isHidden = true
+//        firstNameTitle.isHidden = true
+//        lastNameTitle.isHidden = true
+//        emailTitle.isHidden = true
+//        phoneTitle.isHidden = true
+//        menuBtn.isHidden = true
     }
     // MARK: - Load User Details
     func loadUserDetails() {
         if let user = Auth.auth().currentUser {
-            firstNameLabel.text = user.displayName ?? "N/A"
-            lastNameLabel.text = user.displayName ?? "N/A" // Adjust this based on how you store the last name
+            firstNameTitle.text = user.displayName ?? "N/A"
             emailLabel.text = user.email ?? "N/A"
-            phoneNumberLabel.text = user.phoneNumber ?? "N/A"
-            
-            editFirstNameTextField.text = user.displayName
-            editLastNameTextField.text = user.displayName // Adjust this based on how you store the last name
-            editEmailTextField.text = user.email
-            editPhoneNumber.text = user.phoneNumber
+            phoneLabel.text = user.phoneNumber ?? "N/A"
+            countryLabel.text = "India"
+            genderLabel.text =  "Female"
             
             if let photoURL = user.photoURL {
                 loadProfileImage(from: photoURL)
@@ -201,65 +179,26 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
         }
         task.resume()
     }
-    func toggleEditingMode(_ enable: Bool) {
-        editFirstNameTextField.isHidden = !enable
-        editLastNameTextField.isHidden = !enable
-        editEmailTextField.isHidden = !enable
-        editPhoneNumber.isHidden = !enable
-        
-        firstNameLabel.isHidden = enable
-        lastNameLabel.isHidden = enable
-        emailLabel.isHidden = enable
-        phoneNumberLabel.isHidden = enable
-        
-        logoutButton.setTitle(enable ? "Update" : "Logout", for: .normal)
-        editButton.setTitle(enable ? "Cancel Editing" : "Edit", for: .normal)
-        
-    }
+//    func toggleEditingMode(_ enable: Bool) {
+//        editFirstNameTextField.isHidden = !enable
+//        editLastNameTextField.isHidden = !enable
+//        editEmailTextField.isHidden = !enable
+//        editPhoneNumber.isHidden = !enable
+//        
+//        firstNameLabel.isHidden = enable
+//        lastNameLabel.isHidden = enable
+//        emailLabel.isHidden = enable
+//        phoneNumberLabel.isHidden = enable
+//        
+//        logoutButton.setTitle(enable ? "Update" : "Logout", for: .normal)
+//        editButton.setTitle(enable ? "Cancel Editing" : "Edit", for: .normal)
+//        
+//    }
     
-    @IBAction func editButtonTapped(_ sender: Any) {
-        isEditingMode.toggle()
-        toggleEditingMode(isEditingMode)
-    }
-    
-    
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        if isEditingMode {
-            // Update user details in Firebase
-            guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
-                  let lastName = editLastNameTextField.text, !lastName.isEmpty,
-                  let email = editEmailTextField.text, email.isValidEmail,
-                  let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
-                showAlert(message: "Please make sure all fields are filled correctly.")
-                return
-            }
-            
-            if let user = Auth.auth().currentUser {
-                let changeRequest = user.createProfileChangeRequest()
-                changeRequest.displayName = "\(firstName) \(lastName)" // Adjust based on how you want to store first and last name
-                changeRequest.commitChanges { error in
-                    if let error = error {
-                        print("Failed to update user details:", error.localizedDescription)
-                        self.showAlert(message: "Failed to update details: \(error.localizedDescription)")
-                    } else {
-                        self.showAlert(message: "Details updated successfully!") { [weak self] in
-                            self?.isEditingMode = false
-                            self?.toggleEditingMode(false)
-                            self?.loadUserDetails()
-                        }
-                    }
-                }
-            }
-        } else {
-            do {
-                try Auth.auth().signOut()
-                navigateToLoginViewController()
-            } catch let signOutError as NSError {
-                print("Error signing out: %@", signOutError)
-                showAlert(message: "Error signing out: \(signOutError.localizedDescription)")
-            }
-        }
-    }
+//    @IBAction func editButtonTapped(_ sender: Any) {
+//        isEditingMode.toggle()
+//        toggleEditingMode(isEditingMode)
+//    }
     
     func showAlert(message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
@@ -280,3 +219,41 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
         }
     }
 }
+
+//@IBAction func logoutButtonTapped(_ sender: Any) {
+//    if isEditingMode {
+//        // Update user details in Firebase
+//        guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
+//              let lastName = editLastNameTextField.text, !lastName.isEmpty,
+//              let email = editEmailTextField.text, email.isValidEmail,
+//              let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
+//            showAlert(message: "Please make sure all fields are filled correctly.")
+//            return
+//        }
+//        
+//        if let user = Auth.auth().currentUser {
+//            let changeRequest = user.createProfileChangeRequest()
+//            changeRequest.displayName = "\(firstName) \(lastName)" // Adjust based on how you want to store first and last name
+//            changeRequest.commitChanges { error in
+//                if let error = error {
+//                    print("Failed to update user details:", error.localizedDescription)
+//                    self.showAlert(message: "Failed to update details: \(error.localizedDescription)")
+//                } else {
+//                    self.showAlert(message: "Details updated successfully!") { [weak self] in
+//                        self?.isEditingMode = false
+//                        self?.toggleEditingMode(false)
+////                            self?.loadUserDetails()
+//                    }
+//                }
+//            }
+//        }
+//    } else {
+//        do {
+//            try Auth.auth().signOut()
+//            navigateToLoginViewController()
+//        } catch let signOutError as NSError {
+//            print("Error signing out: %@", signOutError)
+//            showAlert(message: "Error signing out: \(signOutError.localizedDescription)")
+//        }
+//    }
+//}

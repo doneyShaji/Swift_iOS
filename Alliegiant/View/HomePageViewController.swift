@@ -65,7 +65,7 @@ class HomePageViewController: UIViewController {
             view.addSubview(customNavBar)
         }
         
-        setupMyAccountViewController()
+//        setupMyAccountViewController()
         
         tableViewHome.delegate = self
         tableViewHome.dataSource = self
@@ -153,13 +153,7 @@ class HomePageViewController: UIViewController {
             self.updateTableView(with: titlesAndThumbnails)
         }
     }
-    func setupMyAccountViewController() {
-        if let myAccountVC = self.tabBarController?.viewControllers?[1] as? MyAccountViewController {
-            myAccountVC.onNameUpdate = { [weak self] updatedName in
-                self?.customNavBar?.firstNameLabel.text = updatedName
-            }
-        }
-    }
+    
     private func setupSegmentedControl() {
         //            // Set the default text attributes for the unselected segments
         //            let unselectedTextAttributes: [NSAttributedString.Key: Any] = [
