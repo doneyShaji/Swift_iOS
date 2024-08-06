@@ -62,8 +62,6 @@ class RegisteredUsersViewController: UIViewController, UITableViewDelegate, UITa
         
         func deleteUser(at indexPath: IndexPath) {
             guard let userToDelete = registeredUsersItems?[indexPath.row] else { return }
-            
-            // Perform deletion in Core Data
             context.delete(userToDelete)
             
             do {

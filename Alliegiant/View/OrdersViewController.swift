@@ -147,10 +147,9 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let order = items?[indexPath.row]
-        cell.orderID.text = order?.orderID?.uuidString ?? " "
+        cell.orderID.text = "Order# \(order?.orderID?.uuidString ?? "")"
         if let totalAmount = order?.totalAmount {
-            cell.orderTotal.text = String(totalAmount)
-            
+            cell.orderTotal.text = String(format: "$%.2f", totalAmount)
         }
         
         else {
@@ -159,7 +158,14 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource {
         if let date = order?.date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
-            cell.orderDate.text = dateFormatter.string(from: date)
+            
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "HH:mm:ss"
+            
+            let dateString = dateFormatter.string(from: date)
+            let timeString = timeFormatter.string(from: date)
+            
+            cell.orderDate.text = "\(dateString), \(timeString)"
         } else {
             cell.orderDate.text = "N/A"
         }

@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import FirebaseAuth
 
 class OrderDetailViewController: UIViewController {
 
@@ -18,13 +19,56 @@ class OrderDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchOrderItems()
+        
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(pdfGenerator))
+        cartButton.tintColor = .black
+        navigationItem.rightBarButtonItem = cartButton
     }
-    
+    @objc func pdfGenerator() {
+        
+        let headerInfo: [String: String] = [
+            "companyName": "Alliegiant Inc.",
+            "userName": Auth.auth().currentUser?.displayName ?? "Guest",
+            "userNumber": "Order #\(order?.orderID?.uuidString ?? "N/A")",
+            "amount": "Total Amount: $\(String(format: "%.2f", order?.totalAmount ?? 0.0))"
+        ]
+        
+        if let pdfData = orderTableView.exportInvoiceAsPDF(headerInfo: headerInfo) {
+            saveAndShare(pdfData: pdfData)
+        } else {
+            print("Failed to create PDF.")
+        }
+    }
+
     func fetchOrderItems() {
         guard let order = order else { return }
                 orderItems = order.orderItems?.allObjects as? [OrderItem]
         orderTableView.reloadData()
     }
+
+    func saveAndShare(pdfData: Data) {
+        let temporaryDirectory = NSTemporaryDirectory()
+        let temporaryFilePath = temporaryDirectory.appending("tableView.pdf")
+        let temporaryFileURL = URL(fileURLWithPath: temporaryFilePath)
+        
+        do {
+            try pdfData.write(to: temporaryFileURL)
+            
+            let activityViewController = UIActivityViewController(activityItems: [temporaryFileURL], applicationActivities: nil)
+            
+            // Find the topmost view controller
+            if let topController = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.rootViewController {
+                var currentController = topController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                currentController.present(activityViewController, animated: true, completion: nil)
+            }
+        } catch {
+            print("Could not save PDF file: \(error)")
+        }
+    }
+
 }
 
 

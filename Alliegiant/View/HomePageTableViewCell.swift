@@ -10,11 +10,8 @@ import UIKit
 class HomePageTableViewCell: UITableViewCell {
 
     @IBOutlet weak var homeTableViewIMG: UIImageView!
-    
     @IBOutlet weak var homeTableViewTitle: UILabel!
-    
     @IBOutlet weak var homePriceLabel: UILabel!
-    
     @IBOutlet weak var descriptionHomeLabel: UILabel!
     @IBOutlet weak var homeBrandLabel: UILabel!
     

@@ -16,19 +16,19 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var merchantDetails: MerchantDetails = MerchantDetails.getDefaultData()
     var totalAmount: Double = 0.0
 
+    @IBOutlet weak var AmountLbl: UILabel!
     @IBOutlet weak var totalAmountLbl: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     var emptyCartLabel: UILabel!
     @IBOutlet weak var checkOutBtn: UIButton!
+    @IBOutlet weak var mrpLbl: UILabel!
+    @IBOutlet weak var shippingLbl: UILabel!
+    @IBOutlet weak var freeLbl: UILabel!
+    @IBOutlet weak var totalLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cartTableView.dataSource = self
-        cartTableView.delegate = self
-        cartTableView.separatorStyle = .none // Remove default cell separators
         title = "Cart"
-        cartTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 50)
-        
         
         // Initialize and configure the empty cart label
         emptyCartLabel = UILabel()
@@ -53,14 +53,6 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // Ensure proper padding between cells
-        cell.contentView.frame = cell.contentView.frame.insetBy(dx: 0, dy: 10)
-        cell.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -77,20 +69,29 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if CartManager.shared.items.isEmpty {
             cartTableView.isHidden = true
             emptyCartLabel.isHidden = false
-            checkOutBtn.isHidden = true  // Hide the button if the cart is empty
+            checkOutBtn.isHidden = true
+            AmountLbl.isHidden = true
+            shippingLbl.isHidden = true
+            freeLbl.isHidden = true
+            mrpLbl.isHidden = true
+            totalLbl.isHidden = true
+            totalAmountLbl.isHidden = true
         } else {
             cartTableView.isHidden = false
             emptyCartLabel.isHidden = true
-            checkOutBtn.isHidden = false  // Show the button if there are items
-            
+            checkOutBtn.isHidden = false
+            AmountLbl.isHidden = false
+            shippingLbl.isHidden = false
+            freeLbl.isHidden = false
+            mrpLbl.isHidden = false
+            totalLbl.isHidden = false
+            totalAmountLbl.isHidden = false
             // Calculate the total amount
             let totalAmount = CartManager.shared.items.reduce(0) { $0 + ((Double($1.price) ?? 0) * Double($1.quantity)) }
-            
-            // Format the total amount to two decimal places
             let formattedTotalAmount = String(format: "%.2f", totalAmount)
+            AmountLbl.text = "$\(formattedTotalAmount)"
+            totalAmountLbl.text = "$\(formattedTotalAmount)"
             
-            // Update the total amount label
-            totalAmountLbl.text = "Total: \(formattedTotalAmount)"
         }
     }
     
@@ -102,15 +103,13 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cartCell = cartTableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as! CartTableViewCell
         let item = CartManager.shared.items[indexPath.row]
         cartCell.cartTitle.text = item.name
-        cartCell.cartPrice.text = item.price
-        cartCell.cartQuantity.text = "Quantity - \(String(item.quantity))"
+        cartCell.cartPrice.text = "$\(item.price)"
+        cartCell.cartQuantity.text = "Quantity: \(String(item.quantity))"
         
         // Load the image asynchronously
         ImageLoader.loadImage(from: item.image) { image in
             cartCell.cartImage.image = image
         }
-        // Set the delegate
-        cartCell.delegate = self
         
         return cartCell
     }
@@ -128,14 +127,13 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 157.0
     }
-    // Setup the checkout button
+  
     private func setupCheckoutButton() {
-        
-        checkOutBtn.configuration = .tinted()
+        checkOutBtn.configuration = .filled()
         checkOutBtn.configuration?.title = "Checkout"
         checkOutBtn.configuration?.image = UIImage(systemName: "creditcard")
         checkOutBtn.configuration?.imagePadding = 8
-        checkOutBtn.configuration?.baseForegroundColor = .systemYellow
+        checkOutBtn.configuration?.baseForegroundColor = .black
         checkOutBtn.configuration?.baseBackgroundColor = .systemYellow
         checkOutBtn.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
     }

@@ -51,6 +51,9 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
     }
     //MARK: - Button Designs
     func setupUIAccount(){
+        profileImageView.layer.masksToBounds = true
+        profileImageView.cornerRadius = profileImageView.frame.height / 2
+        
         editButton.configuration = .filled()
         editButton.configuration?.title = "Edit"
         editButton.configuration?.image = UIImage(systemName: "square.and.pencil.circle")
