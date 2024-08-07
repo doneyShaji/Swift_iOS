@@ -11,14 +11,35 @@ import FirebaseAuth
 
 class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
     
+    @IBOutlet weak var bgView: UIImageView!
+    @IBOutlet weak var nameMainTitle: UILabel!
+    //Acount Details View
+    @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var firstNameTitle: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var accountDetailsView: UIView!
+    
+    //Edit View
+    @IBOutlet weak var editView: UIView!
+    
+    @IBOutlet weak var nameEditLabel: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    @IBOutlet weak var emailEditLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var phoneEditLabel: UILabel!
+    @IBOutlet weak var phoneTextField: UITextField!
+    
+    @IBOutlet weak var countryEditLabel: UILabel!
+    @IBOutlet weak var countryTextField: UITextField!
+    
+    @IBOutlet weak var genderEditLabel: UILabel!
+    @IBOutlet weak var genderTextField: UITextField!
     
     var notLoggedInLabel: UILabel!
     var loginButton: UIButton!
@@ -30,28 +51,44 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
         super.viewDidLoad()
         
         setupUIAccount()
-        
         if Auth.auth().currentUser == nil {
             showNotLoggedInUI()
         } else {
             loadUserDetails()
-//            toggleEditingMode(false)
-        }
-        
-        if let user = Auth.auth().currentUser {
-                        if let photoURL = user.photoURL {
-                            loadProfileImage(from: photoURL)
-                        }
-                    
+            toggleEditingMode(false)
         }
     }
+    
     //MARK: - Button Designs
     func setupUIAccount(){
         profileImageView.layer.masksToBounds = true
         profileImageView.cornerRadius = profileImageView.frame.height / 2
+        profileImageView.layer.borderColor = UIColor.white.cgColor
+        profileImageView.layer.borderWidth = 4.0
         
         accountDetailsView.layer.borderColor = UIColor.lightGray.cgColor
-        accountDetailsView.layer.borderWidth = 2.0
+        accountDetailsView.layer.borderWidth = 1.0
+        
+        nameTextField.layer.masksToBounds = true
+        nameTextField.cornerRadius = 6
+        nameTextField.layer.borderColor = UIColor.systemGray6.cgColor
+        nameTextField.layer.borderWidth = 1.0
+        emailTextField.layer.masksToBounds = true
+        emailTextField.cornerRadius = 6
+        emailTextField.layer.borderColor = UIColor.systemGray6.cgColor
+        emailTextField.layer.borderWidth = 1.0
+        phoneTextField.layer.masksToBounds = true
+        phoneTextField.cornerRadius = 6
+        phoneTextField.layer.borderColor = UIColor.systemGray6.cgColor
+        phoneTextField.layer.borderWidth = 1.0
+        countryTextField.layer.masksToBounds = true
+        countryTextField.cornerRadius = 6
+        countryTextField.layer.borderColor = UIColor.systemGray6.cgColor
+        countryTextField.layer.borderWidth = 1.0
+        genderTextField.layer.masksToBounds = true
+        genderTextField.cornerRadius = 6
+        genderTextField.layer.borderColor = UIColor.systemGray6.cgColor
+        genderTextField.layer.borderWidth = 1.0
         
         notLoggedInLabel = UILabel()
         notLoggedInLabel.text = "You are not logged in."
@@ -85,6 +122,7 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
             self.view.layoutIfNeeded()
         })
     }
+    
     @IBAction func moreButtonClicked(_ sender: Any) {
         let menuViewController = MenuViewController()
         menuViewController.modalPresentationStyle = .pageSheet
@@ -97,10 +135,8 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
             sheet.prefersGrabberVisible = true
         }
         present(menuViewController, animated: true)
-        
-        
-        
     }
+    
     func loginViewControllerDidLogin(_ controller: LoginViewController) {
         controller.dismiss(animated: true) {
             // Reload the view controller after dismissing the login view controller
@@ -115,7 +151,7 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
             }
         }
     }
-
+    
     // MARK: - Show Not Logged In UI
     func showNotLoggedInUI() {
         view.addSubview(notLoggedInLabel)
@@ -130,130 +166,166 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
         ])
         
         // Hide other UI elements
-//        profileImageView.isHidden = true
-//        firstNameLabel.isHidden = true
-//        lastNameLabel.isHidden = true
-//        emailLabel.isHidden = true
-//        phoneNumberLabel.isHidden = true
-//        editFirstNameTextField.isHidden = true
-//        editLastNameTextField.isHidden = true
-//        editEmailTextField.isHidden = true
-//        editPhoneNumber.isHidden = true
-//        editButton.isHidden = true
-//        logoutButton.isHidden = true
-//        firstNameTitle.isHidden = true
-//        lastNameTitle.isHidden = true
-//        emailTitle.isHidden = true
-//        phoneTitle.isHidden = true
-//        menuBtn.isHidden = true
+        detailsView.isHidden = true
+        editView.isHidden = true
+        nameMainTitle.isHidden = true
+        bgView.isHidden = true
+        editButton.isHidden = true
+        profileImageView.isHidden = true
     }
+    
     // MARK: - Load User Details
-    func loadUserDetails() {
-        if let user = Auth.auth().currentUser {
-            firstNameTitle.text = user.displayName ?? "N/A"
-            emailLabel.text = user.email ?? "N/A"
-            phoneLabel.text = user.phoneNumber ?? "N/A"
-            countryLabel.text = "India"
-            genderLabel.text =  "Female"
-            
-            if let photoURL = user.photoURL {
-                loadProfileImage(from: photoURL)
-            }
-        } else {
-            showNotLoggedInUI()
-        }
-    }
-    func loadProfileImage(from url: URL) {
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Error loading image: \(error)")
-                return
-            }
-            guard let data = data, let image = UIImage(data: data) else {
-                print("Error loading image data")
-                return
-            }
-            DispatchQueue.main.async {
-                self.profileImageView.image = image
-            }
-        }
-        task.resume()
-    }
-//    func toggleEditingMode(_ enable: Bool) {
-//        editFirstNameTextField.isHidden = !enable
-//        editLastNameTextField.isHidden = !enable
-//        editEmailTextField.isHidden = !enable
-//        editPhoneNumber.isHidden = !enable
-//        
-//        firstNameLabel.isHidden = enable
-//        lastNameLabel.isHidden = enable
-//        emailLabel.isHidden = enable
-//        phoneNumberLabel.isHidden = enable
-//        
-//        logoutButton.setTitle(enable ? "Update" : "Logout", for: .normal)
-//        editButton.setTitle(enable ? "Cancel Editing" : "Edit", for: .normal)
-//        
-//    }
-    
-//    @IBAction func editButtonTapped(_ sender: Any) {
-//        isEditingMode.toggle()
-//        toggleEditingMode(isEditingMode)
-//    }
-    
-    func showAlert(message: String, completion: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            completion?()
-        }))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    @objc func navigateToLoginViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace "Main" with the name of your storyboard if different
-        if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
-            if let loginVC = loginNavController.viewControllers.first as? LoginViewController {
-                loginVC.delegate = self
-            }
-            loginNavController.modalPresentationStyle = .fullScreen
-            present(loginNavController, animated: true, completion: nil)
-        }
-    }
-}
+       func loadUserDetails() {
+           if let user = Auth.auth().currentUser {
+               if let providerData = user.providerData.first {
+                   switch providerData.providerID {
+                   case "google.com":
+                       loadGoogleUserDetails()
+                   case "password":
+                       loadEmailUserDetails()
+                   default:
+                       showNotLoggedInUI()
+                   }
+               }
+           } else {
+               showNotLoggedInUI()
+           }
+       }
 
-//@IBAction func logoutButtonTapped(_ sender: Any) {
-//    if isEditingMode {
-//        // Update user details in Firebase
-//        guard let firstName = editFirstNameTextField.text, !firstName.isEmpty,
-//              let lastName = editLastNameTextField.text, !lastName.isEmpty,
-//              let email = editEmailTextField.text, email.isValidEmail,
-//              let phoneNumber = editPhoneNumber.text, !phoneNumber.isEmpty else {
-//            showAlert(message: "Please make sure all fields are filled correctly.")
-//            return
-//        }
-//        
-//        if let user = Auth.auth().currentUser {
-//            let changeRequest = user.createProfileChangeRequest()
-//            changeRequest.displayName = "\(firstName) \(lastName)" // Adjust based on how you want to store first and last name
-//            changeRequest.commitChanges { error in
-//                if let error = error {
-//                    print("Failed to update user details:", error.localizedDescription)
-//                    self.showAlert(message: "Failed to update details: \(error.localizedDescription)")
-//                } else {
-//                    self.showAlert(message: "Details updated successfully!") { [weak self] in
-//                        self?.isEditingMode = false
-//                        self?.toggleEditingMode(false)
-////                            self?.loadUserDetails()
-//                    }
-//                }
-//            }
-//        }
-//    } else {
-//        do {
-//            try Auth.auth().signOut()
-//            navigateToLoginViewController()
-//        } catch let signOutError as NSError {
-//            print("Error signing out: %@", signOutError)
-//            showAlert(message: "Error signing out: \(signOutError.localizedDescription)")
-//        }
-//    }
-//}
+       func loadGoogleUserDetails() {
+           if let user = Auth.auth().currentUser {
+               if let photoURL = user.photoURL {
+                   loadProfileImage(from: photoURL)
+               }
+               nameMainTitle.text = user.displayName ?? "N/A"
+               emailLabel.text = user.email ?? "N/A"
+               phoneLabel.text = user.phoneNumber ?? "N/A"
+               countryLabel.text = "India"
+               genderLabel.text = "Female"
+               if let photoURL = user.photoURL {
+                   loadProfileImage(from: photoURL)
+               }
+           }
+       }
+
+       func loadEmailUserDetails() {
+//           let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+//
+//           do {
+//               let results = try context.fetch(fetchRequest)
+//               print("Total registered users: \(results.count)")
+//               for user in results {
+//                   print("UserID: \(user.userID ?? "No ID"), Name: \(user.name ?? "No Name")")
+//               }
+//           } catch {
+//               print("Failed to fetch users: \(error.localizedDescription)")
+//           }
+           
+           let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+           fetchRequest.predicate = NSPredicate(format: "userID == %@", Auth.auth().currentUser?.uid ?? "")
+
+           do {
+               let results = try context.fetch(fetchRequest)
+               if let registeredUser = results.first {
+                   if registeredUser.gender == "Female"{
+                       profileImageView.image = #imageLiteral(resourceName: "woman_6997660")
+                   } else if registeredUser.gender == "Male" {
+                       profileImageView.image = #imageLiteral(resourceName: "man_6997676")
+                   }
+                   nameMainTitle.text = registeredUser.name
+                   emailLabel.text = registeredUser.emailAddress
+                   phoneLabel.text = String(registeredUser.phoneNo)
+                   countryLabel.text = "India"
+                   genderLabel.text = registeredUser.gender
+               }
+           } catch {
+               print("Failed to fetch user data from Core Data: \(error.localizedDescription)")
+           }
+       }
+        
+        func loadProfileImage(from url: URL) {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("Error loading image: \(error)")
+                    return
+                }
+                guard let data = data, let image = UIImage(data: data) else {
+                    print("Error loading image data")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.profileImageView.image = image
+                }
+            }
+            task.resume()
+        }
+        func toggleEditingMode(_ enable: Bool) {
+            editView.isHidden = !enable
+            detailsView.isHidden = enable
+            editButton.setTitle(enable ? "Save" : "Edit Profile", for: .normal)
+            
+            if enable {
+                if let user = Auth.auth().currentUser {
+                    nameTextField.text = user.displayName ?? ""
+                    emailTextField.text = user.email ?? ""
+                    phoneTextField.text = user.phoneNumber ?? ""
+                    countryTextField.text = "India"
+                    genderTextField.text = "Female"
+                }
+            }
+        }
+        
+        @IBAction func editButtonTapped(_ sender: Any) {
+            isEditingMode.toggle()
+            toggleEditingMode(isEditingMode)
+            if !isEditingMode {
+                updateDetails()
+            }
+        }
+        
+        func showAlert(message: String, completion: (() -> Void)? = nil) {
+            let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                completion?()
+            }))
+            present(alert, animated: true, completion: nil)
+        }
+        
+        @objc func navigateToLoginViewController() {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace "Main" with the name of your storyboard if different
+            if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
+                if let loginVC = loginNavController.viewControllers.first as? LoginViewController {
+                    loginVC.delegate = self
+                }
+                loginNavController.modalPresentationStyle = .fullScreen
+                present(loginNavController, animated: true, completion: nil)
+            }
+        }
+        
+        func updateDetails() {
+            guard let email = emailTextField.text, !email.isEmpty,
+                  let name = nameTextField.text, !name.isEmpty,
+                  let phone = phoneTextField.text, !phone.isEmpty,
+                  let country = countryTextField.text, !country.isEmpty,
+                  let gender = genderTextField.text, !gender.isEmpty else {
+                showAlert(message: "Please make sure all fields are filled correctly.")
+                return
+            }
+            
+            if let user = Auth.auth().currentUser {
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.displayName = name
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        print("Failed to update user details:", error.localizedDescription)
+                        self.showAlert(message: "Failed to update details: \(error.localizedDescription)")
+                    } else {
+                        self.showAlert(message: "Details updated successfully!") { [weak self] in
+                            self?.loadUserDetails()
+                        }
+                    }
+                }
+            }
+        }
+    }
+

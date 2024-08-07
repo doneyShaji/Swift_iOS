@@ -46,9 +46,9 @@ class RegisteredUsersViewController: UIViewController, UITableViewDelegate, UITa
             }
             
             let registeredUserDetails = self.registeredUsersItems![indexPath.row]
-            let firstNameText = registeredUserDetails.firstName ?? ""
-            let lastNameText = registeredUserDetails.lastName ?? ""
-            cell.nameLabel.text = "\(firstNameText) \(lastNameText)"
+            let firstNameText = registeredUserDetails.name ?? ""
+            
+            cell.nameLabel.text = "\(firstNameText)"
             cell.emailLabel.text = registeredUserDetails.emailAddress
 
             cell.deleteAction = { [weak self] in

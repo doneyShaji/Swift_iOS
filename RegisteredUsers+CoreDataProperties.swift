@@ -2,7 +2,7 @@
 //  RegisteredUsers+CoreDataProperties.swift
 //  
 //
-//  Created by P10 on 02/08/24.
+//  Created by P10 on 07/08/24.
 //
 //
 
@@ -16,9 +16,10 @@ extension RegisteredUsers {
         return NSFetchRequest<RegisteredUsers>(entityName: "RegisteredUsers")
     }
 
+    @NSManaged public var country: String?
     @NSManaged public var emailAddress: String?
-    @NSManaged public var firstName: String?
-    @NSManaged public var lastName: String?
+    @NSManaged public var gender: String?
+    @NSManaged public var name: String?
     @NSManaged public var phoneNo: Int64
     @NSManaged public var userID: String?
     @NSManaged public var orders: NSSet?

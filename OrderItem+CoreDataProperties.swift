@@ -2,7 +2,7 @@
 //  OrderItem+CoreDataProperties.swift
 //  
 //
-//  Created by P10 on 02/08/24.
+//  Created by P10 on 07/08/24.
 //
 //
 
@@ -16,6 +16,7 @@ extension OrderItem {
         return NSFetchRequest<OrderItem>(entityName: "OrderItem")
     }
 
+    @NSManaged public var imageURL: String?
     @NSManaged public var orderItemID: UUID?
     @NSManaged public var price: Double
     @NSManaged public var productName: String?

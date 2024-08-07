@@ -12,10 +12,10 @@ import FirebaseAuth
 
 struct User {
     let userID: String
-    let firstName: String
-    let lastName: String
+    let name: String
     let email: String
     let phoneNumber: String
+    let gender: String
     let password: String
 }
 
@@ -41,13 +41,14 @@ class UserManager {
                 return
             }
 
+            let userFirebaseID = Auth.auth().currentUser?.uid
             
             let newUser = RegisteredUsers(context: self.context)
-            newUser.firstName = user.firstName
-            newUser.lastName = user.lastName
+            newUser.name = user.name
             newUser.emailAddress = user.email
             newUser.phoneNo = Int64(user.phoneNumber) ?? 0
-            newUser.userID = user.userID
+            newUser.gender = user.gender
+            newUser.userID = userFirebaseID
             
             do {
                 try self.context.save()
@@ -63,7 +64,7 @@ class UserManager {
 
         do {
             let results = try context.fetch(fetchRequest)
-            return results.map { User(userID: $0.userID ?? "", firstName: $0.firstName ?? "", lastName: $0.lastName ?? "", email: $0.emailAddress ?? "", phoneNumber: String($0.phoneNo), password: "") }
+            return results.map { User(userID: $0.userID ?? "", name: $0.name ?? "", email: $0.emailAddress ?? "", phoneNumber: String($0.phoneNo), gender: $0.gender ?? "", password: "") }
         } catch {
             print("Failed to fetch registered users: \(error.localizedDescription)")
             return []
@@ -98,7 +99,7 @@ class UserManager {
             do {
                 let results = try self.context.fetch(fetchRequest)
                 if let user = results.first {
-                    self.loggedInUser = User(userID: user.userID ?? "", firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: "")
+                    self.loggedInUser = User(userID: user.userID ?? "", name: user.name ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), gender: user.gender ?? "", password: "")
                     self.saveLoggedInUser()
                     completion(true, nil)
                 } else {
@@ -131,8 +132,7 @@ class UserManager {
         do {
             let results = try context.fetch(fetchRequest)
             if let userToUpdate = results.first {
-                userToUpdate.firstName = updatedUser.firstName
-                userToUpdate.lastName = updatedUser.lastName
+                userToUpdate.name = updatedUser.name
                 userToUpdate.emailAddress = updatedUser.email
                 userToUpdate.phoneNo = Int64(updatedUser.phoneNumber) ?? 0
                 try context.save()
@@ -162,7 +162,7 @@ class UserManager {
             do {
                 let results = try context.fetch(fetchRequest)
                 if let user = results.first {
-                    loggedInUser = User(userID: user.userID ?? "", firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), password: "")
+                    loggedInUser = User(userID: user.userID ?? "", name: user.name ?? "", email: user.emailAddress ?? "", phoneNumber: String(user.phoneNo), gender: user.gender ?? "", password: "")
                 }
             } catch {
                 print("Failed to load logged in user: \(error.localizedDescription)")

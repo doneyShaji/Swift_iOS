@@ -59,8 +59,7 @@ class LoginViewController: UIViewController {
                     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
                     
                     let newUser = RegisteredUsers(context: context)
-                    newUser.firstName = loggedInGoggleUser.displayName
-                    newUser.lastName = loggedInGoggleUser.displayName
+                    newUser.name = loggedInGoggleUser.displayName
                     newUser.emailAddress = loggedInGoggleUser.email
                     if let phoneNumberString = loggedInGoggleUser.phoneNumber, let phoneNumberInt = Int64(phoneNumberString) {
                         newUser.phoneNo = phoneNumberInt
@@ -81,8 +80,6 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         guard let email = emailTextField.text, email.isValidEmail else {

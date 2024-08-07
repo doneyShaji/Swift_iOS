@@ -14,17 +14,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
-    @IBOutlet weak var firstNameErrorLabel: UILabel!
-    @IBOutlet weak var lastNameErrorLabel: UILabel!
+    @IBOutlet weak var nameErrorLabel: UILabel!
     @IBOutlet weak var emailErrorLabel: UILabel!
     @IBOutlet weak var phoneErrorLabel: UILabel!
+    @IBOutlet weak var genderErrorLabel: UILabel!
     @IBOutlet weak var passwordErrorLabel: UILabel!
     @IBOutlet weak var confirmPasswordErrorLabel: UILabel!
     
@@ -33,15 +33,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         clearErrorMessages()
         textFieldDelegates()
-        firstNameTextField.placeholder = "Enter your text"
-        
     }
     
     func textFieldDelegates(){
-        self.firstNameTextField.delegate = self
-        self.lastNameTextField.delegate = self
+        self.nameTextField.delegate = self
         self.emailAddressTextField.delegate = self
         self.phoneNumberTextField.delegate = self
+        self.genderTextField.delegate = self
         self.passwordTextField.delegate = self
         self.confirmPasswordTextField.delegate = self
     }
@@ -53,13 +51,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     private func switchBasedNextTextField(_ textField: UITextField) {
         switch textField {
-        case self.firstNameTextField:
-            self.lastNameTextField.becomeFirstResponder()
-        case self.lastNameTextField:
+        case self.nameTextField:
             self.emailAddressTextField.becomeFirstResponder()
         case self.emailAddressTextField:
             self.phoneNumberTextField.becomeFirstResponder()
         case self.phoneNumberTextField:
+            self.genderTextField.becomeFirstResponder()
+        case self.genderTextField:
             self.passwordTextField.becomeFirstResponder()
         case self.passwordTextField:
             self.confirmPasswordTextField.becomeFirstResponder()
@@ -70,14 +68,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-        case firstNameTextField:
-            firstNameErrorLabel.text = ""
-        case lastNameTextField:
-            lastNameErrorLabel.text = ""
+        case nameTextField:
+            nameErrorLabel.text = ""
         case emailAddressTextField:
             emailErrorLabel.text = ""
         case phoneNumberTextField:
             phoneErrorLabel.text = ""
+        case genderTextField:
+            genderErrorLabel.text = ""
         case passwordTextField:
             passwordErrorLabel.text = ""
         case confirmPasswordTextField:
@@ -88,62 +86,58 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func registerButtonTapped(_ sender: Any) {
         clearErrorMessages()
-                
-                guard let firstName = firstNameTextField.text, firstName.isNameValid else {
-                    firstNameErrorLabel.text = "First name is Invalid."
-                    return
-                }
-                
-                guard let lastName = lastNameTextField.text, lastName.isNameValid else {
-                    lastNameErrorLabel.text = "Last name is Invalid."
-                    return
-                }
-                
-                guard let email = emailAddressTextField.text, email.isValidEmail else {
-                    emailErrorLabel.text = "Email is Invalid."
-                    return
-                }
-                
-                guard let phone = phoneNumberTextField.text, phone.isTenDigits else {
-                    phoneErrorLabel.text = "Phone Number is Invalid."
-                    return
-                }
-                
-                guard let password = passwordTextField.text, password.isValidPassword else {
-                    passwordErrorLabel.text = "Password must be at least 8 characters long."
-                    return
-                }
-                
-                guard let confirmPassword = confirmPasswordTextField.text, confirmPassword == password else {
-                    confirmPasswordErrorLabel.text = "Passwords do not match."
-                    return
-                }
+        
+        guard let name = nameTextField.text, name.isNameValid else {
+            nameErrorLabel.text = "Name is Invalid."
+            return
+        }
+        guard let email = emailAddressTextField.text, email.isValidEmail else {
+            emailErrorLabel.text = "Email is Invalid."
+            return
+        }
+        guard let phone = phoneNumberTextField.text, phone.isTenDigits else {
+            phoneErrorLabel.text = "Phone Number is Invalid."
+            return
+        }
+        guard let gender = genderTextField.text, !gender.isEmpty else {
+            genderErrorLabel.text = "Gender should be Valid"
+            return
+        }
+        guard let password = passwordTextField.text, password.isValidPassword else {
+            passwordErrorLabel.text = "Password must be at least 8 characters long."
+            return
+        }
+        guard let confirmPassword = confirmPasswordTextField.text, confirmPassword == password else {
+            confirmPasswordErrorLabel.text = "Passwords do not match."
+            return
+        }
+        
         let userFirebaseID = Auth.auth().currentUser?.uid
-        let user = User(userID: userFirebaseID ?? "", firstName: firstName, lastName: lastName, email: email, phoneNumber: phone, password: password)
-                
-                UserManager.shared.register(user: user) { success, error in
-                    if success {
-                        self.showAlert(title: "Success", message: "User registered successfully.") {
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                    } else {
-                        self.showAlert(title: "Error", message: error ?? "Registration failed.")
-                    }
+        let user = User(userID: userFirebaseID ?? "", name: name, email: email, phoneNumber: phone, gender: gender, password: password)
+        
+        UserManager.shared.register(user: user) { success, error in
+            if success {
+                self.showAlert(title: "Success", message: "User registered successfully.") {
+                    self.navigationController?.popViewController(animated: true)
                 }
+            } else {
+                self.showAlert(title: "Error", message: error ?? "Registration failed.")
             }
-            
-            func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                    completion?()
-                }))
-                present(alert, animated: true, completion: nil)
-            }
+        }
+    }
+    
+    func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            completion?()
+        }))
+        present(alert, animated: true, completion: nil)
+    }
     
     func clearErrorMessages() {
-        firstNameErrorLabel.text = ""
-        lastNameErrorLabel.text = ""
+        nameErrorLabel.text = ""
         emailErrorLabel.text = ""
+        genderErrorLabel.text = ""
         phoneErrorLabel.text = ""
         passwordErrorLabel.text = ""
         confirmPasswordErrorLabel.text = ""
