@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class MenuViewController: UIViewController, LoginViewControllerDelegate {
+class MenuViewController: UIViewController {
     
     let ordersButton = UIButton()
     let paymentsButton = UIButton()
@@ -112,29 +112,21 @@ class MenuViewController: UIViewController, LoginViewControllerDelegate {
     }
     
     func navigateToLoginViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil) // Replace "Main" with the name of your storyboard if different
-        if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
-            if let loginVC = loginNavController.viewControllers.first as? LoginViewController {
-                loginVC.delegate = self
-            }
-            loginNavController.modalPresentationStyle = .fullScreen
-            present(loginNavController, animated: true, completion: nil)
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = scene.windows.first else {
+            return
         }
-    }
-    
-    func loginViewControllerDidLogin(_ controller: LoginViewController) {
-        // Dismiss the login view controller and proceed to checkout
-        controller.dismiss(animated: true) {
-            if let homeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomePageViewController") as? HomePageViewController {
-                        // Set the homeViewController as the root view controller
-                        if let window = UIApplication.shared.windows.first {
-                            window.rootViewController = UINavigationController(rootViewController: homeViewController)
-                            window.makeKeyAndVisible()
-                        }
-                    } else {
-                        print("HomeViewController could not be instantiated.")
-                    }
-            
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let loginNavController = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController {
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                window.rootViewController = loginNavController
+                window.makeKeyAndVisible()
+            }, completion: { _ in
+                // Log the order of the view controllers in the navigation stack
+                print("Current Navigation Stack: \(loginNavController.viewControllers)")
+            })
         }
     }
 }

@@ -20,7 +20,7 @@ class OrderDetailViewController: UIViewController {
         super.viewDidLoad()
         fetchOrderItems()
         
-        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(pdfGenerator))
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "arrow.down.doc"), style: .plain, target: self, action: #selector(pdfGenerator))
         cartButton.tintColor = .black
         navigationItem.rightBarButtonItem = cartButton
     }

@@ -95,10 +95,16 @@ class LoginViewController: UIViewController {
             guard let self = self else { return }
             
             if success {
-                self.delegate?.loginViewControllerDidLogin(self)
-            } else {
-                self.showAlert(message: errorMessage ?? "Login failed.")
-            }
+                        if self.delegate != nil {
+                            // Notify delegate if it exists
+                            self.delegate?.loginViewControllerDidLogin(self)
+                        } else {
+                            // Navigate to MainTabBarController directly if no delegate
+                            self.navigateToMainTabBarController()
+                        }
+                    } else {
+                        self.showAlert(message: errorMessage ?? "Login failed.")
+                    }
         }
     }
     
