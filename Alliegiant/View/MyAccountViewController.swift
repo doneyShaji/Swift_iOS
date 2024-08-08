@@ -50,6 +50,7 @@ class MyAccountViewController: UIViewController, LoginViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         setupUIAccount()
         if Auth.auth().currentUser == nil {
             showNotLoggedInUI()

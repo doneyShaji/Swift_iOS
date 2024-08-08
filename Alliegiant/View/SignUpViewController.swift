@@ -99,7 +99,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             phoneErrorLabel.text = "Phone Number is Invalid."
             return
         }
-        guard let gender = genderTextField.text, !gender.isEmpty else {
+        guard let gender = genderTextField.text, gender.isGender else {
             genderErrorLabel.text = "Gender should be Valid"
             return
         }

@@ -31,6 +31,12 @@ extension String {
         let digitsPredicate = NSPredicate(format: "SELF MATCHES %@", digitsRegex)
         return digitsPredicate.evaluate(with: self)
     }
+    
+    var isGender: Bool {
+        let genderRegex = "\\b(male|female)\\b"
+        let genderPredicate = NSPredicate(format: "SELF MATCHES %@", genderRegex)
+        return genderPredicate.evaluate(with: self)
+    }
     func toDouble() -> Double? {
             let formatter = NumberFormatter()
             formatter.numberStyle = .currency

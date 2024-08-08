@@ -73,13 +73,16 @@ class UserManager {
 
     func deleteUser(user: User) {
         let fetchRequest: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "emailAddress == %@", user.email)
+        fetchRequest.predicate = NSPredicate(format: "userID == %@", user.userID)
 
         do {
             let results = try context.fetch(fetchRequest)
             if let userToDelete = results.first {
                 context.delete(userToDelete)
                 try context.save()
+                print("User deleted successfully")
+            } else {
+                print("User not found")
             }
         } catch {
             print("Failed to delete user: \(error.localizedDescription)")
