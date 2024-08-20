@@ -68,6 +68,8 @@
 		04B99E932C510B11009170FE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 04B99E922C510B11009170FE /* GoogleSignInSwift */; };
 		04C66DF12C52268700F95896 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */; };
 		04C748672C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */; };
+		04CDC9602C74CEDD00126529 /* DiscountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDC95F2C74CEDD00126529 /* DiscountManager.swift */; };
+		04CDC9622C74CFF200126529 /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CDC9612C74CFF200126529 /* DiscountModel.swift */; };
 		04D1AF7A2C2036A200D8ADDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */; };
 		04D1AF7C2C203D7F00D8ADDF /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */; };
 		04D3DEA62C61E0A000AC3CBC /* Alliegiant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04D3DEA42C61E0A000AC3CBC /* Alliegiant.xcdatamodeld */; };
@@ -161,6 +163,8 @@
 		04B99E8D2C510A22009170FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04C66DF02C52268700F95896 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		04C748662C2D1E6B00F2C8FC /* SearchBarViewCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewCollectionVC.swift; sourceTree = "<group>"; };
+		04CDC95F2C74CEDD00126529 /* DiscountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountManager.swift; sourceTree = "<group>"; };
+		04CDC9612C74CFF200126529 /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
 		04D1AF792C2036A200D8ADDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		04D1AF7B2C203D7F00D8ADDF /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		04D3DEA52C61E0A000AC3CBC /* Alliegiant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Alliegiant.xcdatamodel; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 				04FA49AF2C2A738F002C8364 /* DepartmentStoreProductModel.swift */,
 				046DCE782C33D66B004DDF30 /* CartItem.swift */,
 				04AFD06E2C5A37650065FAD7 /* OnboardingSlide.swift */,
+				04CDC9612C74CFF200126529 /* DiscountModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				04FD2A132C3D5FB400A46114 /* LoginValidation.swift */,
 				0445BC252C4542CA002A1EA4 /* WeatherManagerProtocol.swift */,
 				040ABADF2C462D2F001F13CD /* URLSessionProtocol.swift */,
+				04CDC95F2C74CEDD00126529 /* DiscountManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				04B10EB52C48E6870054C2E6 /* RazorPayViewController.swift in Sources */,
 				0450024F2C0EF15A005DFF25 /* CustomCollectionViewCell.swift in Sources */,
 				2F18EF172C612F4500F486A4 /* OrderDetailTableViewCell.swift in Sources */,
+				04CDC9602C74CEDD00126529 /* DiscountManager.swift in Sources */,
 				045002532C0F2E26005DFF25 /* WeatherManager.swift in Sources */,
 				046E3A2D2BCE7CE70097D632 /* AppDelegate.swift in Sources */,
 				046DCE7F2C33FD00004DDF30 /* CartTableViewCell.swift in Sources */,
@@ -606,6 +613,7 @@
 				04A814892C3BA3060001F7F2 /* RegisteredUsersViewController.swift in Sources */,
 				04FE1AA82C5CEB8C001F3B34 /* OrdersViewController.swift in Sources */,
 				046D57BE2C493EE9000D0EB0 /* AddToCart.swift in Sources */,
+				04CDC9622C74CFF200126529 /* DiscountModel.swift in Sources */,
 				04D3DEA62C61E0A000AC3CBC /* Alliegiant.xcdatamodeld in Sources */,
 				04309AA52C29940F0034D178 /* DepartmentStoreViewController.swift in Sources */,
 				0427289E2BCF9DC000420EDD /* mySecondViewController.swift in Sources */,

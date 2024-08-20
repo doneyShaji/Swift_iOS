@@ -50,8 +50,9 @@ class HomePageViewController: UIViewController {
     let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.isNavigationBarHidden = true
+        
+        applyDiscount()
         
         // Initialize and add the custom navigation bar
         customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 35))
@@ -133,6 +134,27 @@ class HomePageViewController: UIViewController {
         pages.currentPage = index
         imageCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
     }
+    
+    func applyDiscount() {
+        let discountManager = DiscountManager()
+        Task {
+            do {
+                let promoCode = "SAVE10"
+                let promoResponse = try await discountManager.getDiscount(promoCode: promoCode)
+                
+                if promoResponse.success {
+                    if let discount = promoResponse.discount {
+                        print("Discount applied: \(discount)%")
+                    }
+                } else {
+                    print("Failed to apply promo code")
+                }
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+    }
+
     
     internal func loadSegmentData() {
         let category: String
