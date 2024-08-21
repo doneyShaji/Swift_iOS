@@ -56,27 +56,15 @@ class HomePageViewController: UIViewController {
         
         // Initialize and add the custom navigation bar
         customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 35))
-        
-        //        if let user = Auth.auth().currentUser {
-        //            print("User ID: \(user.displayName ?? "N")")
-        //            customNavBar?.firstNameLabel.text = user.displayName ?? "N/A"
-        //        }
-        
         if let customNavBar = customNavBar {
             view.addSubview(customNavBar)
         }
-        
-//        setupMyAccountViewController()
-        
         tableViewHome.delegate = self
         tableViewHome.dataSource = self
         tableViewHome.separatorStyle = .none
         tableViewHome.rowHeight = 150
-        
         Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollingImgSetup), userInfo: nil, repeats: true)
         loadSegmentData()
-        
-//        setupSegmentedControl()
         
         if let tabBar = self.tabBarController?.tabBar {
             let tabBarAppearance = UITabBarAppearance()

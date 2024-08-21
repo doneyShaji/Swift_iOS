@@ -16,6 +16,10 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var merchantDetails: MerchantDetails = MerchantDetails.getDefaultData()
     var totalAmount: Double = 0.0
 
+    @IBOutlet weak var promoCodeSearchField: UITextField!
+    
+    @IBOutlet weak var discountPercentage: UILabel!
+    
     @IBOutlet weak var AmountLbl: UILabel!
     @IBOutlet weak var totalAmountLbl: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
@@ -25,6 +29,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var shippingLbl: UILabel!
     @IBOutlet weak var freeLbl: UILabel!
     @IBOutlet weak var totalLbl: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +50,11 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
             emptyCartLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
-        // Set up the checkout button
         setupCheckoutButton()
         
         // Initially hide the table view and show the empty cart message
         updateCartView()
+        
         
     }
     
@@ -93,6 +98,50 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
             totalAmountLbl.text = "$\(formattedTotalAmount)"
             
         }
+    }
+    
+    @IBAction func promoCodeButtonTapped(_ sender: Any) {
+        discountLogic()
+    }
+    
+    func discountLogic(){
+        guard let promoCodeText = promoCodeSearchField.text, !promoCodeText.isEmpty else {
+            print("Invalid Promo Code")
+            return
+        }
+        applyDiscount(promoCode: promoCodeText)
+    }
+    
+    func applyDiscount(promoCode: String) {
+        let discountManager = DiscountManager()
+        Task {
+            do {
+                let promoCode = promoCode
+                let promoResponse = try await discountManager.getDiscount(promoCode: promoCode)
+                
+                if promoResponse.success {
+                    if let discount = promoResponse.discount {
+                        print("Discount applied: \(discount)%")
+                        discountUIChange(promoCode: String(discount))
+                    }
+                } else {
+                    print("Failed to apply promo code")
+                }
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    func discountUIChange(promoCode: String){
+        discountPercentage.text = "\(promoCode)%"
+        
+        let totalAmount = CartManager.shared.items.reduce(0) { $0 + ((Double($1.price) ?? 0) * Double($1.quantity)) }
+        var discountedAmount: Double {
+            return Double(totalAmount - ((totalAmount * (Double(promoCode) ?? 1))/100))
+        }
+        totalAmountLbl.text = "$\(discountedAmount)"
+        print(discountedAmount)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
