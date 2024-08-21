@@ -17,6 +17,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var totalAmount: Double = 0.0
 
     @IBOutlet weak var promoCodeSearchField: UITextField!
+    @IBOutlet weak var discountLabel: UILabel!
     
     @IBOutlet weak var discountPercentage: UILabel!
     
@@ -121,8 +122,8 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 if promoResponse.success {
                     if let discount = promoResponse.discount {
-                        print("Discount applied: \(discount)%")
-                        discountUIChange(promoCode: String(discount))
+                        print("Discount applied:  \(discount)%")
+                        discountUIChange(discount: String(discount))
                     }
                 } else {
                     print("Failed to apply promo code")
@@ -133,14 +134,20 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func discountUIChange(promoCode: String){
-        discountPercentage.text = "\(promoCode)%"
+    func discountUIChange(discount: String){
+        
+        discountLabel.text = "Discount (\(discount)%)"
         
         let totalAmount = CartManager.shared.items.reduce(0) { $0 + ((Double($1.price) ?? 0) * Double($1.quantity)) }
-        var discountedAmount: Double {
-            return Double(totalAmount - ((totalAmount * (Double(promoCode) ?? 1))/100))
+        var percentageAmount: Double {
+            return (totalAmount * (Double(discount) ?? 1))/100
         }
-        totalAmountLbl.text = "$\(discountedAmount)"
+        var discountedAmount: Double {
+            return Double(totalAmount - percentageAmount)
+        }
+        
+        discountPercentage.text = String(format: "-$%.2f", percentageAmount)
+        totalAmountLbl.text = String(format: "$%.2f", discountedAmount)
         print(discountedAmount)
     }
     

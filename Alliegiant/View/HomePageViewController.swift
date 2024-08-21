@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import FirebaseAuth
+import UserNotifications
 
 class HomePageViewController: UIViewController {
     
@@ -52,8 +53,7 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
-        applyDiscount()
-        
+        checkForPermission()
         // Initialize and add the custom navigation bar
         customNavBar = WelcomeDesignHomePage(frame: CGRect(x: 0, y: 50, width: view.frame.width, height: 35))
         if let customNavBar = customNavBar {
@@ -123,26 +123,54 @@ class HomePageViewController: UIViewController {
         imageCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
     }
     
-    func applyDiscount() {
-        let discountManager = DiscountManager()
-        Task {
-            do {
-                let promoCode = "SAVE10"
-                let promoResponse = try await discountManager.getDiscount(promoCode: promoCode)
-                
-                if promoResponse.success {
-                    if let discount = promoResponse.discount {
-                        print("Discount applied: \(discount)%")
+    //Alerts which the app usually asks the user for Permissions
+    func checkForPermission() {
+        //Create a notification Center variable
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                self.dispatchNotification()
+            case .denied:
+                return
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                    if didAllow {
+                        self.dispatchNotification()
                     }
-                } else {
-                    print("Failed to apply promo code")
                 }
-            } catch {
-                print("Error: \(error)")
+            default:
+                return
             }
         }
     }
 
+    func dispatchNotification() {
+        let identifier = "my-morning-notification"
+        
+        let title = "Time to Work Out"
+        let body = "Yellow"
+        let hour = 17
+        let minute = 57
+        let isDaily = true
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+        
+        let calender = Calendar.current
+        var dateComponent = DateComponents(calendar: calender, timeZone: TimeZone.current)
+        dateComponent.hour = hour
+        dateComponent.minute = minute
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: isDaily)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        notificationCenter.add(request)
+    }
     
     internal func loadSegmentData() {
         let category: String
