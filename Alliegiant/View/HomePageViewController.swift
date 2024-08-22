@@ -32,6 +32,10 @@ class HomePageViewController: UIViewController {
     
     var homeData: [Details] = []
     
+    private var isLoading = false
+        private var currentPage = 1
+        private let itemsPerPage = 3
+    
     @IBOutlet weak var pages: UIPageControl!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var checkOutBtn: UIButton!
@@ -49,9 +53,11 @@ class HomePageViewController: UIViewController {
     var customNavBar: WelcomeDesignHomePage?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let request: NSFetchRequest<RegisteredUsers> = RegisteredUsers.fetchRequest()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        
         
         checkForPermission()
         // Initialize and add the custom navigation bar
@@ -122,7 +128,7 @@ class HomePageViewController: UIViewController {
         pages.currentPage = index
         imageCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
     }
-    
+ //MARK: - Local Notification
     //Alerts which the app usually asks the user for Permissions
     func checkForPermission() {
         //Create a notification Center variable
